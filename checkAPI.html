@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<button onclick="postData1()">----1----</button>
+
+<button onclick="postData2()">----2----</button>
+
+<button onclick="postData3()">----3----</button>
+
+<button onclick="playRecord()">----4----</button>
+
+<body>
+
+
+  <script>
+
+    function postData1() {
+
+      fetch(`https://api.skilla.ru/mango/getList?date_start=2022-03-01&date_end=2022-03-02`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: "Bearer testtoken", //Bearer token это данный мне токен может и не быть!
+        },
+        // body: JSON.stringify(startObj)
+      })
+        .then(response => response.json())
+        .then(json => console.log('result1', json))
+        .catch((err) => console.log(err));
+
+    }
+
+
+    async function postData2() {
+      let response = await fetch('https://api.skilla.ru/mango/getList?date_start=2022-03-01&date_end=2022-03-02&limit=10', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer testtoken", // Bearer token это данный мне токен может и не быть!
+        }
+      });
+
+      // сервер ответит подтверждением 
+      let result = await response.json();
+      console.log('result2', result);
+    }
+
+    async function postData3() {
+      let response = await fetch('https://api.skilla.ru/mango/getList?date_start=2022-03-01&date_end=2022-03-02', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer testtoken" // Bearer token это данный мне токен может и не быть!
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status}`);
+      }
+
+      // сервер ответит подтверждением
+      let result = await response.json();
+      console.log('resultAxios', result);
+    }
+
+    const playRecord = async () => {
+      const url = `https://api.skilla.ru/mango/getRecord?record=MToxMDA2NzYxNToxNDMwMDM3NzExNzow&partnership_id=578`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          "Content-type": "audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3",
+          "Content-Transfer-Encoding": "binary",
+          "Content-Disposition": filename = "record.mp3",
+          Authorization: "Bearer testtoken"
+        }
+      });
+
+
+
+      const blob = await response.blob();
+      const audio = new Audio(URL.createObjectURL(blob));
+      console.log(audio);
+      // audio.play();
+      // setStatus('Recording playing...');
+    };
+
+  </script>
+</body>
+
+</html>
