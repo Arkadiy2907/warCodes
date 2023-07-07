@@ -20,6 +20,38 @@
 
 // Не решена!!!!!!!!! ищет все числа а тут надо только последовательные
 
+function setReducer1(input) {
+    let items = input.slice(0);
+    let res = [];
+    let start = items[0];
+    let count = 1;
+    let i = 1;
+
+    while (items.length > 1) {
+        if (items[0] === items[1]) {
+            count++;
+            // start = items[i];
+            // i++
+            items.shift();
+            if (count >= 2) {
+                count++
+            }
+            res.push(count);
+        } else {
+            count = 1;
+            // start = items[i];
+            // i++
+            items.shift();
+            res.push(count);
+        }
+
+    }
+    console.log("items=", items, "res=", res)
+
+}
+
+console.log(setReducer1([1, 1, 1]))
+
 function setReducer(input) {
     // code here
     let items = input.slice(0),  // клонируем исходный массив

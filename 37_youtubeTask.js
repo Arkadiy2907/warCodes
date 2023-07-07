@@ -182,3 +182,52 @@ function isAnnagramMy(arr) {
 }
 
 console.log(isAnnagramMy(['asd', 'sad', 'sda']))
+
+
+// ==============================================================
+
+// 5) функция которая принимает матрицу 3*3 и переворачивает на 90 град по часов стрелке
+// доп на 180 и 270град
+
+// [1, 2, 3]     [7, 4, 1]
+// [4, 5, 6] =>  [8, 5, 2]
+// [7, 8, 9]     [9, 6, 3]
+
+// my code
+
+const matr = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
+
+
+function rotateMatr(arr) {
+  let arrFlat = arr.flat(Infinity);
+  let resArr = []
+  let arr1 = [];
+  let arr2 = [];
+  let arr3 = [];
+
+  for (let i = arrFlat.length - 1; i >= 0; i -= 3) {
+    arr3.push(arrFlat[i])
+  }
+
+  for (let i = 0; i < arrFlat.length; i += 3) {
+    arr1.push(arrFlat[i])
+  }
+  arr1 = arr1.reverse()
+
+  res3 = arr.filter(el => arr1.includes(el))
+
+  // resArr = arrFlat.map(el => )
+
+  // for (let i = 0; i < arrFlat.length; i++){
+  //   arrFlat.forEach(el => resArr.push(el[i-2]))
+  // }
+
+
+  console.log(res3)
+}
+
+rotateMatr(matr)
