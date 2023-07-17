@@ -20,9 +20,8 @@ const getNewStr = str => {
 getNewStr(str1)
 
 
-const getNewStr2 = str => {
-  return [...new Set(str)].map(char => `${char}${str.split(char).length - 1}`).join('');
-};
+const getNewStr2 = str => [...new Set(str)].map(char => `${char}${str.split(char).length - 1}`).join('');
+
 
 
 console.log(getNewStr2(str1))
