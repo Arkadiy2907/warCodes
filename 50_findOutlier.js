@@ -10,11 +10,6 @@ function findOutlier(integers) {
 
   arr = integers.map((el) => el % 2 === 0).filter(Boolean).length;
 
-  if (arr === 1) {
-    res = integers.find((el) => el % 2 === 0);
-  } else {
-    res = integers.find((el) => el % 2 !== 0);
-  }
   return arr === 1
     ? integers.find((el) => el % 2 === 0)
     : (res = integers.find((el) => el % 2 !== 0));
