@@ -1,37 +1,33 @@
 let obj = {
-  '0': 1,
-  0: 2
-}
+  0: 1,
+  0: 2,
+};
 
-console.log(obj['0'] + obj[0]);
+console.log(obj["0"] + obj[0]);
 // ----------------------------------------
-function User() {
-
-}
+function User() {}
 
 let vasya = new User();
 
-vasya.__proto__.name = 'Vasya';
+vasya.__proto__.name = "Vasya";
 
 // ------------------------------------------
 
-let f = function (x) {
+let f = (function (x) {
   console.log(x);
-}
-
+})(
   (function () {
-    f(1)
-  }())
-
-
+    f(1);
+  })()
+);
 
 MyObj = function (name) {
   this._myParam = 8;
-}
+};
 
 MyObj.prototype = {
   init: function (params) {
-    if (params.hasOwnProperty('myParam')) {
+    if (params.hasOwnProperty("myParam")) {
       this._myParam = params.myParam;
     }
   },
@@ -39,62 +35,59 @@ MyObj.prototype = {
     this._myParam++;
     setTimeout(function () {
       console.log(this._myParam);
-    })
-  }
-}
+    });
+  },
+};
 
 MyObj.create = function (params) {
   var self = new MyObj();
   self.init(params);
   return self;
-}
+};
 
 let params = { myParam: 10 };
 let as = MyObj.create(params);
-console.log(as.incParam())
+console.log(as.incParam());
 
+let arr = [22, 501, 13, 612, 11];
 
+let sum = arr.reduce((a, c) => (c % 2 !== 0 && c > a ? c : a), 0);
 
-let arr = [22, 501, 13, 612, 11]
-
-let sum = arr.reduce((a, c) => c % 2 !== 0 && c > a ? c : a, 0)
-
-console.log(sum)
+console.log(sum);
 
 // ============================
 
 console.log(1);
 const aaa = new Promise((res, rej) => res(console.log(2)));
 
-aaa.then(res => console.log(3));
+aaa.then((res) => console.log(3));
 
 setTimeout(() => {
   console.log(4);
 }, 10);
 
-aaa.then(res => console.log(5));
+aaa.then((res) => console.log(5));
 
 console.log(6);
 
 // ============================
 
 var a = {},
-  b = { key: 'b' },
-  c = { key: 'c' }
+  b = { key: "b" },
+  c = { key: "c" };
 
 a[b] = 123;
 a[c] = 456;
 
-console.log(a[b])//456
+console.log(a[b]); //456
 
 // В данном фрагменте кода объекты b и c имеют свойства key со значениями «b» и «c» соответственно.
 // В JavaScript, когда объект используется в качестве ключа свойства, он преобразуется в строку
 //  с помощью метода объекта toString. Метод объекта toString по умолчанию возвращает строку вида[object Object].
 // Итак, a[b] = 123 задает значение 123 для свойства[object Object] объекта a, а a[c] = 456 устанавливает значение 456
-//  для свойства[object Object] того же объекта a.Поэтому при выполнении console.log(a[b]) 
+//  для свойства[object Object] того же объекта a.Поэтому при выполнении console.log(a[b])
 // он извлекает значение свойства[object Object] из объекта a, равное 456.
 // Следовательно, вывод приведенного выше кода равен 456.
-
 
 // ============================
 
@@ -118,16 +111,14 @@ function strCount(str, letter) {
 }
 
 function strCount(str, letter) {
-  return str.split(letter).length - 1
+  return str.split(letter).length - 1;
 }
 
 function strCount(str, letter) {
-  return str.split('').filter(c => c == letter).length;
+  return str.split("").filter((c) => c == letter).length;
 }
 
-
-console.log(strCount('Helloo', 'o'))
-
+console.log(strCount("Helloo", "o"));
 
 // ============================
 
@@ -195,26 +186,26 @@ console.log(isLeapYear(2100));
 //     }
 //   ]
 
-const start = '09:00';
-const end = '21:00';
+const start = "09:00";
+const end = "21:00";
 const interval = 30;
 
 const busy = [
-  { 'start': '10:30', 'stop': '10:50' },
-  { 'start': '18:40', 'stop': '18:50' },
-  { 'start': '14:40', 'stop': '15:50' },
-  { 'start': '16:40', 'stop': '17:20' },
-  { 'start': '20:05', 'stop': '20:20' }
+  { start: "10:30", stop: "10:50" },
+  { start: "18:40", stop: "18:50" },
+  { start: "14:40", stop: "15:50" },
+  { start: "16:40", stop: "17:20" },
+  { start: "20:05", stop: "20:20" },
 ];
 
-const busySlots = busy.map(slot => ({
+const busySlots = busy.map((slot) => ({
   start: new Date(`2022-01-01 ${slot.start}`).getTime(),
-  end: new Date(`2022-01-01 ${slot.stop}`).getTime()
+  end: new Date(`2022-01-01 ${slot.stop}`).getTime(),
 }));
 
 let freeSlots = [{ start: new Date(`2022-01-01 ${start}`).getTime(), end: 0 }];
 
-busySlots.forEach(slot => {
+busySlots.forEach((slot) => {
   const lastSlot = freeSlots[freeSlots.length - 1];
 
   if (slot.start > lastSlot.end) {
@@ -228,14 +219,22 @@ busySlots.forEach(slot => {
 
 freeSlots.push({ start: new Date(`2022-01-01 ${end}`).getTime(), end: 0 });
 
-freeSlots = freeSlots.filter(slot => slot.end - slot.start >= interval * 60000);
+freeSlots = freeSlots.filter(
+  (slot) => slot.end - slot.start >= interval * 60000
+);
 
-const freeSlotsFormatted = freeSlots.map(slot => ({
-  start: new Date(slot.start).toLocaleTimeString('ru-RU', { hour: 'numeric', minute: 'numeric' }),
-  end: new Date(slot.end).toLocaleTimeString('ru-RU', { hour: 'numeric', minute: 'numeric' })
+const freeSlotsFormatted = freeSlots.map((slot) => ({
+  start: new Date(slot.start).toLocaleTimeString("ru-RU", {
+    hour: "numeric",
+    minute: "numeric",
+  }),
+  end: new Date(slot.end).toLocaleTimeString("ru-RU", {
+    hour: "numeric",
+    minute: "numeric",
+  }),
 }));
 
-console.log(freeSlotsFormatted)
+console.log(freeSlotsFormatted);
 
 // =============================================
 
@@ -249,27 +248,28 @@ Promise.resolve().then(() => {
   console.log("Then1");
 });
 
-const myPromise = (delay) => new Promise((res, rej) => {
-  setTimeout(res, delay)
-})
+const myPromise = (delay) =>
+  new Promise((res, rej) => {
+    setTimeout(res, delay);
+  });
 
-setTimeout(() => console.log('in setTimeout1'), 1000);
+setTimeout(() => console.log("in setTimeout1"), 1000);
 
-myPromise(1000).then(res => console.log('in Promise 1'));
+myPromise(1000).then((res) => console.log("in Promise 1"));
 
-setTimeout(() => console.log('in setTimeout2'), 100);
+setTimeout(() => console.log("in setTimeout2"), 100);
 
-myPromise(1000).then(res => console.log('in Promise 3'));
+myPromise(1000).then((res) => console.log("in Promise 3"));
 
-Promise.resolve().then(() => setTimeout(() => console.log("Timeout2")))
+Promise.resolve().then(() => setTimeout(() => console.log("Timeout2")));
 
-new Promise(resolve => setTimeout(resolve)).then(() => console.log(4))
+new Promise((resolve) => setTimeout(resolve)).then(() => console.log(4));
 
 Promise.reject(3).catch(console.log);
 
-myPromise(2000).then(res => console.log('in Promise 2'));
+myPromise(2000).then((res) => console.log("in Promise 2"));
 
-setTimeout(() => console.log('in setTimeout3'), 2000);
+setTimeout(() => console.log("in setTimeout3"), 2000);
 
 const p1 = new Promise((resolve) => {
   console.log("Promise2");
@@ -292,8 +292,8 @@ console.log("End");
 // Promise3
 // End
 // Then1
-// 3        
-// Then2    
+// 3
+// Then2
 // QueueMicrotask
 // Timeout1
 // 4
@@ -323,7 +323,7 @@ console.log("End");
 //       in setTimeout4
 //       in Promise 2
 //         in setTimeout3
-//         in Promise 
+//         in Promise
 
 // ==================================
 
@@ -360,7 +360,7 @@ console.log("End");
 //  Effect2
 
 //=====================================
-let str1 = 'asdfadg'
+let str1 = "asdfadg";
 function maxRecurringChar(str) {
   const obj = {};
 
@@ -383,22 +383,20 @@ function maxRecurringChar(str) {
   return res;
 }
 
-console.log(maxRecurringChar(str1))
+console.log(maxRecurringChar(str1));
 
 // ===========================
 //ф-я берет из переменной свое лексическое окружение результат msk
 
 const city = "msk";
 function getCity() {
-  console.log(city)
+  console.log(city);
 }
 
-
 setTimeout(() => {
-  const city = "ekt"
-  getCity()
-}, 0
-)
+  const city = "ekt";
+  getCity();
+}, 0);
 
 // ============================
 
@@ -407,7 +405,7 @@ setTimeout(() => {
 // 1. При нажатии кнопки "вправо" квадрат будет перемещаться к правой границе экрана;
 // 2. При нажатии кнопки "влево" квадрат будет перемещаться к левой границе экрана;
 // 3. Перемещение должно быть анимированным, длительность анимации составляет одну секунду;
-// 4. При изменении размера окна квадрат не должен выходить за границы окна. 
+// 4. При изменении размера окна квадрат не должен выходить за границы окна.
 
 //   <style>
 //     #square {
@@ -473,11 +471,7 @@ setTimeout(() => {
 //   return arr
 // };
 
-
 // console.log(sortArr(arr1))
-
-
-
 
 // const arr1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 
@@ -495,10 +489,9 @@ setTimeout(() => {
 
 const arr1 = [9, 8, 7, 6, 5, 4, 3, 2, 1];
 const sortArr = (arr) => {
-  const oddArr = arr.filter(el => el % 2 !== 0).sort((a, b) => a - b);
-  return arr.map(el => el % 2 !== 0 ? oddArr.shift() : el);
+  const oddArr = arr.filter((el) => el % 2 !== 0).sort((a, b) => a - b);
+  return arr.map((el) => (el % 2 !== 0 ? oddArr.shift() : el));
 };
-
 
 // const sortArr = arr => arr.reduce((acc, val) => val % 2 === 0 ? [...acc.slice(0, i), val, ...acc.slice(i)] : acc, []).reverse();
 
@@ -506,25 +499,66 @@ console.log(sortArr(arr1));
 
 // ==================================
 
-const str5 = 'asd';
-const str6 = 'dsa';
-const str7 = 'aqd';
+const str5 = "asd";
+const str6 = "dsa";
+const str7 = "aqd";
 
 let getBool = (str1, str2) => {
   if (str1.length !== str2.length) return false;
-  return changeStr(str1) === changeStr(str2)
-}
+  return changeStr(str1) === changeStr(str2);
+};
 
 function changeStr(str) {
-  console.log(str.split('').sort((a, b) => a - b))
-  console.log(str.split('').sort())
+  console.log(str.split("").sort((a, b) => a - b));
+  console.log(str.split("").sort());
 
-  return str.split('').sort((a, b) => a - b).join('')
+  return str
+    .split("")
+    .sort((a, b) => a - b)
+    .join("");
 }
 
-console.log(changeStr(str5))
+console.log(changeStr(str5));
 
-console.log(getBool(str5, str6))
+console.log(getBool(str5, str6));
 
-'asd'.split('').sort((a, b) => a - b)
-'asd'.split('').sort()
+"asd".split("").sort((a, b) => a - b);
+"asd".split("").sort();
+
+// ==========
+//www.codewars.com/kata/602db3215c22df000e8544f0/train/javascript
+
+// Ваша задача состоит в том, чтобы написать функцию, которая принимает в качестве аргументов
+// три целых числа a, , bи cи возвращает значение, True
+// если ровно два из трех целых чисел являются положительными числами(больше нуля),
+// и - Falseв противном случае.
+
+function twoArePositive(a, b, c) {
+  let buf = [...arguments].filter((el) => el > 0).length;
+  return buf <= 1 || buf === 3 ? console.log(false) : console.log(true);
+
+  // Happy Coding
+}
+
+function twoArePositive(a, b, c) {
+  return (a > 0) + (b > 0) + (c > 0) == 2;
+}
+
+function twoArePositive(a, b, c) {
+  return [...arguments].filter((i) => i > 0).length === 2;
+}
+
+function twoArePositive(a, b, c) {
+  return [a, b, c].filter((val) => val > 0).length === 2;
+}
+
+const twoArePositive = (...a) => a.filter((b) => b > 0).length === 2;
+
+twoArePositive(2, 4, -3); //== true;
+twoArePositive(-4, 6, 8); //== true;
+twoArePositive(4, -6, 9); //== true;
+twoArePositive(-4, 6, 0); //== false;
+twoArePositive(4, 6, 10); //== false;
+twoArePositive(-14, -3, -4); // == false;
+
+// console.log(twoArePositive(2, 4, -3));
