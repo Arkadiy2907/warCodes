@@ -562,3 +562,36 @@ twoArePositive(4, 6, 10); //== false;
 twoArePositive(-14, -3, -4); // == false;
 
 // console.log(twoArePositive(2, 4, -3));
+
+// ====================================================================
+
+// https://www.codewars.com/kata/57241e0f440cd279b5000829/train/javascript
+
+let sumMul = (a, b) => {
+  let buf = a;
+  let arr = [a];
+
+  if (b <= a) return "INVALID";
+
+  for (let i = 0; buf < b; i++) {
+    buf += a;
+    arr.push(buf);
+  }
+
+  return arr.slice(0, arr.length - 1).reduce((acc, el) => acc + el, 0);
+};
+
+function sumMul(n, m) {
+  if (n >= m) return "INVALID";
+
+  var sum = 0;
+  for (var i = n; i < m; i += n) {
+    sum += i;
+  }
+  return sum;
+}
+
+sumMul(2, 9); // ==> 2 + 4 + 6 + 8 = 20
+sumMul(3, 13); // ==> 3 + 6 + 9 + 12 = 30
+sumMul(4, 123); // ==> 4 + 8 + 12 + ... = 1860
+sumMul(4, -7); //==> "INVALID"
