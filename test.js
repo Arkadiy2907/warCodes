@@ -5,7 +5,7 @@ let obj = {
 
 console.log(obj["0"] + obj[0]);
 // ----------------------------------------
-function User() {}
+function User() { }
 
 let vasya = new User();
 
@@ -595,3 +595,98 @@ sumMul(2, 9); // ==> 2 + 4 + 6 + 8 = 20
 sumMul(3, 13); // ==> 3 + 6 + 9 + 12 = 30
 sumMul(4, 123); // ==> 4 + 8 + 12 + ... = 1860
 sumMul(4, -7); //==> "INVALID"
+// ===========================================
+
+https://www.codewars.com/kata/5b4e779c578c6a898e0005c5/train/javascript
+
+// Получив число n, нарисуйте лестницу, используя букву "I", n 
+// высокую и nширокую, причем самая высокая из них находится вверху слева.
+
+// Например, n = 3результат:
+
+function drawStairs(n) {
+  let answer = '';
+
+  function myRepeat(str, k) {
+    let res = ''
+    for (let j = 0; j < k; j++) {
+      res += str
+    }
+
+    return res;
+  }
+
+
+  let i = 0;
+  let str = 'I'
+  let spaseZero = ' '
+  while (i < n) {
+    answer += `${(myRepeat(spaseZero, i) + str)}\n`
+    i++
+  }
+
+  return answer;
+}
+
+
+function drawStairs(n) {
+  let answer = '';
+
+  let i = 0;
+  let str = 'I'
+  let spaseZero = ' '
+  while (i < n) {
+    answer += `${(' '.repeat(i) + str)}\n`
+    i++
+  }
+
+  return answer;
+}
+
+function drawStairs(n) {
+  let answer = '';
+
+  for (let i = 0; i < n; i++) {
+    answer += ' '.repeat(i) + 'I\n';
+  }
+
+  return answer;
+}
+
+function drawStairs(n) {
+  let result = [];
+
+  for (let i = 0; i < n; i++) {
+    result[i] = `${' '.repeat(i)}I`;
+  }
+
+  return result.join('\n');
+}
+
+console.log(drawStairs(5))
+
+// ============================================
+// https://www.codewars.com/kata/55b051fac50a3292a9000025/train/javascript
+
+// О, нет! Номер перепутан с текстом.
+// Ваша цель — извлечь число из текста, сможете ли вы вернуть число в исходное состояние ?
+
+//   Задача
+// Ваша задача — вернуть число из строки.
+
+var filterString = function (value) {
+  return +value.split('').filter(el => !isNaN(parseInt(el))).join("")
+}
+
+// var filterString = function (value) {
+// return +value.match(/\d/g).join('');
+// }
+
+
+// var filterString = value => +value.split('').filter(el => !isNaN(parseFloat(el))).join("").toString();
+
+console.log(filterString("6as5720byc0d4na15p400"))//
+console.log(filterString("a1b2c3"))//, 123,
+console.log(filterString("aa1bb2cc3dd"))
+
+// console.log(isNaN(parseFloat('a')));
