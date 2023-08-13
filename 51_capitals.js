@@ -19,3 +19,24 @@ var capitals = function (word) {
 };
 
 console.log(capitals("CodEWaRs"));
+
+// ==========================================================
+// найти пересеч в объекты
+
+const obj1 = { a: 1, b: 2, c: 3 };
+const obj2 = { a: 1, b: 3, c: 4 };
+
+const getNewObj = (o1, o2) => {
+  let resObj = {}
+  const arr1 = Object.keys(o1);
+
+  arr1.forEach(el => {
+    if (o2.hasOwnProperty(el)) {
+      if (o2[el] === o1[el]) {
+        resObj[el] = o2[el]
+      }
+    }
+  })
+  return resObj;
+
+} 
