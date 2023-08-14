@@ -51,3 +51,34 @@ const dropCap = (str) => {
   return arr.join(' ')
 }
 
+// https://www.codewars.com/kata/558ee8415872565824000007
+// Создайте функцию, которая проверяет, делится ли первый аргумент n на все остальные аргументы
+//   (возвращает true, если нет других аргументов)
+
+// Пример:
+
+// (6, 1, 3)-- > true because 6 is divisible by 1 and 3
+//   (12, 2)-- > true because 12 is divisible by 2
+//     (100, 5, 4, 10, 25, 20)-- > true
+//       (12, 7)-- > false because 12 is not divisible by 7
+
+function isDivisible() {
+  //Write your code here
+  let num = arguments[0]
+  let arr = [...arguments].slice(1)
+  let res = true
+
+  arr.forEach(el => {
+    if (((num / el).toFixed(0)) != num / el) res = false
+  })
+  return res
+}
+
+function isDivisible(argument, ...arguments) {
+  return arguments.every(e => argument % e === 0);
+}
+
+
+console.log((isDivisible(3, 3, 4), false))
+console.log(isDivisible(12, 3, 4), true);
+console.log(isDivisible(8, 3, 4, 2, 5), false);
