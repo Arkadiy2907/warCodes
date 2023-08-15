@@ -26,3 +26,5 @@ console.log(
 )//'Alexander'
 
 var whoTookTheCarKey = (arr) => arr.map(el => String.fromCodePoint(parseInt(el, 2))).join('')
+
+console.log(a)
