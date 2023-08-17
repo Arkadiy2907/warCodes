@@ -85,3 +85,170 @@ function getMean(arr, x, y) {
     m2 += arr[i];
   return (m1 / x + m2 / y) / 2;
 }
+
+
+
+
+
+// Дана коллекция чисел, необходимо реализовать функцию, которая находит в ней пару чисел, составляющие заданную сумму
+
+// Надо решить за линейную сложность
+
+// const hasPairWithSum = (arr, sum) => {
+//   let res = false;
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let k = 1; k < arr.length; k++) {
+//       if (arr[i] + arr[k] === sum) break
+//       res.arr[i] + arr[k] === sum
+//     }
+//     return res
+//   };
+// }
+
+const hasPairWithSum = (arr, sum) => {
+  let res = false;
+  for (let i = 0; i < arr.length; i++) {
+    for (let k = i + 1; k < arr.length; k++) {
+      if (arr[i] + arr[k] === sum) {
+        res = true;
+        break;
+      }
+    }
+    if (res) {
+      break;
+    }
+  }
+  return res;
+};
+
+// const hasPairWithSum = (arr, sum) => {
+//   const numMap = {};
+//   for (let i = 0; i < arr.length; i++) {
+//     const complement = sum - arr[i];
+//     if (numMap[complement]) {
+//       return true;
+//     }
+//     numMap[arr[i]] = true;
+//   }
+//   return false;
+// };
+
+console.log(hasPairWithSum([3, 4, 7, 10], 8)); // false
+console.log(hasPairWithSum([1, 4, 4, 9], 8)); // true
+console.log(hasPairWithSum([-8, 1, 4, 9, 16], 8)); // true
+
+
+// Promise.reject("a") // rejected -> a
+//   .catch((p) => p + "b") // fulfilled -> ab
+//   .catch((p) => p + "с") // 
+//   .then((p) => p + "d") // abd
+//   .then((p) => console.log(p));
+
+// console.log("f");
+
+// while (true);
+
+
+// создать функцию создающую массив из палиндромов по типу[[sdf, fds], [qwe, ewq]]
+//  если нет полиндрома то вывести слово с "" по типу[["sdf", "fds"], ["qwe", "ewq"], ["yrtt", ""]]
+
+// const array = [
+//   'сок', 'кос', 'ноль', 'ольн', 'ско',
+// ]
+
+// const isPalindrome = (word) => {
+//   return word === word.split('').reverse().join('');
+// };
+
+// const getArr = (arr) => {
+//   const palindromeArray = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     const word = arr[i];
+//     const reverseWord = word.split('').reverse().join('');
+//     if (isPalindrome(reverseWord)) {
+//       palindromeArray.push([word, reverseWord]);
+//     } else {
+//       palindromeArray.push([word, '']);
+//     }
+//   }
+//   return palindromeArray;
+// }
+
+// console.log(getArr(array));
+
+// const isPalindrome = (word) => {
+//   return word === word.split('').reverse().join('');
+// };
+
+// const getPalindromeArray = (arr) => {
+//   const palindromeArray = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     const word = arr[i];
+//     if (isPalindrome(word)) {
+//       palindromeArray.push([word, word]);
+//     } else {
+//       palindromeArray.push([word, '']);
+//     }
+//   }
+//   return palindromeArray;
+// };
+
+// const array = ['сок', 'кос', 'ноль', 'ольн', 'ско'];
+// const result = getPalindromeArray(array);
+// console.log(result);
+
+// const isPalindrome = (word) => {
+//   return word === word.split('').reverse().join('');
+// };
+
+const getPalindromeArray = (arr) => {
+  const palindromeArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    const word = arr[i];
+    const reverseWord = word.split('').reverse().join('');
+    if (isPalindrome(word) && isPalindrome(reverseWord)) {
+      palindromeArray.push([word, reverseWord]);
+    } else {
+      palindromeArray.push([word, '']);
+    }
+  }
+  return palindromeArray;
+};
+
+
+// создать функцию создающую массив из палиндромов если нет полиндрома то вывести слово с "" по типу
+// [['сок', 'кос'], ['ноль', 'ольн'], ["ско", ""]] 
+// из массива const array = [
+//   'сок', 'кос', 'ноль', 'ольн', 'ско',
+// ]
+// Надо решить за линейную сложность
+
+const array = ['сок', 'кос', 'ноль', 'ольн', 'ско'];
+
+const isPalindrome = (w) => {
+  console.log(w, w.split('').reverse().join(''));
+  return w === w.split('').reverse().join('');
+};
+
+const getArr = (arr) => {
+  let buf = []
+  let res = []
+
+  for (let i = 0; i < arr.length; i++) {
+    buf = arr[i].split('').sort().join('');
+
+    // console.log((arr[i]),  (buf))
+
+    if (isPalindrome(arr[i]) && isPalindrome(buf)) {
+      res.push([arr[i], buf]);
+    } else {
+      res.push([arr[i], '']);
+    }
+  }
+
+  return res;
+};
+
+const result = getArr(array);
+console.log(result);
+// =====================

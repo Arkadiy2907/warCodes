@@ -30,28 +30,7 @@ var whoTookTheCarKey = (arr) => arr.map(el => String.fromCodePoint(parseInt(el, 
 console.log(a)
 
 // ==============================================
-// https://www.codewars.com/kata/563c13853b07a8f17c000022/solutions/javascript
 
-// проверить день сегодня и день полученный на совпадение
-
-function isToday(date) {
-  let dateToday = new Date();
-  let myDate = new Date(date);
-  if (dateToday.getFullYear() !== myDate.getFullYear()) return false;
-  if (dateToday.getMonth() !== myDate.getMonth()) return false
-  return dateToday.getDate() === myDate.getDate()
-}
-
-function isToday(date) {
-  return new Date().toDateString() === date.toDateString();
-}
-
-function isToday(date) {
-  var d = new Date();
-  return (d.getDate() == date.getDate() && d.getFullYear() == date.getFullYear() && d.getMonth() == date.getMonth());
-}
-
-// ==================================================
 // https://www.codewars.com/kata/56b5ebaa26fd54188b000018/train/javascript
 
 // Дружественные числа — это два разных числа, связанных так,
