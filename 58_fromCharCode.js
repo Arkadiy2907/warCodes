@@ -12,22 +12,70 @@
 // 'Alexander'
 
 function whoTookTheCarKey(message) {
-  let password = '';
+  let password = "";
 
   for (let i = 0; i < message.length; i++) {
     password += String.fromCharCode(parseInt(message[i], 2));
   }
 
-  return password
+  return password;
 }
 
 console.log(
-  whoTookTheCarKey(['01000001', '01101100', '01100101', '01111000', '01100001', '01101110', '01100100', '01100101', '01110010'])
-)//'Alexander'
+  whoTookTheCarKey([
+    "01000001",
+    "01101100",
+    "01100101",
+    "01111000",
+    "01100001",
+    "01101110",
+    "01100100",
+    "01100101",
+    "01110010",
+  ])
+); //'Alexander'
 
-var whoTookTheCarKey = (arr) => arr.map(el => String.fromCodePoint(parseInt(el, 2))).join('')
+var whoTookTheCarKey = (arr) =>
+  arr.map((el) => String.fromCodePoint(parseInt(el, 2))).join("");
 
-console.log(a)
+console.log(a);
+
+// ==============================================
+//https://www.codewars.com/kata/5a0d38c9697598b67a000041/train/javascript
+
+// Вам дана строка, представляющая число в двоичном виде.
+// Ваша задача — удалить все неустановленные биты в этой строке
+// и вернуть соответствующее число(оставив только «1»).
+
+// На практике вы должны реализовать эту функцию:
+
+// function eliminateUnsetBits(number);
+// Примеры
+// eliminateUnsetBits("11010101010101") ->  255 (= 11111111)
+// eliminateUnsetBits("111") ->  7
+// eliminateUnsetBits("1000000") -> 1
+// eliminateUnsetBits("000") -> 0
+
+function eliminateUnsetBits(number) {
+  // your code here
+  let result = [];
+  let str;
+
+  number.split("").forEach((el) => {
+    if (+el === 1) result.push(el);
+  });
+  str = result.join("");
+  if (str.length === 0) return 0;
+
+  return parseInt(str, 2);
+}
+
+console.log(eliminateUnsetBits("11010101010101"));
+console.log(eliminateUnsetBits("000"));
+
+function eliminateUnsetBits(number) {
+  return (number = parseInt(number.split("0").join(""), 2) || 0);
+}
 
 // ==============================================
 
@@ -47,28 +95,25 @@ console.log(a)
 
 // Подробнее см.на https://en.wikipedia.org/wiki/Amicable_numbers.
 
-function amicableNumbers(num1, num2) {
-  return getOwnDivisors(num1) === num2 && num1 === getOwnDivisors(num2)
+https: function amicableNumbers(num1, num2) {
+  return getOwnDivisors(num1) === num2 && num1 === getOwnDivisors(num2);
 }
 
 function getOwnDivisors(num) {
   let result = [];
   for (let i = 1; i < num; i++) {
     if (num % i == 0) {
-      result.push(i)
+      result.push(i);
     }
   }
-  return result.reduce((a, e) => a + e, 0)
+  return result.reduce((a, e) => a + e, 0);
 }
 
 function amicableNumbers(num1, num2) {
-  var s1 = 0, s2 = 0;
-  for (var i = 1; i < num1; ++i)
-    if (num1 % i == 0)
-      s1 += i;
-  for (var i = 1; i < num2; ++i)
-    if (num2 % i == 0)
-      s2 += i;
+  var s1 = 0,
+    s2 = 0;
+  for (var i = 1; i < num1; ++i) if (num1 % i == 0) s1 += i;
+  for (var i = 1; i < num2; ++i) if (num2 % i == 0) s2 += i;
   return s1 == num2 && s2 == num1;
 }
 
