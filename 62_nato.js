@@ -144,24 +144,57 @@ console.log(isOpposite("", "")); //, false););
 //  maxSum([1,-2,3,4,-5,-4,3,2,1],[[1,4],[2,5]]) === 0
 
 function maxSum(arr, range) {
-  //coding and coding..
-  let count = 0;
+  let count = -Infinity;
   let sum = 0;
-  console.log(range[1][0], range[1][1]);
-  for (let i = range[1][0]; i < range[1][1]; i++) {
-    sum += arr[i];
+  for (let k = 0; k < range.length; k++) {
+    for (let i = range[k][0]; i <= range[k][1]; i++) {
+      // console.log(sum);
+      sum += arr[i];
+    }
+    console.log(sum);
+    if (sum > count) count = sum;
+    sum = 0;
   }
 
-  return sum;
+  return count < 0 ? +0 : count;
 }
 
-console.log(
-  maxSum(
-    [1, -2, 3, 4, -5, -4, 3, 2, 1],
-    [
-      [1, 3],
-      [0, 4],
-      [6, 8],
-    ]
-  )
-); //  6;
+let arr = [
+  52128, 46187, 97340, 13394, -14475, -29558, 31120, -18195, -33157, -41739,
+  3356, 29071, -91620, 97248, -22633, 52955, -26155, 69573, -88603, 54712,
+  -78152, 97931, -76426, -58708, 2007, 52372, -97240, 1038, -34888, -54533,
+  72308, -51687, 4255, 76165, -64915, -9418, 27643, -28167, 33526, -66514,
+  34623, -65354, -96433, -74348, 76375, -31520, -86984, 43642, -70321, 25991,
+  89333, -48662, 36108, 86583, 19188, 2434, -20736, 89209, -13919, -4202,
+  -79400, -84379, 34423, 95891, 28687, 69705, -43412, 41984, -88049, 68457,
+  98684, 3172, 63843, -12263, 36497, -18069, -71557, -65330, -66739, -78788,
+  -58238, -77341, -24678, 3737, 17443, -32858,
+];
+let range = [
+  [29, 80],
+  [31, 63],
+];
+
+console.log(maxSum(arr, range)); //
+
+function maxSum(arr, range) {
+  let result = -Infinity;
+
+  for (let i = 0; i < range.length; i++) {
+    let temp = 0;
+
+    for (let j = range[i][0]; j <= range[i][1]; j++) {
+      temp += arr[j];
+    }
+
+    result = Math.max(result, temp);
+  }
+
+  return result;
+}
+
+function maxSum(arr, range) {
+  return Math.max(
+    ...range.map((i) => arr.slice(i[0], i[1] + 1).reduce((a, b) => a + b))
+  );
+}
