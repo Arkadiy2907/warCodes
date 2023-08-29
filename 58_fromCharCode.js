@@ -118,3 +118,47 @@ function amicableNumbers(num1, num2) {
 }
 
 console.log(amicableNumbers(220, 284));
+
+
+// ==============================================
+
+// https://www.codewars.com/kata/58845748bd5733f1b300001f/train/javascript
+
+// Вам даны два числа aи bгде 0 ≤ a ≤ b.
+// Представьте, что вы создаете массив всех целых чисел от aдо bвключительно.
+// Вам нужно посчитать количество 1s в двоичном представлении всех чисел массива.
+
+//   Пример
+// Для a = 2 и b = 7 выход должен быть11
+
+// Учитывая a = 2 и b = 7, массив имеет вид: [2, 3, 4, 5, 6, 7].
+// Преобразовав числа в двоичные, получим[10, 11, 100, 101, 110, 111], в котором содержится 1 + 2 + 1 + 2 + 2 + 3 = 11 единиц.
+
+//   Ввод, вывод
+//   [input]целое числоa
+// Ограничения: 0 ≤ a ≤ b.
+
+// [input]целое числоb
+// Ограничения: a ≤ b ≤ 100.
+
+// [output]целое число
+
+function rangeBitCount(a, b) {
+  let arr = []
+
+  for (let i = a; i <= b; i++) {
+    arr.push(i.toString(2).split('').reduce((a, el) => a + +el, 0))
+
+  }
+  return arr.reduce((a, el) => a + el, 0)
+}
+
+console.log(rangeBitCount(2, 7))
+
+function rangeBitCount(a, b) {
+  let output = 0
+  for (let x = a; x <= b; x++) {
+    output += x.toString(2).split('1').length - 1
+  }
+  return output
+}
