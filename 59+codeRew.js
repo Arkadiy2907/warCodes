@@ -59,3 +59,21 @@ const isObj = o => {
 
 
 console.log(isObj(obj))
+// ============================================
+
+// получить порядковый номер дня в году и номер недели
+
+const getNumDay = (d, m, y) => {
+  let myDate = new Date(y, m, d);
+  let startDate = new Date(myDate.getFullYear(), 0, 0);
+  let buf = myDate - startDate;
+
+  let numDay = Math.floor(buf / (1000 * 60 * 60 * 24));
+  let numWeek = Math.floor(buf / (1000 * 60 * 60 * 24 * 7));
+
+  return `номер дня в году:${numDay}, номер недели в году:${numWeek}`
+};
+
+console.log(getNumDay(31, 7, 2023));
+
+

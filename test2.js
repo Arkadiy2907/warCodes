@@ -188,7 +188,7 @@ const getSr = arr => {
 obj = {
   "вертикаль": "кильватер",
   "кластер": ''
-    
+
 }
 // ==============================
 
@@ -240,4 +240,26 @@ Promise.reject("a") // rejected -> a
 
 console.log("f");
 
+
+
+
 // while (true); будет ли блокировка проги и переполнение стека а при макро и микротаске с рекурсией
+
+
+
+const getNumDay = (d, m, y) => {
+  // let buf = new Date(y, m, d);
+  // let count;
+  // console.log('start');
+
+  for (let i = 0; i < m; i++) {
+    let myDate = new Date(y, i + 1, 1) - new Date(y, i, 1);
+
+    console.log(new Date(myDate));
+
+  }
+
+};
+
+getNumDay(1, 1, 2023)
+
