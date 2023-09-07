@@ -137,6 +137,25 @@ console.log(hasPairWithSum([3, 4, 7, 10], 8)); // false
 console.log(hasPairWithSum([1, 4, 4, 9], 8)); // true
 console.log(hasPairWithSum([-8, 1, 4, 9, 16], 8)); // true
 
+function hasPairWithSum(arr, sum) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    const currentSum = arr[left] + arr[right];
+
+    if (currentSum === sum) {
+      return [arr[left], arr[right]];
+    } else if (currentSum < sum) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+
+  return null;
+}
+
 
 // Promise.reject("a") // rejected -> a
 //   .catch((p) => p + "b") // fulfilled -> ab
