@@ -263,3 +263,18 @@ const getNumDay = (d, m, y) => {
 
 getNumDay(1, 1, 2023)
 
+
+// =============================
+
+// Условие: Напишите функцию, которая принимает строку в качестве аргумента и возвращает количество гласных в этой строке.Гласные буквы — это ‘a’, ‘e’, ‘i’, ‘o’, ‘u’.
+
+function countVowels(str) {
+  const vowels = 'aeiou';
+  let count = 0;
+  for (let char of str.toLowerCase()) {
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+  return count;
+}
