@@ -1,41 +1,42 @@
-
 // =============================
 
 (function () {
-  console.log('start');
+  console.log("start");
   for (var i = 0; i < 100; i++) {
     ((i) => setTimeout(() => console.log(i), 0))(i);
   }
-  console.log('end');
-})() //start end 0,1,2-99
+  console.log("end");
+})()(
+  //start end 0,1,2-99
 
   // ================================
 
-  (function () {
+  function () {
     var f = [];
     for (var i = 0; i < 100; i++) {
       f[i] = () => console.log(i);
     }
     f[9]();
     f[8]();
-  })() //100 100
+  }
+)(); //100 100
 
 // ====================
 
 setTimeout(function timeout() {
-  console.log('Таймаут');
+  console.log("Таймаут");
 }, 0);
 
 let p = new Promise(function (resolve, reject) {
-  console.log('Создание промиса');
+  console.log("Создание промиса");
   resolve();
 });
 
 p.then(function () {
-  console.log('Обработка промиса');
+  console.log("Обработка промиса");
 });
 
-console.log('Конец скрипта');
+console.log("Конец скрипта");
 //Создание промиса Конец скрипта Обработка промиса Таймаут
 // =========================
 
@@ -53,7 +54,7 @@ setTimeout(() => console.log(6));
 
 console.log(7);
 
-//1 7 3 5 2 6 4 
+//1 7 3 5 2 6 4
 
 // =======================
 
@@ -63,7 +64,7 @@ setTimeout(() => console.log(2));
 
 Promise.reject(3).catch(console.log);
 
-new Promise(resolve => setTimeout(resolve)).then(() => console.log(4));
+new Promise((resolve) => setTimeout(resolve)).then(() => console.log(4));
 
 Promise.resolve(5).then(console.log);
 
@@ -74,27 +75,29 @@ setTimeout(() => console.log(7), 0);
 //1 6 3 5 2 4 7
 // =======================
 
-const myPromise = (delay) => new Promise((res, rej) => { setTimeout(res, delay) })
-setTimeout(() => console.log('in setTimeout1'), 1000);
-myPromise(1000).then(res => console.log('in Promise 1'));
-setTimeout(() => console.log('in setTimeout2'), 100);
-myPromise(2000).then(res => console.log('in Promise 2'));
-setTimeout(() => console.log('in setTimeout3'), 2000);
-myPromise(1000).then(res => console.log('in Promise 3'));
-setTimeout(() => console.log('in setTimeout4'), 1000);
-myPromise(5000).then(res => console.log('in Promise '));
+const myPromise = (delay) =>
+  new Promise((res, rej) => {
+    setTimeout(res, delay);
+  });
+setTimeout(() => console.log("in setTimeout1"), 1000);
+myPromise(1000).then((res) => console.log("in Promise 1"));
+setTimeout(() => console.log("in setTimeout2"), 100);
+myPromise(2000).then((res) => console.log("in Promise 2"));
+setTimeout(() => console.log("in setTimeout3"), 2000);
+myPromise(1000).then((res) => console.log("in Promise 3"));
+setTimeout(() => console.log("in setTimeout4"), 1000);
+myPromise(5000).then((res) => console.log("in Promise "));
 
-
-const bar = [1, 2, 3, 4]
-let foo = bar
-foo.push(6)
+const bar = [1, 2, 3, 4];
+let foo = bar;
+foo.push(6);
 console.log(bar);
 
-console.log(undefined >= 0)//false
-console.log(null <= 0)//true
-console.log(NaN == 0)//false
-console.log(!![])//true
-console.log(!!{})//true
+console.log(undefined >= 0); //false
+console.log(null <= 0); //true
+console.log(NaN == 0); //false
+console.log(!![]); //true
+console.log(!!{}); //true
 
 // =====================================
 // если 3 раза плохой ответ то вывести console.log(bed res)
@@ -144,7 +147,6 @@ fetchData();
 
 // ====================================================
 
-
 // Все анаграммы собрать в массивы
 // [["вертикаль", "кильватер"], ["апельсин", "спаниель"], ...]
 
@@ -163,35 +165,25 @@ const arr = [
   "корабль",
 ];
 
-
-
-const getSr = arr => {
+const getSr = (arr) => {
   let buf = [];
   let obj = {};
   for (let i = 0; i < arr.length; i++) {
-
-    buf.push(arr[i].split('').sort().join(''))
-
-
-
+    buf.push(arr[i].split("").sort().join(""));
   }
 
   buf.forEach((el, i) => {
     if (!obj[el]) {
-      arr[i + 1]
-
+      arr[i + 1];
     }
-  })
-
-}
+  });
+};
 
 obj = {
-  "вертикаль": "кильватер",
-  "кластер": ''
-
-}
+  вертикаль: "кильватер",
+  кластер: "",
+};
 // ==============================
-
 
 // Дана коллекция чисел, необходимо реализовать функцию, которая находит в ней пару чисел, составляющие заданную сумму
 
@@ -224,28 +216,28 @@ const hasPairWithSum = (arr, sum) => {
   return res;
 };
 
-
 console.log(hasPairWithSum([3, 4, 7, 10], 8)); // false
 console.log(hasPairWithSum([1, 4, 4, 9], 8)); // true
 console.log(hasPairWithSum([-8, 1, 4, 9, 16], 8)); // true
 
 // =============================
 
-
 Promise.reject("a") // rejected -> a
   .catch((p) => p + "b") // fulfilled -> ab
-  .catch((p) => p + "с") // 
+  .catch((p) => p + "с") //
   .then((p) => p + "d") // abd
   .then((p) => console.log(p));
 
 console.log("f");
+// Это связано с тем Promise.reject("a"), что при вызове создается обещание, которое немедленно отклоняется со значением «a».
+//  Первый catchблок принимает это отклоненное обещание и возвращает новое обещание, которое выполняется со значением «ab».
+// Второй catchблок не выполняется, поскольку предыдущий catchблок уже обработал отклонение.
 
+// Первый thenблок получает выполненное обещание со значением «ab» и возвращает новое обещание, выполненное со значением «abd». Второй thenблок получает это обещание и записывает его значение в консоль.
 
-
+/// Наконец, console.log("f")оператор выполняется, записывая «f» на консоль перед выполнением цепочки обещаний.
 
 // while (true); будет ли блокировка проги и переполнение стека а при макро и микротаске с рекурсией
-
-
 
 const getNumDay = (d, m, y) => {
   // let buf = new Date(y, m, d);
@@ -256,20 +248,17 @@ const getNumDay = (d, m, y) => {
     let myDate = new Date(y, i + 1, 1) - new Date(y, i, 1);
 
     console.log(new Date(myDate));
-
   }
-
 };
 
-getNumDay(1, 1, 2023)
-
+getNumDay(1, 1, 2023);
 
 // =============================
 
 // Условие: Напишите функцию, которая принимает строку в качестве аргумента и возвращает количество гласных в этой строке.Гласные буквы — это ‘a’, ‘e’, ‘i’, ‘o’, ‘u’.
 
 function countVowels(str) {
-  const vowels = 'aeiou';
+  const vowels = "aeiou";
   let count = 0;
   for (let char of str.toLowerCase()) {
     if (vowels.includes(char)) {
@@ -278,3 +267,20 @@ function countVowels(str) {
   }
   return count;
 }
+
+// ========================
+
+var globalVar = "global";
+var outerVar = "outer";
+
+function outerFunc(outerParam) {
+  function innerFunc(innerParam) {
+    console.log(globalVar, outerParam, innerParam);
+  }
+  return innerFunc;
+}
+
+const x = outerFunc(outerVar);
+outerVar = "outer-2";
+globalVar = "guess";
+x("inner"); //guess outer inner
