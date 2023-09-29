@@ -80,3 +80,40 @@ function histogram(results) {
 var hist = histogram([7, 3, 10, 1, 0, 5]);
 
 console.log(hist);
+
+// ==================================
+
+https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/javascript
+
+// В этой Ката вам будет предоставлена ​​строка, состоящая из строчных букв и цифр.
+// Ваша задача — сравнить группировки чисел и вернуть наибольшее число.Числа не будут иметь ведущих нулей.
+
+// Например, solve("gh12cdy695m1") = 695потому что это самая большая из всех групп чисел.
+
+// Удачи!
+
+function solve(s) {
+  let arr = s.split(``).map(el => !isNaN(+el) ? el : false).join('').split('false').filter(el => el !== '');
+
+  return Math.max(...arr);
+};
+
+function solve(s) {
+  let tab = s.split("");
+  for (i = 0; i < tab.length; i++) {
+    tab[i] = tab[i] - 0;
+  }
+  tab = tab.join("").split("NaN");
+  return Math.max(...tab);
+}
+
+function solve(s) {
+  return Math.max(...s.split(/[a-z]+/))
+};
+
+function solve(s) {
+  let arr = s.replace(/[^0-9/]/g, ' ').split(' ')
+  return Math.max(...arr)
+}
+
+solve('gh12cdy695m1')//, 695);
