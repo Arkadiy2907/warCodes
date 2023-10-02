@@ -20,21 +20,21 @@ function order(words) {
   let arr = [];
   let obj = {};
 
-  words.split(' ').forEach(el => {
-    let buf = el.split('').filter(num => !isNaN(+num));
-    obj[buf] = el
-  })
+  words.split(" ").forEach((el) => {
+    let buf = el.split("").filter((num) => !isNaN(+num));
+    obj[buf] = el;
+  });
 
-  arr.push(Object.values(obj))
+  arr.push(Object.values(obj));
 
-  return arr.flat(1).join(' ')
+  return arr.flat(1).join(" ");
 
   // ...
 }
 
-console.log(order("is2 Thi1s T4est 3a"))//, "Thi1s is2 3a T4est");
-console.log(order("4of Fo1r pe6ople g3ood th5e the2"))//, "Fo1r the2 g3ood 4of th5e pe6ople");
-console.log(order(""))//,  "empty input should return empty string")
+console.log(order("is2 Thi1s T4est 3a")); //, "Thi1s is2 3a T4est");
+console.log(order("4of Fo1r pe6ople g3ood th5e the2")); //, "Fo1r the2 g3ood 4of th5e pe6ople");
+console.log(order("")); //,  "empty input should return empty string")
 
 // ============================================
 
@@ -68,13 +68,13 @@ function histogram(results) {
 
   for (let i = 0; i < results.length; i++) {
     if (results[i] !== 0) {
-      res.push(`${i + 1}|${'#'.repeat(results[i])} ${results[i]}\n`)
+      res.push(`${i + 1}|${"#".repeat(results[i])} ${results[i]}\n`);
     } else {
-      res.push(`${i + 1}|\n`)
+      res.push(`${i + 1}|\n`);
     }
   }
 
-  return res.reverse().toString().split(',').join('');
+  return res.reverse().toString().split(",").join("");
 }
 
 var hist = histogram([7, 3, 10, 1, 0, 5]);
@@ -83,7 +83,7 @@ console.log(hist);
 
 // ==================================
 
-https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/javascript
+//www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/javascript
 
 // В этой Ката вам будет предоставлена ​​строка, состоящая из строчных букв и цифр.
 // Ваша задача — сравнить группировки чисел и вернуть наибольшее число.Числа не будут иметь ведущих нулей.
@@ -92,11 +92,16 @@ https://www.codewars.com/kata/59dd2c38f703c4ae5e000014/train/javascript
 
 // Удачи!
 
-function solve(s) {
-  let arr = s.split(``).map(el => !isNaN(+el) ? el : false).join('').split('false').filter(el => el !== '');
+https: function solve(s) {
+  let arr = s
+    .split(``)
+    .map((el) => (!isNaN(+el) ? el : false))
+    .join("")
+    .split("false")
+    .filter((el) => el !== "");
 
   return Math.max(...arr);
-};
+}
 
 function solve(s) {
   let tab = s.split("");
@@ -108,12 +113,23 @@ function solve(s) {
 }
 
 function solve(s) {
-  return Math.max(...s.split(/[a-z]+/))
-};
-
-function solve(s) {
-  let arr = s.replace(/[^0-9/]/g, ' ').split(' ')
-  return Math.max(...arr)
+  return Math.max(...s.split(/[a-z]+/));
 }
 
-solve('gh12cdy695m1')//, 695);
+function solve(s) {
+  let arr = s.replace(/[^0-9/]/g, " ").split(" ");
+  return Math.max(...arr);
+}
+
+solve("gh12cdy695m1"); //, 695);
+
+// ================
+// www.codewars.com/kata/57a5c31ce298a7e6b7000334/train/javascript
+// Завершите функцию, которая преобразует двоичное число (заданное в виде строки) в десятичное число.
+
+function binToDec(bin) {
+  // return +(parseInt(bin).toString());
+  return parseInt(bin, 2);
+}
+
+console.log(binToDec("1001001"));
