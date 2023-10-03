@@ -133,3 +133,39 @@ function binToDec(bin) {
 }
 
 console.log(binToDec("1001001"));
+
+// =======================================================
+// https://www.codewars.com/kata/52b5247074ea613a09000164/train/javascript
+
+// Реализуйте функцию, которая принимает неотрицательное целое число, обозначающее количество яиц,
+//  которые нужно сварить.Он должен вернуть время в минутах(целое число), необходимое для варки всех яиц.
+
+// Правила
+// в кастрюлю можно положить не более 8 яиц одновременно
+// яйцо нужно 5 минут, чтобы сварить
+// предполагаем, что вода все время кипит (не успевает нагреться)
+// для простоты мы также не учитываем время, необходимое, чтобы положить яйца в кастрюлю или вытащить их из нее.
+
+function cookingTime(eggs) {
+  if (eggs === 0) return 0;
+  if (eggs <= 8) return 5;
+  let buf = 0.625;
+
+  let allTime = (eggs * buf) / 5;
+
+  return parseInt(allTime) === allTime
+    ? allTime * 5
+    : parseInt(allTime) * 5 + 5;
+}
+
+function cookingTime(eggs) {
+  return 5 * Math.ceil(eggs / 8);
+}
+
+function cookingTime(eggs) {
+  var min = 0;
+  for (var i = 0; i < eggs; i += 8) min += 5;
+  return min;
+}
+
+console.log(cookingTime(20));
