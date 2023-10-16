@@ -67,3 +67,33 @@ function doMath(string) {
 
 console.log(doMath("24z6 1z23 y369 89z 900b"))//, 1414);
 // console.log(doMath("111a 222c 444y 777u 999a 888p"))//, 1459);
+
+
+function doMath(str) {
+  var operation = [
+    (a, b) => { return a / b },
+    (a, b) => { return a + b },
+    (a, b) => { return a - b },
+    (a, b) => { return a * b },
+  ];
+
+  var numbers = str.split(' ').map((s) => {
+    return s[s.search(/[a-z]/)] + s.replace(/[a-z]/, '');
+  });
+
+  for (var i = 0, items = numbers.length; i < items; i++) {
+    for (var j = 1; j < (items - i); j++) {
+      if (numbers[j].charAt(0) < numbers[j - 1].charAt(0)) {
+        var temp = numbers[j];
+        numbers[j] = numbers[j - 1];
+        numbers[j - 1] = temp;
+      }
+    }
+  }
+
+  numbers = numbers.map((s) => { return +s.slice(1); });
+
+  return Math.round(numbers.reduce((prev, cur, key) => {
+    return operation[key % 4](prev, cur);
+  }));
+}
