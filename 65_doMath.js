@@ -97,3 +97,47 @@ function doMath(str) {
     return operation[key % 4](prev, cur);
   }));
 }
+
+
+// ========================
+
+// https://www.codewars.com/kata/58de08d376f875dbb40000f1/train/javascript
+
+// Команды будут поданы как объект({}).
+// Ключевым моментом будет их позиция по итогам прошлого сезона, а ценностью будет название клуба, например, «Арсенал».
+
+// Выходными данными должен быть объект({}) с ключом в качестве начальной позиции клуба в новом сезоне,
+//  а значением должно быть название клуба, например «Арсенал».
+
+// Например.Если в прошлом сезоне турнирная таблица была:
+
+// 1: «Лидс Юнайтед» 2: «Ливерпуль» 3: «Манчестер Сити» 4: «Ковентри» 5: «Арсенал»
+
+// Тогда турнирная таблица нового сезона должна
+
+// 1: «Лидс Юнайтед» (первый в прошлом сезоне) 
+// 2: «Арсенал» (в алфавитном порядке)
+// 3: «Ковентри» (в алфавитном порядке) 
+// 4: «Ливерпуль» (в алфавитном порядке)
+// 5: «Манчестер Сити» (в алфавитном порядке)
+
+function premierLeagueStandings(teamStandings) {
+  let res = {}
+
+  res[1] = teamStandings[1]
+  delete teamStandings[1]
+  let arr = Object.values(teamStandings).sort()
+
+  for (let i = 0; i < arr.length; i++) {
+    res[i + 2] = arr[i]
+  }
+
+  console.log(res);
+  return res
+
+
+}
+
+premierLeagueStandings({ 1: 'Arsenal' })//, { 1: 'Arsenal' }, 'Should return Arsenal as position 1')
+premierLeagueStandings({ 2: 'Arsenal', 3: 'Accrington Stanley', 1: 'Leeds United' })//, { 3: 'Arsenal', 2: 'Accrington Stanley', 1: 'Leeds United' }, 
+premierLeagueStandings({ 1: 'Leeds United', 2: 'Liverpool', 3: 'Manchester City', 4: 'Coventry', 5: 'Arsenal' })//, { 1: 'Leeds United', 2: 'Arsenal', 3: 'Coventry', 4: 'Liverpool', 5: 'Manchester City' }, 
