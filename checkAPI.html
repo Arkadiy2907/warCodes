@@ -15,6 +15,10 @@
 
 <button onclick="playRecord()">----4----</button>
 
+<button onclick="postData6()">----6----</button>
+
+<button onclick="getData7()">----7----</button>
+
 <body>
 
 
@@ -89,6 +93,58 @@
       // audio.play();
       // setStatus('Recording playing...');
     };
+
+    const schema = '/auth/token'
+
+    function postData6() {
+
+      fetch(`https://cloud.ridom.ru/api/v1${schema}`, {
+        method: 'POST',
+        headers: {
+
+          "grant_type": "password",
+          "username": "Arkadiy",
+          "password": "Arkadiy84",
+          "client_id": "431",
+          "client_secret": "1ac38d6c-2917-4a46-b68e-f90ab7b0bc43"
+        }
+        // "value": "arkadiy2907@google.com"
+        // },
+        // body: JSON.stringify(startObj)
+      })
+        .then(response => response.json())
+        .then(json => console.log('result1', json))
+        .catch((err) => console.log(err));
+
+    }
+
+    function getData7() {
+
+      // fetch(`https://cloud.ridom.ru/api/v1/Arkadiy84`, {
+      //   method: 'get',
+      //   // headers: {
+      //   //   "accept": "application/json",
+      //   //   "Authorization": "Bearer arkadiy2907@google.com"
+      //   // }
+      // })
+      //   .then(response => response.json())
+      //   .then(json => console.log('result=', json))
+      //   .catch((err) => console.log(err));
+      fetch('https://cloud.ridom.ru/api/v1/account', {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          Authorization: 'Bearer arkadiy2907@gmail.com'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
 
   </script>
 </body>
