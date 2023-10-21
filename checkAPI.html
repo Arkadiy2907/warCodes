@@ -19,6 +19,8 @@
 
 <button onclick="getData7()">----7----</button>
 
+<button onclick="postData8()">----8----</button>
+
 <body>
 
 
@@ -101,7 +103,6 @@
       fetch(`https://cloud.ridom.ru/api/v1${schema}`, {
         method: 'POST',
         headers: {
-
           "grant_type": "password",
           "username": "Arkadiy",
           "password": "Arkadiy84",
@@ -119,17 +120,6 @@
     }
 
     function getData7() {
-
-      // fetch(`https://cloud.ridom.ru/api/v1/Arkadiy84`, {
-      //   method: 'get',
-      //   // headers: {
-      //   //   "accept": "application/json",
-      //   //   "Authorization": "Bearer arkadiy2907@google.com"
-      //   // }
-      // })
-      //   .then(response => response.json())
-      //   .then(json => console.log('result=', json))
-      //   .catch((err) => console.log(err));
       fetch('https://cloud.ridom.ru/api/v1/account', {
         method: 'GET',
         headers: {
@@ -145,6 +135,34 @@
           console.error(error);
         });
     }
+
+
+
+    function postData8() {
+      fetch('https://cloud.ridom.ru/api/v1/auth/token', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "grant_type": "password",
+          "username": "SuperRick",
+          "password": "F0RG0TP@ssword",
+          "client_id": "com.rielta.rihome.swagger",
+          "client_secret": "1ac38d6c-2917-4a46-b68e-f90ab7b0bc43"
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+
 
   </script>
 </body>

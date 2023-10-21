@@ -78,3 +78,42 @@ function repeat(str, x) {
 function line(spaces, stars) {
   return repeat(" ", spaces) + repeat("*", stars) + "\n";
 }
+
+// ===============================
+// https://www.codewars.com/kata/5bbb8887484fcd36fb0020ca/train/javascript
+
+// Посчитайте, как часто меняется знак в массиве.
+
+// результат
+// номер от 0до ... . Возвращает пустой массив0
+
+// пример
+// const arr = [1, -3, -4, 0, 5];
+
+/*
+| elem | count |
+|------|-------|
+|  1   |  0    |
+| -3   |  1    |
+| -4   |  1    |
+|  0   |  2    |
+|  5   |  2    |
+*/
+
+// catchSignChange(arr) == 2;
+
+function catchSignChange(arr) {
+  let count = 0;
+  if (arr.length === 0 || (arr.length === 1 && arr[0] === 0)) return count;
+  for (let i = 0; i < arr.length; i++) {
+    if ((arr[i] >= 0 && arr[i + 1] < 0) || (arr[i] < 0 && arr[i + 1] >= 0)) {
+      count++;
+    }
+  }
+  return count;
+}
+const arr = [1, -3, -4, 0, 5];
+const arr1 = [1, -2, -7, -4, 4, -2, 0, -3, 3];
+
+console.log(catchSignChange(arr));
+console.log(catchSignChange(arr1));
