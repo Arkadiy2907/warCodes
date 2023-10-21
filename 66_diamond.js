@@ -34,34 +34,18 @@ function diamond(n) {
   for (let i = 1; i < n; i += 2) {
     left.push(`${str.repeat(i)}\n`);
   }
-  // console.log(left.length);
+
   for (let j = 0; j < left.length; j++) {
-    // console.log(left.length - j)
     leftArr.push(`${space.repeat(left.length - j)}${left[j]}`);
   }
 
-  let right = left.slice().reverse();
   rightArr = leftArr.slice().reverse();
 
-  // for (let k = 0; k < left.length; k++) {
-  //   // console.log(left.length - j)
-  //   rightArr.push(`${space.repeat(right.length - k)}${right[k]}`);
-  // }
-
-  // leftArr = left.slice();
-  // leftArr.forEach((el, i) => `${space.repeat(el.length - i)}${el[i]}`);
-
-  // let right = left.slice().reverse();
-
-  // let res = [...left, center, ...right].join("");
-  let res = [...leftArr, center, ...rightArr].join("");
-
-  console.log(res);
-  return res;
+  return [...leftArr, center, ...rightArr].join("");
 }
 
 diamond(5); //, "  *\n ***\n*****\n ***\n  *\n")
-diamond(3); //, " *\n***\n *\n")
+console.log(diamond(3)); //, " *\n***\n *\n")
 diamond(1); //, "*\n")
 
 function diamond(n) {
