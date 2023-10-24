@@ -167,3 +167,74 @@ function spinAround(turns) {
   return Math.floor(Math.abs(result));
 
 }
+
+// =============================
+
+// https://www.codewars.com/kata/5a04133e32b8b998dc000089/train/javascript
+
+// Элемент массива является доминирующим, если он больше, 
+// чем все элементы справа от него.Вам будет предоставлен массив,
+//  и вашей задачей будет вернуть список всех доминирующих элементов.Например:
+
+// solve([1, 21, 4, 7, 5]) = [21, 7, 5] because 21, 7 and 5 are greater than elments to their right.
+//   solve([5, 4, 3, 2, 1]) = [5, 4, 3, 2, 1]
+
+// Notice that the last element is always included.
+// All numbers will be greater than 0.ars.com / kata / 5a04133e32b8b998dc000089 / train / javascript
+
+// function solve(arr) {
+//   let res = [];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     // const element = array[index];
+//     for (let j = i + 1; ;) {
+//       if (arr[i] > arr[j]) {
+//         j++
+//         console.log(j, arr.length);
+//         // break outer;
+//         if (j === arr.length - 1) {
+//           res.push(arr[i])
+//         }
+//       } else {
+//         break
+//         // break outer;
+//         // res.push(arr[i])
+//       }
+//       // res.push(arr[i])
+//     }
+
+//   }
+//   return (res)
+//   // return [...new Set(res)]
+// }
+
+
+function solve(arr) {
+  let res = [];
+  let buf = []
+
+  for (let i = 0; i < arr.length; i++) {
+    buf = arr.slice(i, arr.length)
+    buf.sort((a, b) => b - a)
+    if (buf[0] === arr[i]) {
+      res.push(arr[i])
+
+    }
+    buf.length = 0
+  }
+
+  return [...new Set(res)]
+}
+
+
+console.log(solve([16, 17, 14, 3, 14, 5, 2]));
+console.log(solve([1, 21, 4, 7, 5]))
+console.log(solve([92, 52, 93, 31, 89, 87, 77, 105]))
+console.log(solve([75, 47, 42, 56, 13, 55]))
+
+function solve(arr) {
+  return arr.filter((e, i) => arr.slice(i + 1).every(x => x < e));
+};
+
+const solve = arr =>
+  arr.filter((val, idx) => val > Math.max(...arr.slice(++idx)));
