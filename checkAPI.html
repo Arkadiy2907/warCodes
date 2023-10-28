@@ -21,6 +21,8 @@
 
 <button onclick="postData8()">----8----</button>
 
+<button onclick="getData9()">----9----</button>
+
 <body>
 
 
@@ -105,8 +107,8 @@
         headers: {
           "grant_type": "password",
           "username": "Arkadiy",
-          "password": "Arkadiy84",
-          "client_id": "431",
+          "password": "Arkadiy",
+          "client_id": "1",
           "client_secret": "1ac38d6c-2917-4a46-b68e-f90ab7b0bc43"
         }
         // "value": "arkadiy2907@google.com"
@@ -162,6 +164,28 @@
         });
     }
 
+
+
+    function getData9() {
+      let e = 14792613;
+      let t = 'appType=1&curr=rub&dest=-1257786&spp=29'
+
+      fetch(`https://card.wb.ru/cards/detail?appType=1&curr=rub&${t}&nm=${e}`, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+
+        .catch(error => {
+          console.error(error);
+        });
+    }
 
 
   </script>
