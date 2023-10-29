@@ -181,3 +181,118 @@ function mostFrequentItemCount(c) {
     ? Math.max(...c.map((x) => c.filter((y) => y == x).length))
     : 0;
 }
+
+// ============================
+// https://www.codewars.com/kata/578b44a47c77f5a1bd000011/train/javascript
+
+// Входные данные: прогноз погоды в формате JSON на 5 дней, состоящий из 5 массивов.
+//  Каждый из 5 массивов включает 8 чисел, которые представляют собой 3 - часовой прогноз температуры на определенный день.
+
+// Выходные данные: массив, включающий наиболее часто встречающееся число (температуру)
+//  из каждого из 5 массивов(дней).В случае совпадения верните значение,
+//  присутствующее позже в данном массиве(день).
+
+// Пример ввода:
+
+// var прогноз_01 = {
+//    "температура": [
+//        [15,17,19,21,21,21,20,16],
+//        [16,17,22,22,22,22,20,16],
+//        [12,17, 19,20,20,20,20,18],
+//        [14,15,19,19,20,22,18,17],
+//        [15,17,24,24,24,20,20,20]
+//    ]
+// } ;
+
+// Пример вывода:
+
+// getMostFrequent(forecast_01)  // should return [21,22,20,19,20]
+
+// Пояснение к примеру выше:
+
+// Результат таков [21,22,20,19,20], что дано 5 массивов,
+// [15,17,19,21,21,21,20,16]21 является наиболее частым в 1-м массиве,
+// [16,17,22,22,22,22,20,16]22 является наиболее частым во 2-м массиве,
+// [12,17,19,20,20,20,20,18]20 является наиболее частым в 3-м массиве
+// [14,15,19,19,20,22,18,17], 19 является наиболее частым в 4-м массиве,
+// [15,17,24,24,24,20,20,20]24 и 20 появляются по 3 раза каждый в 5-м массиве.
+//  поэтому 20 включается в выходные данные, поскольку последние 20 появляются позже последних 24.
+
+var forecast_01 = {
+  temperature: [
+    [15, 17, 19, 21, 21, 21, 20, 16],
+    [16, 17, 22, 22, 22, 22, 20, 16],
+    [12, 17, 19, 20, 20, 20, 20, 18],
+    [14, 15, 19, 19, 20, 22, 18, 17],
+    [15, 17, 24, 24, 24, 20, 20, 20],
+  ],
+};
+
+function getMostFrequent(json) {
+  let obj1 = createObj(json.temperature[0]);
+  let obj2 = createObj(json.temperature[1]);
+  let obj3 = createObj(json.temperature[2]);
+  let obj4 = createObj(json.temperature[3]);
+  let obj5 = createObj(json.temperature[4]);
+
+  return [obj1, obj2, obj3, obj4, obj5];
+}
+
+// function createObj(arr) {
+//   let obj = {};
+//   let max = -Infinity;
+
+//   arr.forEach((el) => {
+//     if (!obj[el]) {
+//       obj[el] = 1;
+//     } else {
+//       obj[el]++;
+//     }
+
+//     if (obj[el] > max) {
+//       max = obj[el];
+//     }
+//   });
+
+//   let res = Object.keys(obj)
+//     .map((el) => {
+//       if (max === obj[el]) return +el;
+//     })
+//     .filter(Boolean)[0];
+
+//   return res;
+// }
+function createObj(arr) {
+  let obj = {};
+  let max = -Infinity;
+  let res = null;
+
+  arr.forEach((el) => {
+    if (!obj[el]) {
+      obj[el] = 1;
+    } else {
+      obj[el]++;
+    }
+
+    if (obj[el] >= max) {
+      max = obj[el];
+      res = el;
+    }
+  });
+
+  return parseInt(res);
+}
+
+console.log(getMostFrequent(forecast_01));
+
+function getMostFrequent(json) {
+  return json['temperature'].map((arr) =>
+    arr
+      .sort(
+        (a, b) =>
+          arr.filter((el) => a === el).length -
+          arr.filter((el) => b === el).length
+      )
+      .pop()
+  );
+}
