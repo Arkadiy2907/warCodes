@@ -22,6 +22,7 @@
 <button onclick="postData8()">----8----</button>
 
 <button onclick="getData9()">----9----</button>
+<button onclick="getData10()">----10----</button>
 
 <body>
 
@@ -182,6 +183,23 @@
           console.log(data);
         })
 
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+    function getData10() {
+      fetch('https://cloud.ridom.ru/api/v1/account', {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          Authorization: 'Bearer arkadiy2907@gmail.com'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
         .catch(error => {
           console.error(error);
         });

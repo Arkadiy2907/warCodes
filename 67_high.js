@@ -296,3 +296,14 @@ function getMostFrequent(json) {
       .pop()
   );
 }
+
+// ======================
+// https://www.codewars.com/kata/554b4ac871d6813a03000035/train/javascript
+
+function highAndLow(numbers) {
+  let arr = numbers.split(' ').map((el) => parseInt(el));
+
+  return `${Math.max(...arr)} ${Math.min(...arr)}`;
+}
+
+console.log(highAndLow('1 2 3 4 5')); // return "5 1"
