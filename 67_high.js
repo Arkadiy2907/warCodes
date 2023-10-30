@@ -307,3 +307,31 @@ function highAndLow(numbers) {
 }
 
 console.log(highAndLow('1 2 3 4 5')); // return "5 1"
+
+// ========================
+// https://www.codewars.com/kata/5631213916d70a0979000066
+
+// Using n as a parameter in the function pattern, where n>0,
+// complete the codes to get the pattern(take the help of examples):
+
+// Note: There is no newline in the end (after the pattern ends)
+
+// Examples
+// pattern(3) should return "1\n1*2\n1**3", e.g. the following:
+
+const pattern = (x) => {
+  let buf = [];
+
+  for (let i = 0; i < x; i++) {
+    buf.push(`1${'*'.repeat(i)}${i === 0 ? '' : i + 1}\n`);
+  }
+
+  let last = buf.join('');
+
+  return last.slice(0, last.length - 1);
+};
+
+console.log(pattern(3));
+
+const pattern2 = (n) =>
+  [...Array(n)].map((_, idx) => `${`*`.repeat(idx)}${++idx}`).join(`\n1`);
