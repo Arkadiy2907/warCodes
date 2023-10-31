@@ -335,3 +335,63 @@ console.log(pattern(3));
 
 const pattern2 = (n) =>
   [...Array(n)].map((_, idx) => `${`*`.repeat(idx)}${++idx}`).join(`\n1`);
+
+// ======================
+// https://www.codewars.com/kata/55f8a9c06c018a0d6e000132/train/javascript
+// Банкоматы допускают использование 4- или 6-значных PIN-кодов,
+//  а PIN - коды не могут содержать ничего, кроме ровно 4 или ровно 6 цифр.
+
+// Если функции передана действительная строка PIN-кода, return true, иначе return false.
+
+// Примеры ( Ввод -> Вывод)
+// "1234"   -->  true
+// "12345"  -->  false
+// "a234"   -->  false
+
+function validatePIN(pin) {
+  if (parseInt(pin) < 0) return false;
+  if (Math.trunc(parseFloat(pin)) !== parseFloat(pin)) return false;
+  let myArr = pin.split('');
+  let space = pin.split('').filter((el) => el !== ' ' || el !== '\n');
+
+  if (pin.length !== space.length) return false;
+
+  let buf = [];
+  myArr.forEach((el) => buf.push(!isNaN(el)));
+  let newArr = buf.filter(Boolean);
+  if (newArr.length !== buf.length) return false;
+
+  let arr = myArr.filter((el) => !isNaN(el));
+
+  return arr.length === 4 || arr.length === 6 ? true : false;
+}
+
+// function validatePIN(pin) {
+//   if (pin.length == 4 || pin.length == 6) {
+//     if (isNaN(pin) == true) {
+//       return false;
+//     } else if (pin < 0) {
+//       return false;
+//     } else if (pin.startsWith('+', '-', ' ', '.')) {
+//       return false;
+//     } else if (pin.includes('.', "'", '+', ' ')) {
+//       return false;
+//     } else if (pin.endsWith('\n')) {
+//       return false;
+//     } else {
+//       return true;
+//     }
+//   } else {
+//     return false;
+//   }
+// }
+
+// function validatePIN(pin) {
+//   var reg = new RegExp('^([0-9]{4}|[0-9]{6})$');
+//   return reg.test(pin);
+// }
+
+console.log(validatePIN('123 '));
+console.log(validatePIN('1.234'));
+console.log(validatePIN('1234x'));
+console.log(validatePIN('12 3'));
