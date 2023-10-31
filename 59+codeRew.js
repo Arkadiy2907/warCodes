@@ -25,8 +25,8 @@ const getNewObj = (o1, o2) => {
 // проверить объект на наличие false значений если в одном из value что либо есть true то вернуть true
 
 const obj = {
-  unde: "",
-  aa: "s",
+  unde: '',
+  aa: 's',
 };
 
 const isObj = (o) => {
@@ -34,7 +34,7 @@ const isObj = (o) => {
   if (Object.keys(o).length === 0) res = false;
 
   Object.values(o).forEach((el) => {
-    if (el === "") res = false;
+    if (el === '') res = false;
     if (el === undefined) res = false;
     if (isNaN(el)) res = false;
   });
@@ -42,7 +42,7 @@ const isObj = (o) => {
   let arr = [];
 
   Object.values(o).forEach((el) => {
-    if (el !== "" || el !== undefined || !isNaN(el)) {
+    if (el !== '' || el !== undefined || !isNaN(el)) {
       arr.push(el);
     }
     // else {
@@ -83,7 +83,7 @@ const getMaxLength = (a) => {
   let lengthArr = 1;
   let startIndex = 0;
   let endIndex = 0;
-  let maxSring = "последовательностей нет";
+  let maxSring = 'последовательностей нет';
   let maxLength = 1;
   let maxCount = 0;
 
@@ -147,3 +147,26 @@ const getCountNum = (a1, a2) => {
 };
 
 console.log(getCountNum([1, 2, 3, 5, 5, 7], [2, 3, 5, 6, 2, 5]));
+// ========================
+// дана квадратная матрица, найти сумму двух главной диагонали
+
+const m = [
+  [1, 2, 3, 4],
+  [2, 3, 4, 4],
+  [4, 5, 6, 4],
+  [4, 5, 6, 4],
+];
+
+const getSum = (arr) => {
+  if (!Array.isArray(arr) || arr.length === 0) return 'no work';
+  const length = arr[0].length;
+  let buf = arr.flat(1);
+  let sum = 0;
+  for (let i = 0; i < buf.length; i += length + 1) {
+    sum += buf[i];
+  }
+
+  return count;
+};
+
+console.log(getSum(m));
