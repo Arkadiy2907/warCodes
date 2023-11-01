@@ -46,3 +46,10 @@ function findMissingNumber(sequence) {
 console.log(findMissingNumber("1 2 3 5"));
 console.log(findMissingNumber("2 1 4 3 a"));
 console.log(findMissingNumber("1 2 3 4 5"));
+
+function findMissingNumber(sequence) {
+  if (sequence.length == 0) return 0;
+  sequence = sequence.split(" ").map(Number);
+  for (i = 1; i <= sequence.length; i++) if (i != sequence[i - 1]) return i;
+  return 0;
+}
