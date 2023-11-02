@@ -34,8 +34,54 @@ function changeObj(o1, o2) {
 }
 
 console.log(changeObj(obj1, obj2));
+// =========
+// 3) реализовать ф-ю кот принимает 2 параметра:
+// массив и колбэк по результатам которого будут групироваться значения
+//  ф-я должна возвращать объект где ключи это названия групп а значения сами группы
+
+let arr = [6.1, 4.2, 6.3];
+let callbackFun = Math.floor;
+// result = {
+//   '4': [4.2],
+//   '6':[6.1, 6.3]
+// }
+
+function groupBy(arr, fun) {
+  let obj = {};
+  arr.forEach((el) => {
+    let res = fun(el);
+    // console.log(Math.trunc(el));
+    if (!obj[res]) {
+      // console.log("new=", Math.trunc(el));
+      obj[res] = [el];
+      // el;
+    } else {
+      obj[res].push(el);
+    }
+    // console.log(obj);
+  });
+
+  return obj;
+}
+
+console.log(groupBy(arr, callbackFun));
 
 // =========
+//www.codewars.com/kata/5572f7c346eb58ae9c000047
+
+// Вам нужно написать функцию pattern, которая возвращает следующий шаблон (см. «Шаблон и примеры») до nопределенного количества строк.
+
+// Примечание: Returningрисунок не совпадает с Printingрисунком.
+// Правила/Примечание:
+// Если n < 1тогда он должен вернуть "", т.е. пустую строку.
+// Есть no whitespacesв выкройке.
+// Шаблон:
+// 1
+// 22
+// 333
+// ....
+// .....
+// nnnnnn
 
 function getNum(n) {
   let res = [];
