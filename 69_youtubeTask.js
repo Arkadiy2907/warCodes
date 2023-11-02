@@ -36,3 +36,31 @@ function changeObj(o1, o2) {
 console.log(changeObj(obj1, obj2));
 
 // =========
+
+function getNum(n) {
+  let res = [];
+
+  for (let i = 1; i <= n; i++) {
+    let str = `${i}`;
+    res.push(`${str.repeat(i)}\n`);
+    // str.length = 0
+    // console.log(str);
+  }
+
+  let lastEl = res.at(-1);
+  let newlastEl = lastEl && lastEl.slice(0, lastEl.length - 1);
+  console.log(newlastEl);
+  res.pop();
+  res.push(newlastEl);
+  console.log(res.join(""));
+}
+
+getNum(3);
+
+const pattern = (n) => {
+  let out = [];
+  for (let i = 1; i <= n; i++) {
+    out.push(i.toString().repeat(i));
+  }
+  return out.join("\n");
+};
