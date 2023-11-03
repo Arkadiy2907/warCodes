@@ -15,13 +15,13 @@ sum(2)(3)(4);
 // надо вернуть первый объект с обновленными значениями из второго (которые пересекаются)
 
 let obj1 = {
-  a: "foo",
-  b: "boo",
+  a: 'foo',
+  b: 'boo',
 };
 
 let obj2 = {
-  a: "boo",
-  c: "boo",
+  a: 'boo',
+  c: 'boo',
 };
 
 function changeObj(o1, o2) {
@@ -98,7 +98,7 @@ function getNum(n) {
   console.log(newlastEl);
   res.pop();
   res.push(newlastEl);
-  console.log(res.join(""));
+  console.log(res.join(''));
 }
 
 getNum(3);
@@ -108,5 +108,41 @@ const pattern = (n) => {
   for (let i = 1; i <= n; i++) {
     out.push(i.toString().repeat(i));
   }
-  return out.join("\n");
+  return out.join('\n');
 };
+
+// ====================
+// https://www.codewars.com/kata/5375f921003bf62192000746/train/javascript
+
+// Это слово i18n— распространенное сокращение internationalization в сообществе разработчиков,
+// которое используется вместо того, чтобы набирать слово целиком и пытаться написать его правильно.
+//Аналогично, a11y это сокращение от accessibility.
+
+// Напишите функцию, которая принимает строку и преобразует все без исключения «слова» (см. ниже)
+// внутри этой строки длиной 4 или больше в аббревиатуру, следуя этим правилам:
+
+// «Слово» — это последовательность букв алфавита. Согласно этому определению,
+// любой другой символ, например пробел или дефис(например, «поездка на слоне»),
+// разделит серию букв на два слова(например, «слон» и «поездка»).
+// В сокращенном варианте слова должна быть первая буква, затем количество удаленных символов,
+// затем последняя буква(например, «поездка на слоне» => «e6t r2e»).
+// Пример
+// abbreviate("elephant-rides are really fun!")
+// //          ^^^^^^^^*^^^^^*^^^*^^^^^^*^^^*
+// // words (^):   "elephant" "rides" "are" "really" "fun"
+// //                123456     123     1     1234     1
+// // ignore short words:               X              X
+
+// // abbreviate:    "e6t"     "r3s"  "are"  "r4y"   "fun"
+// // all non-word characters (*) remain in place
+// //                     "-"      " "    " "     " "     "!"
+// === "e6t-r3s are r4y fun!"
+
+function abbreviate(string) {
+  return string.replace(/\b([a-zA-Z]{4,})\b/g, function (match) {
+    var word = match;
+    return word[0] + (word.length - 2) + word[word.length - 1];
+  });
+}
+
+console.log(abbreviate('internationalization'));

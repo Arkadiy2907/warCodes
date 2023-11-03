@@ -159,10 +159,10 @@ const m = [
 
 const getSum = (arr) => {
   if (!Array.isArray(arr) || arr.length === 0) return 'no work';
-  const length = arr[0].length;
+  const len = arr[0].length;
   let buf = arr.flat(1);
   let sum = 0;
-  for (let i = 0; i < buf.length; i += length + 1) {
+  for (let i = 0; i < buf.length; i += len + 1) {
     sum += buf[i];
   }
 
