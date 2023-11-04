@@ -146,3 +146,114 @@ function abbreviate(string) {
 }
 
 console.log(abbreviate('internationalization'));
+
+// =============
+// https://www.codewars.com/kata/5913152be0b295cf99000001/train/javascript
+
+// Вычислите, во сколько раз число можно разделить на данное число.
+
+// Пример
+// Например, число 6можно разделить на 2два раза:
+
+// 1. 6 / 2 = 3
+// 2. 3 / 2 = 1 remainder = 1
+// 100можно разделить на 2шесть раз:
+
+// 1. 100 / 2 = 50
+// 2. 50 / 2 = 25
+// 3. 25 / 2 = 12 remainder 1
+// 4. 12 / 2 = 6
+// 5. 6 / 2 = 3
+// 6. 3 / 2 = 1 remainder 1
+
+// const divisions = (n, divisor) => {
+//   let res = 0;
+//   let buf;
+
+//   buf = n / divisor;
+//   // console.log(buf);
+//   while (buf === Math.trunc(buf)) {
+//     // console.log(buf);
+//     buf = buf / divisor;
+//     res++;
+//   }
+
+//   return res;
+// };
+
+const divisions = (n, divisor) => {
+  let countDivided = 0;
+  while (n >= divisor) {
+    countDivided += 1;
+    n = Math.floor(n / divisor);
+  }
+  return countDivided;
+};
+
+// console.log(divisions(6, 2));
+// console.log(divisions(100, 2));
+console.log(divisions(2450, 5));
+
+// =====================
+// https://www.codewars.com/kata/559760bae64c31556c00006b/train/javascript
+// Для каждого положительного целого числа N существует уникальная последовательность,
+//   начинающаяся с 1 и заканчивающаяся N и такая, что каждое число в последовательности
+//    является либо двойным числом предыдущего числа, либо двойным плюс 1.
+
+// Например, при N = 13 последовательность будет [1, 3, 6, 13], потому что . . . :
+
+//  3 =  2*1 +1
+//  6 =  2*3
+//  13 = 2*6 +1
+// Напишите функцию, возвращающую эту последовательность по заданному числу N.
+// Попробуйте сгенерировать элементы результирующего списка в порядке возрастания,
+//   т.е.не прибегая к обращению списка и не добавляя элементы в начало списка.
+
+// function climb(n) {
+//   let arr = [1];
+//   let buf = 1;
+//   if (n === 1) {
+//     return arr;
+//   }
+
+//   // let i = 1
+//   let i = n % 2 === 0 ? 2 : 1;
+//   // console.log(num);
+
+//   while (n > buf) {
+//     if (i % 2 === 0) {
+//       // console.log('1');
+//       buf = 2 * buf + 1;
+//       arr.push(buf);
+//       console.log('buf=', buf, arr, i);
+//       //  if (buf >= n) return arr;
+//       i++;
+//     } else {
+//       buf = 2 * buf;
+//       arr.push(buf);
+//       console.log('buf', buf, arr, i);
+//       // console.log(arr);
+//       //  if (buf >= n) return arr;
+//       i++;
+//     }
+//   }
+//   return arr;
+// }
+
+function climb(n) {
+  let arr = [];
+  let buf = n;
+
+  while (buf >= 1) {
+    arr.unshift(buf);
+    if (buf % 2 === 0) {
+      buf = buf / 2;
+    } else {
+      buf = (buf - 1) / 2;
+    }
+  }
+
+  return arr;
+}
+
+console.log(climb(97938));
