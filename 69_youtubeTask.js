@@ -257,3 +257,45 @@ function climb(n) {
 }
 
 console.log(climb(97938));
+// =============================
+// https://www.codewars.com/kata/5700c9acc1555755be00027e/train/javascript
+
+// Вход:
+
+// строкаstrng
+// массив строкarr
+// Вывод функции contain_all_rots(string, arr) (or containAllRots or contain-all-rots):
+
+// логическое значение true, если все вращения strngвключены вarr
+// falseв противном случае
+// Примеры:
+// contain_all_rots(
+//   "bsjq", ["bsjq", "qbsj", "sjqb", "twZNsslC", "jqbs"]) -> true
+
+// contain_all_rots(
+//   "Ajylvpy", ["Ajylvpy", "ylvpyAj", "jylvpyA", "lvpyAjy", "pyAjylv", "vpyAjyl", "ipywee"]) -> false)
+// Примечание:
+// Хоть и неверно в математическом смысле
+
+// будем считать, что вращений нет strng == ""
+// и для любого массива arr:contain_all_rots("", arr) --> true
+
+function containAllRots(str, arr) {
+  if (str === '') return true;
+  str = str.split('').sort().join('');
+  let res = arr.filter((el) => str === el.split('').sort().join(''));
+
+  console.log(arr.length === res.length);
+}
+
+function containAllRots(strng, arr) {
+  if (strng === '') {
+    return true;
+  }
+  let rotations = [];
+  for (let i = 0; i < strng.length; i++) {
+    rotations.push(strng.slice(i) + strng.slice(0, i));
+  }
+  return rotations.every((rot) => arr.includes(rot));
+}
+containAllRots('bsjq', ['bsjq', 'qbsj', 'sjqb', 'twZNsslC', 'jqbs']);
