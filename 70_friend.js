@@ -293,3 +293,39 @@ function containAllRots(strng, arr) {
   return rotations.every((rot) => arr.includes(rot));
 }
 containAllRots('bsjq', ['bsjq', 'qbsj', 'sjqb', 'twZNsslC', 'jqbs']);
+
+// ==================
+// https://www.codewars.com/kata/56069d0c4af7f633910000d3/train/javascript
+// Вы любите кофе и хотите знать, какие зерна вы можете себе позволить купить.
+
+// Первым аргументом функции поиска будет число, обозначающее ваш бюджет.
+
+// Вторым аргументом будет массив цен на кофейные зерна.
+
+// Ваша функция «поиска» должна возвращать магазины, продающие кофе в рамках вашего бюджета.
+
+// Функция поиска должна возвращать строку цен на кофейные зерна, которые вы можете себе позволить.
+// Цены в этой строке должны быть отсортированы по возрастанию.
+
+function search(budget, prices) {
+  return budget === 0
+    ? ''
+    : prices
+        .filter((el) => el <= budget)
+        .sort((a, b) => a - b)
+        .join(',');
+}
+
+function search(budget, prices) {
+  return prices
+    .filter(function (elem) {
+      if (elem <= budget) {
+        return true;
+      }
+    })
+    .sort((a, b) => a - b)
+    .toString();
+}
+
+search(3, [6, 1, 2, 9, 2]); //, '1,2,2';
+search(14, [7, 3, 23, 9, 14, 20, 7]); //, "3,7,7,9,14")
