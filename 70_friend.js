@@ -329,3 +329,25 @@ function search(budget, prices) {
 
 search(3, [6, 1, 2, 9, 2]); //, '1,2,2';
 search(14, [7, 3, 23, 9, 14, 20, 7]); //, "3,7,7,9,14")
+
+// https://www.codewars.com/kata/53dbd5315a3c69eed20002dd/train/javascript
+
+// В этом ката вы создадите функцию, которая принимает список неотрицательных
+//  целых чисел и строк и возвращает новый список с отфильтрованными строками.
+
+// Пример
+// filter_list([1,2,'a','b']) == [1,2]
+// filter_list([1,'a','b',0,15]) == [1,0,15]
+// filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
+
+function filter_list(l) {
+  return l.filter((el) => !isNaN(el) && typeof el !== 'string');
+}
+
+function filter_list(l) {
+  return l.filter((v) => typeof v == 'number');
+}
+
+// console.log(filter_list([1, 2, 'a', 'b'])); //, [1, 2];
+// filter_list([1, 'a', 'b', 0, 15]); //, [1, 0, 15];
+filter_list([1, 2, 'aasf', '1', '123', 123]); //, [1, 2, 123];
