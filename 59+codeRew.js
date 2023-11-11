@@ -170,3 +170,96 @@ const getSum = (arr) => {
 };
 
 console.log(getSum(m));
+// ==================
+
+// подобрать сумму двух элементов равную целевому элементу
+// если нет вернуть -1
+
+function twoSum(arr, tar) {
+  let seen = {};
+  for (let i = 0; i < arr.length; i++) {
+    let curr = arr[i];
+
+    let diff = tar - curr;
+    if (seen[diff] !== undefined) {
+      let indPrev = seen[diff];
+      return [indPrev, i];
+    }
+
+    seen[curr] = i;
+  }
+
+  return [-1, -1];
+}
+
+console.log(twoSum([1, 2, 3, 4, 45], 5));
+
+// ======================House Robber
+// www.codewars.com/kata/5c6f9cbe4185db000c4f1d61/javascript
+
+//вор обворовывает дома но не может обработать рядом стоящие
+//найти оптимальный вариант работы вора у домов разная ценность
+
+// [h0, h1, h2, h3, h4, h5, h6, h7, h8]
+// [(1, 4, 2, 6, 7, 3, 5, 3, 3)];
+
+// s(n) = max(
+//   H(n) + s(n - 2),
+//   0+s(n-1)
+// )
+
+function steal(houses) {
+  if (houses.length === 0) {
+    return 0;
+  }
+
+  if (houses.length === 1) {
+    return houses[0];
+  }
+
+  if (houses.length === 2) {
+    return Math.max(houses[0], houses[1]);
+  }
+
+  var know = {};
+  know[0] = houses[0];
+  know[1] = Math.max(houses[0], houses[1]);
+  return solve(houses, houses.length - 1, know);
+}
+
+function solve(houses, cur, know) {
+  if (know[cur] !== undefined) {
+    return know[cur];
+  }
+
+  var s2 = solve(houses, cur - 2, know);
+  var s1 = solve(houses, cur - 1, know);
+  var treasure = Math.max(houses[cur] + s2, 0 + s1);
+  know[cur] = treasure;
+  return treasure;
+}
+
+function steal2(houses) {
+  if (houses.length === 0) {
+    return 0;
+  }
+
+  if (houses.length === 1) {
+    return houses[0];
+  }
+
+  if (houses.length === 2) {
+    return Math.max(houses[0], houses[1]);
+  }
+
+  var s2 = houses[0];
+  var s1 = houses[1];
+
+  for (let i = 2; i < houses.length; i++) {
+    var cur = Math.max(houses[i] + s2, s1);
+    s2 = s1;
+    s1 = cur;
+  }
+  return s1;
+}
+// millenniumevil
