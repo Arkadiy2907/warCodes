@@ -351,3 +351,87 @@ function filter_list(l) {
 // console.log(filter_list([1, 2, 'a', 'b'])); //, [1, 2];
 // filter_list([1, 'a', 'b', 0, 15]); //, [1, 0, 15];
 filter_list([1, 2, 'aasf', '1', '123', 123]); //, [1, 2, 123];
+
+// ===================================
+// https://www.codewars.com/kata/559576d984d6962f8c00003c/train/javascript
+
+// Учитывая массив, содержащий только целые числа,
+// добавьте все элементы и верните двоичный эквивалент этой суммы.
+
+// Если массив содержит какой-либо нецелочисленный элемент
+// (например, объект, число с плавающей запятой, строку и т.д.), верните false.
+
+// Примечание. Сумма пустого массива равна нулю.
+
+// arr2bin([1,2]) == '11'
+// arr2bin([1,2,'a']) == false
+
+function arr2bin(arr) {
+  if (
+    arr.length === 0 ||
+    arr === undefined ||
+    !Array.isArray(arr) ||
+    typeof arr === 'boolean'
+  )
+    return false;
+
+  //GET STARTED
+  // console.log(typeof arr === 'boolean');
+  // console.log(Array.isArray(arr));
+  if (typeof arr === 'undefined') return false;
+  if (arr.length === 0) return false;
+  let arrNum = arr.filter((el) => !isNaN(+el) && Math.trunc(el) === el);
+  // console.log(arrNum);
+  if (arr.length !== arrNum.length) return false;
+
+  // console.log(arr.reduce((a, e) => a + e, 0).toString(2));
+  let res = arr.reduce((a, e) => a + e, 0).toString(2);
+  return res;
+}
+
+function arr2bin(arr) {
+  // if (
+  //     arr.length === 0 ||
+  //     arr === undefined ||
+  //     !Array.isArray(arr) ||
+  //     typeof arr === 'boolean'
+  //   )
+  //     return false;
+
+  // //   let arrNum = arr.filter(
+  // //     (el) => typeof el === 'number' && Math.trunc(el) === el
+  // //   );
+  //     let arrNum = arr.filter((el) => !isNaN(+el) && Math.trunc(el) === el);
+
+  //   if (arr.length !== arrNum.length) return false;
+
+  //   let sum = arr.reduce((a, e) => a + e, 0);
+  //   return sum.toString(2);
+  if (
+    !Array.isArray(arr) ||
+    arr.some((el) => typeof el !== 'number' || !Number.isInteger(el))
+  ) {
+    return false;
+  }
+
+  const sum = arr.reduce((acc, el) => acc + el, 0);
+  return sum.toString(2);
+}
+
+// arr2bin([1, 2]); //, '11';
+// arr2bin([1, 2, 3, 4, 5]); //, '1111';
+// arr2bin([1, 10, 100, 1000]); //, '10001010111';
+// arr2bin([1, 2, 'a']);
+console.log(arr2bin());
+
+const arr2bin = (arr) =>
+  arr.every(Number.isInteger) && arr.reduce((sum, n) => sum + n, 0).toString(2);
+
+function arr2bin(arr) {
+  let sum = 0;
+  for (let a of arr) {
+    if (typeof a !== 'number') return false;
+    sum += a;
+  }
+  return sum.toString(2);
+}
