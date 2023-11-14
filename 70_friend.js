@@ -435,3 +435,60 @@ function arr2bin(arr) {
   }
   return sum.toString(2);
 }
+// ===================
+
+// https://www.codewars.com/kata/5300901726d12b80e8000498/train/javascript
+// Возвращает массив, содержащий числа от 1 до N, где N — значение параметра.
+
+// Однако замените определенные значения, если выполнено любое из следующих условий:
+
+// Если значение кратно 3: вместо этого используйте значение «Fizz».
+// Если значение кратно 5: вместо этого используйте значение «Живая лента».
+// Если значение кратно 3 и 5: вместо этого используйте значение «FizzBuzz».
+// N никогда не будет меньше 1.
+
+// Пример вызова метода:
+
+// fizzbuzz(3) -->  [1, 2, "Fizz"]
+
+function fizzbuzz(n) {
+  let arr = [];
+
+  for (let i = 1; i <= n; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      arr.push('FizzBuzz');
+      continue;
+    }
+
+    if (i % 3 === 0) {
+      arr.push('Fizz');
+      continue;
+    }
+    if (i % 5 === 0) {
+      arr.push('Buzz');
+      continue;
+    }
+    arr.push(i);
+  }
+
+  return arr;
+  console.log(arr);
+  //
+}
+
+function fizzbuzz(n) {
+  var fizzified = [];
+  for (var i = 1; i <= n; i++) {
+    var val = '';
+    if (i % 3 == 0) val += 'Fizz';
+    if (i % 5 == 0) val += 'Buzz';
+    fizzified.push(val || i);
+  }
+  return fizzified;
+}
+
+function fizzify(n) {
+  return fizzbuzz(n);
+}
+
+fizzbuzz(25);
