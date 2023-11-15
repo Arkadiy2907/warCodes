@@ -492,3 +492,25 @@ function fizzify(n) {
 }
 
 fizzbuzz(25);
+
+// ===============================
+// www.codewars.com/kata/555bfd6f9f9f52680f0000c5/train/javascript
+
+// Given a number, write a function to output its reverse digits. (e.g. given 123 the answer is 321)
+
+// Numbers should preserve their sign; i.e. a negative number should still be negative when reversed.
+
+// Examples
+//  123 ->  321
+// -456 -> -654
+// 1000 ->    1
+
+https: function reverseNumber(n) {
+  const res = parseFloat(n.toString().split('').reverse().join(''));
+  return n > 0 ? res : Math.floor(res - res * 2);
+}
+
+console.log(reverseNumber(-23));
+
+reverseNumber = (n) =>
+  (n > 0 ? 1 : -1) * Math.abs(n).toString().split('').reverse().join('');
