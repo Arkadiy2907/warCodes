@@ -263,3 +263,24 @@ function steal2(houses) {
   return s1;
 }
 // millenniumevil
+
+// =================
+// проверить на уникальность строки
+
+const isNewStr = (str) => {
+  if (
+    typeof str === 'undefined' ||
+    typeof str === 'null' ||
+    typeof str === 'object'
+  )
+    return false;
+
+  const buf = str && str.toString().toLowerCase().split('');
+  return str.toString() === [...new Set(buf)].join('');
+};
+
+console.log(isNewStr(12345)); //true
+console.log(isNewStr(123455)); //false
+console.log(isNewStr()); //false
+console.log(isNewStr(null)); //false
+console.log(isNewStr({})); //false
