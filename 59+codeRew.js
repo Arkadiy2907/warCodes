@@ -267,20 +267,48 @@ function steal2(houses) {
 // =================
 // проверить на уникальность строки
 
-const isNewStr = (str) => {
-  if (
-    typeof str === 'undefined' ||
-    typeof str === 'null' ||
-    typeof str === 'object'
-  )
-    return false;
+// const isNewStr = (str) => {
+//   if (
+//     typeof str === 'undefined' ||
+//     typeof str === 'null' ||
+//     typeof str === 'object'
+//   )
+//     return false;
 
-  const buf = str && str.toString().toLowerCase().split('');
-  return str.toString() === [...new Set(buf)].join('');
+//   const buf = str && str.toString().toLowerCase().split('');
+//   return str.toString() === [...new Set(buf)].join('');
+// };
+
+const isNewStr = (str) => {
+  if (typeof str === 'string' || typeof str === 'number') {
+    const buf = str && str.toString().toLowerCase().split('');
+    return str.toString() === [...new Set(buf)].join('');
+  }
+  return false;
 };
 
+const isNewStr = (str) => {
+  if (typeof str === 'string' || typeof str === 'number') {
+    return (
+      new Set(str && str.toString().toLowerCase()).size ===
+      (str && str.toString().length)
+    );
+  }
+  return false;
+};
+
+const isNewStr = (str) => {
+  if (!!str && typeof str !== 'object') {
+    const buf = str && str.toString().toLowerCase().split('');
+    return str.toString() === [...new Set(buf)].join('');
+  }
+  return false;
+};
+
+console.log(isNewStr('12345')); //true
 console.log(isNewStr(12345)); //true
 console.log(isNewStr(123455)); //false
 console.log(isNewStr()); //false
 console.log(isNewStr(null)); //false
 console.log(isNewStr({})); //false
+console.log(isNewStr([])); //false
