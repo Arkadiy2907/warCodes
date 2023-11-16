@@ -514,3 +514,34 @@ console.log(reverseNumber(-23));
 
 reverseNumber = (n) =>
   (n > 0 ? 1 : -1) * Math.abs(n).toString().split('').reverse().join('');
+
+//===============================
+// https://www.codewars.com/kata/595aa94353e43a8746000120
+
+// Дана упорядоченная последовательность чисел от 1 до N. Из него могли удалить одно число,
+// тогда остальные числа перемешались.Найдите номер, который был удален.
+
+// Пример:
+
+// Начальная последовательность массива:[1,2,3,4,5,6,7,8,9]
+// Смешанный массив с одним удаленным числом:[3,2,4,6,7,8,1,9]
+// Ваша функция должна возвращать int 5.
+// Если ни одно число не было удалено из начального массива, ваша функция должна вернуть int 0.
+
+// Примечание : N может быть 1 или меньше (в последнем случае первый массив будет []).
+
+function findDeletedNumber(arr, mixArr) {
+  let buf = 0;
+  if (arr.length === mixArr.length) return buf;
+  buf = arr.filter((el) => !mixArr.includes(el));
+  return +buf.join('');
+}
+
+function findDeletedNumber(arr, mixArr) {
+  return arr.filter((v) => mixArr.indexOf(v) == -1)[0] || 0;
+}
+
+findDeletedNumber([1, 2, 3, 4, 5], [3, 4, 1, 5]); //2
+findDeletedNumber([1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 9, 7, 4, 6, 2, 3, 8]); //, 5;
+findDeletedNumber([1, 2, 3, 4, 5, 6, 7, 8, 9], [5, 7, 6, 9, 4, 8, 1, 2, 3]);
+0;

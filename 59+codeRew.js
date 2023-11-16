@@ -287,7 +287,7 @@ const isNewStr = (str) => {
   return false;
 };
 
-const isNewStr = (str) => {
+const isNewStr1 = (str) => {
   if (typeof str === 'string' || typeof str === 'number') {
     return (
       new Set(str && str.toString().toLowerCase()).size ===
@@ -297,7 +297,7 @@ const isNewStr = (str) => {
   return false;
 };
 
-const isNewStr = (str) => {
+const isNewStr2 = (str) => {
   if (!!str && typeof str !== 'object') {
     const buf = str && str.toString().toLowerCase().split('');
     return str.toString() === [...new Set(buf)].join('');
