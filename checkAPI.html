@@ -6,26 +6,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .child {
+      margin-top: 10px;
+    }
+  </style>
 </head>
-<button onclick="postData1()">----1----</button>
 
-<button onclick="postData2()">----2----</button>
-
-<button onclick="postData3()">----3----</button>
-
-<button onclick="playRecord()">----4----</button>
-
-<button onclick="postData6()">----6----</button>
-
-<button onclick="getData7()">----7----</button>
-
-<button onclick="postData8()">----8----</button>
-
-<button onclick="getData9()">----9----</button>
-<button onclick="getData10()">----10----</button>
 
 <body>
 
+  <div class="parent">
+    <div class="child">element 2</div>
+  </div>
+
+
+  <button onclick="postData1()">----1----</button>
+
+  <button onclick="postData2()">----2----</button>
+
+  <button onclick="postData3()">----3----</button>
+
+  <button onclick="playRecord()">----4----</button>
+
+  <button onclick="postData6()">----6----</button>
+
+  <button onclick="getData7()">----7----</button>
+
+  <button onclick="postData8()">----8----</button>
+
+  <button onclick="getData9()">----9----</button>
+  <button onclick="getData10()">----10----</button>
+  <button onclick="getData11()">----11----</button>
 
   <script>
 
@@ -205,6 +217,18 @@
         });
     }
 
+    function getData11() {
+      fetch('https://api.openweathermap.org/data/2.5/weather?q=saint petersburg&appid=ecbaa67ba7bece31be9e96bd8181180a', {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
 
   </script>
 </body>
