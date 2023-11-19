@@ -179,3 +179,30 @@ const anagram = (p1, p2) => (p1 && str(p1) === str(p2)) || false;
 
 console.log(anagram('finder', 'Friend')); //--> true
 console.log(anagram('hello', 'bye')); //--> false
+
+//================
+// Поиск гласных
+// Нужно написать функцию, принимающую строку в качестве аргумента
+//  возвращающую количество гласных, которые содержатся в строке.
+// Гласными являются «a», «e», «i», «o», «u».
+const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+const findVowels = (s) => {
+  let res = 0;
+  for (let x of s.toLowerCase()) {
+    if (vowels.includes(x)) {
+      res++;
+    }
+  }
+  return res;
+};
+
+const findVowels1 = (s) => {
+  let match = s.match(/[aeiou]/gi);
+
+  return match ? match.length : 0;
+  console.log(match);
+};
+
+console.log(findVowels1('hello')); // --> 2
+console.log(findVowels1('why')); // --> 0
