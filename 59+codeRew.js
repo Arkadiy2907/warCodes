@@ -1,3 +1,21 @@
+// отсортировать не чет по возрос а четные оставить на месте
+
+const arr1 = [999, 22, 3, -47, 5, 2, 58, 7, 4];
+
+const sortArr = arr => {
+
+  let oddArr = [];
+  let evenArr = [];
+
+  arr.forEach(el => el % 2 === 0 ? evenArr.push(el) : oddArr.push(el))
+
+  oddArr.sort((a, b) => a - b);
+
+  return arr.map(el => el % 2 === 0 ? evenArr.shift() : oddArr.shift());
+}
+
+// ===============================
+
 // найти пересеч в объекты
 
 const obj1 = { a: 1, b: 2, c: 3 };

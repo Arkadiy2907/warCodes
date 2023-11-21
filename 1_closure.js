@@ -165,8 +165,8 @@ y(); //30
 
 z(); //undefined
 
-obj2.bar();
-obj2.baz();
+obj2.bar(); //30
+obj2.baz(); //20
 
 // =================
 // Анаграмма;
@@ -206,3 +206,27 @@ const findVowels1 = (s) => {
 
 console.log(findVowels1('hello')); // --> 2
 console.log(findVowels1('why')); // --> 0
+
+var foo = { bar: 1 };
+foo.bar === 1; // true
+console.log(typeof foo.toString === 'function'); // true
+
+// ===============
+// глубокая проверка объектов на равенство
+
+const deepEqual = (a, b) => {
+  if (
+    a === null ||
+    b === null ||
+    typeof a !== 'object' ||
+    typeof b !== 'object'
+  ) {
+    return a === b;
+  }
+  const aKeys = Object.keys(a);
+  const bKeys = Object.keys(b);
+  if (aKeys.length !== bKeys.length) {
+    return false;
+  }
+  return aKeys.every((key) => bKeys.includes(key) && deepEqual(a[key], b[key]));
+};

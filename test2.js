@@ -1,11 +1,11 @@
 // =============================
 
 (function () {
-  console.log("start");
+  console.log('start');
   for (var i = 0; i < 100; i++) {
     ((i) => setTimeout(() => console.log(i), 0))(i);
   }
-  console.log("end");
+  console.log('end');
 })()(
   //start end 0,1,2-99
 
@@ -24,19 +24,19 @@
 // ====================
 
 setTimeout(function timeout() {
-  console.log("Таймаут");
+  console.log('Таймаут');
 }, 0);
 
 let p = new Promise(function (resolve, reject) {
-  console.log("Создание промиса");
+  console.log('Создание промиса');
   resolve();
 });
 
 p.then(function () {
-  console.log("Обработка промиса");
+  console.log('Обработка промиса');
 });
 
-console.log("Конец скрипта");
+console.log('Конец скрипта');
 //Создание промиса Конец скрипта Обработка промиса Таймаут
 // =========================
 
@@ -79,14 +79,14 @@ const myPromise = (delay) =>
   new Promise((res, rej) => {
     setTimeout(res, delay);
   });
-setTimeout(() => console.log("in setTimeout1"), 1000);
-myPromise(1000).then((res) => console.log("in Promise 1"));
-setTimeout(() => console.log("in setTimeout2"), 100);
-myPromise(2000).then((res) => console.log("in Promise 2"));
-setTimeout(() => console.log("in setTimeout3"), 2000);
-myPromise(1000).then((res) => console.log("in Promise 3"));
-setTimeout(() => console.log("in setTimeout4"), 1000);
-myPromise(5000).then((res) => console.log("in Promise "));
+setTimeout(() => console.log('in setTimeout1'), 1000);
+myPromise(1000).then((res) => console.log('in Promise 1'));
+setTimeout(() => console.log('in setTimeout2'), 100);
+myPromise(2000).then((res) => console.log('in Promise 2'));
+setTimeout(() => console.log('in setTimeout3'), 2000);
+myPromise(1000).then((res) => console.log('in Promise 3'));
+setTimeout(() => console.log('in setTimeout4'), 1000);
+myPromise(5000).then((res) => console.log('in Promise '));
 
 const bar = [1, 2, 3, 4];
 let foo = bar;
@@ -130,7 +130,7 @@ async function fetchData() {
     if (!response.ok) {
       badResponseCount++;
       if (badResponseCount >= 3) {
-        console.log("плохой ответ");
+        console.log('плохой ответ');
         return; // Выход из функции после 3 плохих ответов
       }
       await fetchData(); // Повторный запуск запроса
@@ -153,35 +153,50 @@ fetchData();
 // Надо постараться сделать оптимальный алгоритм
 
 const arr = [
-  "вертикаль",
-  "кильватер",
-  "апельсин",
-  "спаниель",
-  "австралопитек",
-  "ватерполистка",
-  "кластер",
-  "сталкер",
-  "стрелка",
-  "корабль",
+  'вертикаль',
+  'кильватер',
+  'апельсин',
+  'спаниель',
+  'австралопитек',
+  'ватерполистка',
+  'кластер',
+  'сталкер',
+  'стрелка',
+  'корабль',
 ];
 
 const getSr = (arr) => {
-  let buf = [];
-  let obj = {};
-  for (let i = 0; i < arr.length; i++) {
-    buf.push(arr[i].split("").sort().join(""));
-  }
-
-  buf.forEach((el, i) => {
-    if (!obj[el]) {
-      arr[i + 1];
+  const sortedWords = arr.map((word) => word.split('').sort().join(''));
+  const anagrams = {};
+  sortedWords.forEach((word, index) => {
+    if (anagrams[word]) {
+      anagrams[word].push(arr[index]);
+    } else {
+      anagrams[word] = [arr[index]];
     }
   });
+  return Object.values(anagrams).filter((group) => group.length > 1);
 };
 
+console.log(getSr(arr));
+
+// const getSr = (arr) => {
+//   let buf = [];
+//   let obj = {};
+//   for (let i = 0; i < arr.length; i++) {
+//     buf.push(arr[i].split("").sort().join(""));
+//   }
+
+//   buf.forEach((el, i) => {
+//     if (!obj[el]) {
+//       arr[i + 1];
+//     }
+//   });
+// };
+
 obj = {
-  вертикаль: "кильватер",
-  кластер: "",
+  вертикаль: 'кильватер',
+  кластер: '',
 };
 // ==============================
 
@@ -222,20 +237,67 @@ console.log(hasPairWithSum([-8, 1, 4, 9, 16], 8)); // true
 
 // =============================
 
-Promise.reject("a") // rejected -> a
-  .catch((p) => p + "b") // fulfilled -> ab
-  .catch((p) => p + "с") //
-  .then((p) => p + "d") // abd
+Promise.reject('a') // rejected -> a
+  .catch((p) => p + 'b') // fulfilled -> ab
+  .catch((p) => p + 'с') //
+  .then((p) => p + 'd') // abd
   .then((p) => console.log(p));
 
-console.log("f");
+console.log('f');
 // Это связано с тем Promise.reject("a"), что при вызове создается обещание, которое немедленно отклоняется со значением «a».
-//  Первый catchблок принимает это отклоненное обещание и возвращает новое обещание, которое выполняется со значением «ab».
-// Второй catchблок не выполняется, поскольку предыдущий catchблок уже обработал отклонение.
+//  Первый catch блок принимает это отклоненное обещание и возвращает новое обещание, которое выполняется со значением «ab».
+// Второй catch блок не выполняется, поскольку предыдущий catch блок уже обработал отклонение.
 
-// Первый thenблок получает выполненное обещание со значением «ab» и возвращает новое обещание, выполненное со значением «abd». Второй thenблок получает это обещание и записывает его значение в консоль.
+// Первый then блок получает выполненное обещание со значением «ab» и возвращает новое обещание, выполненное со значением «abd».
+// Второй then блок получает это обещание и записывает его значение в консоль.
 
 /// Наконец, console.log("f")оператор выполняется, записывая «f» на консоль перед выполнением цепочки обещаний.
+
+Promise.reject('a') // rejected -> a
+  .catch((p) => p + 'b') // fulfilled -> ab
+  .catch((p) => p + 'с') //Второй catch блок не выполняется, поскольку предыдущий catch блок уже обработал отклонение.
+  .then((p) => p + 'd') // abd
+  .finally((p) => p + 'e') // finally всегда выполняется, но он не изменяет разрешенное значение обещания.
+  .then((p) => console.log(p)); //abd
+
+Promise.reject('a') // rejected -> a
+  .then((p) => p + 'd')
+  .catch((p) => p + 'b') // fulfilled -> ab
+  .catch((p) => p + 'с') //Второй catch блок не выполняется, поскольку предыдущий catch блок уже обработал отклонение.
+  .then((p) => p + 'd') // abd
+  .then((p) => p + 'j') // abdj
+  .catch((p) => console.log(p)) //
+  .catch((p) => p + 'с') //
+  .finally((p) => p + 'e') // finally всегда выполняется, но он не изменяет разрешенное значение обещания.
+  .then((p) => console.log(p)); //abdj
+
+Promise.reject('a') // rejected -> a
+  .then(
+    (p) => p + '1',
+    (p) => p + '2'
+  )
+  .catch((p) => p + 'b') // fulfilled -> ab
+  .catch((p) => p + 'с') //Второй catch блок не выполняется, поскольку предыдущий catch блок уже обработал отклонение.
+  .then((p) => p + 'd1') // abd
+  .then((p) => 'j') // j
+  // .catch((p) => console.log(p)) //
+  // .catch((p) => p + 'с') //
+  .finally((p) => p + 'e') // finally всегда выполняется, но он не изменяет разрешенное значение обещания.
+  .then((p) => console.log(p)); //j
+
+Promise.reject('a') // rejected -> a
+  .then(
+    (p) => p + '1',
+    (p) => p + '2'
+  )
+  .catch((p) => p + 'b') // fulfilled -> ab
+  .catch((p) => p + 'с') //Второй catch блок не выполняется, поскольку предыдущий catch блок уже обработал отклонение.
+  .then((p) => p + 'd') // abd
+  // .then((p) => 'j') // j
+  // .catch((p) => console.log(p)) //
+  // .catch((p) => p + 'с') //
+  .finally((p) => p + 'e') // finally всегда выполняется, но он не изменяет разрешенное значение обещания.
+  .then((p) => console.log(p)); //a2d
 
 // while (true); будет ли блокировка проги и переполнение стека а при макро и микротаске с рекурсией
 
@@ -258,7 +320,7 @@ getNumDay(1, 1, 2023);
 // Условие: Напишите функцию, которая принимает строку в качестве аргумента и возвращает количество гласных в этой строке.Гласные буквы — это ‘a’, ‘e’, ‘i’, ‘o’, ‘u’.
 
 function countVowels(str) {
-  const vowels = "aeiou";
+  const vowels = 'aeiou';
   let count = 0;
   for (let char of str.toLowerCase()) {
     if (vowels.includes(char)) {
@@ -270,8 +332,8 @@ function countVowels(str) {
 
 // ========================
 
-var globalVar = "global";
-var outerVar = "outer";
+var globalVar = 'global';
+var outerVar = 'outer';
 
 function outerFunc(outerParam) {
   function innerFunc(innerParam) {
@@ -281,6 +343,6 @@ function outerFunc(outerParam) {
 }
 
 const x = outerFunc(outerVar);
-outerVar = "outer-2";
-globalVar = "guess";
-x("inner"); //guess outer inner
+outerVar = 'outer-2';
+globalVar = 'guess';
+x('inner'); //guess outer inner
