@@ -39,6 +39,11 @@
   <button onclick="getData10()">----10----</button>
   <button onclick="getData11()">----11----</button>
 
+  <button onclick="getApartments()">Список квартир</button>
+  <button onclick="getStreets()">Список streets:</button>
+  <button onclick="getHouses()">Список houses 0:</button>
+
+
   <script>
 
     function postData1() {
@@ -219,6 +224,46 @@
 
     function getData11() {
       fetch('https://api.openweathermap.org/data/2.5/weather?q=saint petersburg&appid=ecbaa67ba7bece31be9e96bd8181180a', {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+    function getApartments() {
+      fetch('https://dispex.org/api/vtest/HousingStock', {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);//[]
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+
+    function getStreets() {
+      fetch('https://dispex.org/api/vtest/Request/streets', {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+    function getHouses() {//
+      fetch('https://dispex.org/api/vtest/Request/houses/0', {
         method: 'GET',
       })
         .then(response => response.json())
