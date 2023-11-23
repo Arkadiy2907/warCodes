@@ -27,6 +27,7 @@ function validBraces(str) {
   }
   return result;
 }
+
 console.log('');
 console.log(validBraces('()'));
 console.log(validBraces('[)'));

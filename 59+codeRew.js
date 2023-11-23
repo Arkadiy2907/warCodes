@@ -2,17 +2,16 @@
 
 const arr1 = [999, 22, 3, -47, 5, 2, 58, 7, 4];
 
-const sortArr = arr => {
-
+const sortArr = (arr) => {
   let oddArr = [];
   let evenArr = [];
 
-  arr.forEach(el => el % 2 === 0 ? evenArr.push(el) : oddArr.push(el))
+  arr.forEach((el) => (el % 2 === 0 ? evenArr.push(el) : oddArr.push(el)));
 
   oddArr.sort((a, b) => a - b);
 
-  return arr.map(el => el % 2 === 0 ? evenArr.shift() : oddArr.shift());
-}
+  return arr.map((el) => (el % 2 === 0 ? evenArr.shift() : oddArr.shift()));
+};
 
 // ===============================
 
@@ -330,3 +329,19 @@ console.log(isNewStr()); //false
 console.log(isNewStr(null)); //false
 console.log(isNewStr({})); //false
 console.log(isNewStr([])); //false
+
+// ======================================
+// дан двумерный массив, создать объект в который попадут первые уникальные элементы
+// первой строки если их нет то null
+
+const arr111 = [
+  [1, 2, 4, 5],
+  [2, 4, 5, 6],
+  [23, 4, 5, 67],
+];
+
+let getObject = (arr) => {
+  let res = {};
+
+  for (let i = 0; i < arr.length; i++) {}
+};

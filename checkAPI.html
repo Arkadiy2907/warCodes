@@ -42,6 +42,8 @@
   <button onclick="getApartments()">Список квартир</button>
   <button onclick="getStreets()">Список streets:</button>
   <button onclick="getHouses()">Список houses 0:</button>
+  <button onclick="postNewClient()">новый жилец</button>
+
 
 
   <script>
@@ -107,8 +109,6 @@
         }
       });
 
-
-
       const blob = await response.blob();
       const audio = new Audio(URL.createObjectURL(blob));
       console.log(audio);
@@ -156,8 +156,6 @@
         });
     }
 
-
-
     function postData8() {
       fetch('https://cloud.ridom.ru/api/v1/auth/token', {
         method: 'POST',
@@ -181,8 +179,6 @@
           console.error(error);
         });
     }
-
-
 
     function getData9() {
       let e = 14792613;
@@ -265,6 +261,30 @@
     function getHouses() {//
       fetch('https://dispex.org/api/vtest/Request/houses/0', {
         method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+    function postNewClient() {
+      fetch('https://dispex.org/api/vtest/HousingStock/client', {
+        method: 'POST',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          Id: 0,
+          Name: 'string',
+          Phone: 'string',
+          Email: 'string',
+          BindId: 0,
+        })
       })
         .then(response => response.json())
         .then(data => {
