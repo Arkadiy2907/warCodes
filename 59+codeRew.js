@@ -335,13 +335,32 @@ console.log(isNewStr([])); //false
 // первой строки если их нет то null
 
 const arr111 = [
-  [1, 2, 4, 5],
+  [1, 2, 2, 1],
   [2, 4, 5, 6],
   [23, 4, 5, 67],
 ];
 
 let getObject = (arr) => {
-  let res = {};
+  let buf = [];
+  let resObj = {};
 
-  for (let i = 0; i < arr.length; i++) {}
+  for (let i = 0; i < arr.length; i++) {
+    let obj = {};
+    arr[i].forEach((el) => {
+      if (!obj[el]) {
+        obj[el] = 1;
+      } else {
+        obj[el]++;
+      }
+    });
+
+    buf = Object.keys(obj)
+      .map((el) => (obj[el] === 1 ? el : null))
+      .filter(Boolean);
+
+    resObj[i] = buf.length === 0 ? null : buf[0];
+  }
+  return resObj;
 };
+
+console.log(getObject(arr111)); //{ '0': null, '1': '2', '2': '4' }
