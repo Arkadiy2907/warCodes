@@ -410,3 +410,30 @@ let getObject3 = (arr) => {
 };
 
 console.log(getObject3(arr113)); // { '0': null, '1': 2, '2': 23 }
+
+const arr114 = [
+  [1, 2, 2, 1],
+  [2, 4, 5, 6],
+  [23, 4, 5, 67],
+];
+
+const getEl = (arr) => {
+  let buf = null;
+  for (let j = 0; j < arr.length && buf === null; j++) {
+    const count = arr.filter((item) => item === arr[j]).length;
+    if (count === 1) {
+      buf = arr[j];
+    }
+  }
+  return buf;
+};
+
+const getObject4 = (arr) => {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    obj[i] = getEl(arr[i]);
+  }
+  return obj;
+};
+
+console.log(getObject4(arr114)); // { '0': null, '1': 2, '2': 23 }
