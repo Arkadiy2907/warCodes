@@ -334,7 +334,7 @@ console.log(isNewStr([])); //false
 // дан двумерный массив, создать объект в который попадут первые уникальные элементы
 // первой строки если их нет то null
 
-const arr111 = [
+const arr1111 = [
   [1, 2, 2, 1],
   [2, 4, 5, 6],
   [23, 4, 5, 67],
@@ -354,13 +354,59 @@ let getObject = (arr) => {
       }
     });
 
-    buf = Object.keys(obj)
-      .map((el) => (obj[el] === 1 ? el : null))
-      .filter(Boolean);
+    buf = Object.keys(obj).filter((el) => obj[el] === 1);
+
+    // buf = Object.keys(obj)
+    //   .map((el) => (obj[el] === 1 ? el : null))
+    //   .filter(Boolean);
 
     resObj[i] = buf.length === 0 ? null : buf[0];
   }
   return resObj;
 };
 
-console.log(getObject(arr111)); //{ '0': null, '1': '2', '2': '4' }
+console.log(getObject(arr1111)); //{ '0': null, '1': '2', '2': '4' }
+
+const arr112 = [
+  [1, 2, 2, 2, 1],
+  [2, 4, 5, 2, 6],
+  [23, 4, 5, 23, 67],
+];
+
+let getObject1 = (arr) => {
+  let res = {};
+  for (let i = 0; i < arr[0].length; i++) {
+    let el = arr[0][i];
+    console.log(arr[0], el);
+    if (!res[el]) {
+      res[i] = el;
+    }
+  }
+  return res;
+};
+
+console.log(getObject1(arr112)); //{ '0': null, '1': '2', '2': '4' }
+
+const arr113 = [
+  [1, 2, 2, 1],
+  [2, 4, 5, 6],
+  [23, 4, 5, 67],
+];
+
+let getObject3 = (arr) => {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    let buf = null;
+    for (let j = 0; j < arr[i].length; j++) {
+      let count = arr[i].filter((item) => item === arr[i][j]).length;
+      if (count === 1) {
+        buf = arr[i][j];
+        break;
+      }
+    }
+    obj[i] = buf;
+  }
+  return obj;
+};
+
+console.log(getObject3(arr113)); // { '0': null, '1': 2, '2': 23 }
