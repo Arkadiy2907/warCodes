@@ -417,16 +417,19 @@ const arr114 = [
   [23, 4, 5, 67],
 ];
 
-const getEl = (arr) => {
-  let buf = null;
-  for (let j = 0; j < arr.length && buf === null; j++) {
-    const count = arr.filter((item) => item === arr[j]).length;
-    if (count === 1) {
-      buf = arr[j];
-    }
-  }
-  return buf;
-};
+// const getEl = (arr) => {
+//   let buf = null;
+//   for (let j = 0; j < arr.length && buf === null; j++) {
+//     const count = arr.filter((item) => item === arr[j]).length;
+//     if (count === 1) {
+//       buf = arr[j];
+//     }
+//   }
+//   return buf;
+// };
+
+const getEl = (arr) =>
+  arr.find((item) => arr.filter((el) => el === item).length === 1) || null;
 
 const getObject4 = (arr) => {
   let obj = {};
