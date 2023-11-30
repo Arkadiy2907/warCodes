@@ -428,8 +428,29 @@ const arr114 = [
 //   return buf;
 // };
 
-const getEl = (arr) =>
-  arr.find((item) => arr.filter((el) => el === item).length === 1) || null;
+// const getEl = (arr) =>
+//   arr.find((item) => arr.filter((el) => el === item).length === 1) || null;
+
+const arr115 = [
+  [1, 2, 2, 1],
+  [2, 4, 5, 6],
+  [23, 4, 5, 67],
+];
+
+const getEl = (arr) => {
+  const obj = {};
+  for (const item of arr) {
+    obj[item] = (obj[item] || 0) + 1;
+  }
+  console.log(obj);
+
+  for (const item of arr) {
+    if (obj[item] === 1) {
+      return item;
+    }
+  }
+  return null;
+};
 
 const getObject4 = (arr) => {
   let obj = {};
@@ -439,4 +460,137 @@ const getObject4 = (arr) => {
   return obj;
 };
 
-console.log(getObject4(arr114)); // { '0': null, '1': 2, '2': 23 }
+console.log(getObject4(arr115)); // { '0': null, '1': 2, '2': 23 }
+// ============
+// 1- Дан двумерный массив из чисел. Необходимо создать объект, где ключами будут номера строк, а значениями:
+// 1) первое оригинальное значение строки или null, если такого нет
+// 2) максимальное значение в строке
+// 3) сумма нечетных элементов в строке
+// 4) количество отрицательных элементов в строке
+// 5) сумма первого и последнего элементов строки
+
+// 1)первое оригинальное значение строки или null, если такого нет
+
+const arr116 = [
+  [1, 2, 2, 1],
+  [2, 4, 5, 6],
+  [23, 4, 5, 67],
+];
+
+const getEl1 = (arr) => {
+  const obj = {};
+
+  arr.forEach((el) => {
+    if (!obj[el]) {
+      obj[el] = 1;
+    } else {
+      obj[el]++;
+    }
+  });
+  console.log(obj);
+
+  for (const item of arr) {
+    if (obj[item] === 1) {
+      return item;
+    }
+  }
+  return null;
+};
+
+const getObject5 = (arr) => {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    obj[i] = getEl1(arr[i]);
+  }
+  return obj;
+};
+
+console.log(getObject5(arr116)); // { '0': null, '1': 2, '2': 23 }
+
+// 2) максимальное значение в строке
+
+const arr2 = [
+  [1, 2, 2, 1],
+  [2, 4, 5, 6],
+  [23, 4, 5, 67],
+];
+
+const getObject6 = (arr) => {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    obj[i] = Math.max(...arr[i]);
+  }
+  return obj;
+};
+
+console.log(getObject6(arr2)); // { '0': 2, '1': 6, '2': 67 }
+
+// 3) сумма нечетных элементов в строке
+
+const arr3 = [
+  [1, 2, 2, 1],
+  [2, 4, 5, 6],
+  [23, 4, 5, 67],
+];
+
+const getObject7 = (arr) => {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    obj[i] = arr[i].reduce((acc, el) => acc + (el % 2 !== 0 ? el : 0), 0);
+  }
+  return obj;
+};
+
+console.log(getObject7(arr3)); // { '0': 2, '1': 5, '2': 95 }
+
+// 4) количество отрицательных элементов в строке
+
+const arr4 = [
+  [1, -2, 2, 1],
+  [2, -4, -5, 6],
+  [23, -4, -5, -67],
+];
+
+const getObject8 = (arr) => {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    obj[i] = arr[i].reduce((acc, el) => acc + (el < 0 ? 1 : 0), 0);
+  }
+  return obj;
+};
+
+console.log(getObject8(arr4)); // { '0': 1, '1': 2, '2': 3 }
+
+// 5) сумма первого и последнего элементов строки
+
+const arr5 = [
+  [1, -2, 2, 1],
+  [2, -4, -5, 6],
+  [23, -4, -5, -67],
+];
+
+const getObject9 = (arr) => {
+  let obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    obj[i] = arr[i][0] + arr[i].at(-1);
+  }
+  return obj;
+};
+
+console.log(getObject9(arr5)); // { '0': 1, '1': 2, '2': 3 }
+
+// 2 - Определить сколько недель и дней осталось до Нового Года
+
+const getWeekDay = () => {
+  const dateNow = new Date();
+
+  const startDate = new Date(dateNow.getFullYear() + 1, 0, 2);
+  const buf = startDate - dateNow;
+
+  const numDay = Math.floor(buf / (1000 * 60 * 60 * 24));
+  const numWeek = Math.floor(buf / (1000 * 60 * 60 * 24 * 7));
+
+  return `осталось дней: ${numDay}, недель : ${numWeek} до конца года`;
+};
+
+console.log(getWeekDay()); //осталось дней: 32, недель : 4 до конца года
