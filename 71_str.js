@@ -55,3 +55,54 @@ function min(arr, toReturn) {
 
 const min = (arr, toReturn) =>
   toReturn === 'value' ? Math.min(...arr) : arr.indexOf(Math.min(...arr));
+
+// ============
+//www.codewars.com/kata/599febdc3f64cd21d8000117/train/javascript
+
+// Если мы запишем цифры «60» как английские слова, то получим «шесть-ноль»; количество букв в «шестьзеро» равно семи. Количество букв в слове «семь» — пять. Количество букв в слове «пять» — четыре. Количество букв в слове «четыре» — четыре: мы достигли устойчивого равновесия.
+
+// Примечание: для целых чисел больше 9 запишите названия каждой цифры одним словом (вместо собственного названия числа на английском языке). Например, напишите 12 как «один два» (вместо двенадцати), а 999 — как «девять девять» (вместо девятисот девяноста девяти).
+
+// Для любого целого числа от 0 до 999 верните массив, показывающий путь от этого целого числа к стабильному равновесию:
+
+// Примеры
+
+// numbersOfLetters(60) --> ["sixzero", "seven", "five", "four"]
+// numbersOfLetters(1) --> ["one", "three", "five", "four"]
+
+function numbersOfLetters(integer) {
+  const arrNum = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+
+  let res = [];
+
+  let str = integer;
+  while (true) {
+    let el = str
+      .toString()
+      .split('')
+      .map((el) => {
+        if (arrNum.includes(arrNum[+el])) {
+          return arrNum[+el];
+        }
+      })
+      .join('');
+    res.push(el);
+    str = el.length;
+    if (el === arrNum[4]) break;
+  }
+  // console.log(res, str);
+  return res;
+}
+
+numbersOfLetters(60);

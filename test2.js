@@ -348,5 +348,37 @@ globalVar = 'guess';
 x('inner'); //guess outer inner
 
 // =======================
-// есть два отсортированных массива надо их соеденить отсоированнм и получить два
+// есть два отсортированных массива надо их соединить отсоированнм и получить два
 // минимальных и два максимальных со сложностью О(n)
+
+const arr1 = [1, 3, 5, 7];
+const arr2 = [2, 4, 6, 9];
+
+// const getArr = (x, y) => {
+//   const buf = [...x, ...y].sort((a, b) => a - b);
+//   return `min ${buf[0]} ${buf[1]} max ${buf.at(-2)} ${buf.at(-1)}`;
+// };
+
+// console.log(getArr(arr1, arr2));
+
+const getArr1 = (x, y) => {
+  let buf = [];
+  let i = 0;
+  let j = 0;
+  while (i < x.length || j < y.length) {
+    //  if (x[i] < y[j]) {
+    if (i < x.length && (j >= y.length || x[i] < y[j])) {
+      buf.push(x[i]);
+      i++;
+    } else {
+      buf.push(y[j]);
+      j++;
+    }
+  }
+  return buf;
+  return `min ${buf[0]} ${buf[1]} max ${buf[buf.length - 2]} ${
+    buf[buf.length - 1]
+  }`;
+};
+
+console.log(getArr1(arr1, arr2));
