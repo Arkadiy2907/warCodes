@@ -98,6 +98,14 @@ console.log(null <= 0); //true
 console.log(NaN == 0); //false
 console.log(!![]); //true
 console.log(!!{}); //true
+console.log([] + null + 1); //null1
+// [] is converted to '' (empty string) using the toString() method.
+// '' + null results in the string 'null'.
+// 'null' + 1 concatenates the string 'null' with the string representation of the number 1, resulting in the string 'null1'.
+console.log([1, 2, 3].toString()); //123
+console.log({}.toString()); //[object Object]
+console.log({ a: 1 }.toString()); //[object Object]
+console.log('' ?? 'a'); //'' т к не  null undefined
 
 // =====================================
 // если 3 раза плохой ответ то вывести console.log(bed res)
