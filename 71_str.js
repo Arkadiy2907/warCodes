@@ -106,3 +106,150 @@ function numbersOfLetters(integer) {
 }
 
 numbersOfLetters(60);
+// =============================
+// https://www.codewars.com/kata/592a6ad46d6c5a62b600003f/train/javascript
+
+// GADERYPOLUKI — это простой шифр замены, используемый в разведке для шифрования сообщений.
+//  Шифрование основано на коротком, легко запоминающемся ключе.
+//  Ключ записывается в виде парных букв, которые в шифре имеют простую замену.
+// The most frequently used key is "GA-DE-RY-PO-LU-KI".
+//  G => A
+//  g => a
+//  a => g
+//  A => G
+//  D => E
+//   etc.
+
+function getStr(str) {
+  let buf = [];
+  for (let key of str) {
+    switch (key) {
+      case 'A':
+        buf.push('G');
+        break;
+      case 'a':
+        buf.push('g');
+        break;
+      case 'G':
+        buf.push('A');
+        break;
+      case 'g':
+        buf.push('a');
+        break;
+      case 'D':
+        buf.push('E');
+        break;
+      case 'd':
+        buf.push('e');
+        break;
+      case 'E':
+        buf.push('D');
+        break;
+      case 'e':
+        buf.push('d');
+        break;
+      case 'R':
+        buf.push('Y');
+        break;
+      case 'r':
+        buf.push('y');
+        break;
+      case 'Y':
+        buf.push('R');
+        break;
+      case 'y':
+        buf.push('r');
+        break;
+      case 'P':
+        buf.push('O');
+        break;
+      case 'p':
+        buf.push('o');
+        break;
+      case 'O':
+        buf.push('P');
+        break;
+      case 'o':
+        buf.push('p');
+        break;
+      case 'L':
+        buf.push('U');
+        break;
+      case 'l':
+        buf.push('u');
+        break;
+      case 'U':
+        buf.push('L');
+        break;
+      case 'u':
+        buf.push('l');
+        break;
+      case 'K':
+        buf.push('I');
+        break;
+      case 'k':
+        buf.push('i');
+        break;
+      case 'I':
+        buf.push('K');
+        break;
+      case 'i':
+        buf.push('k');
+        break;
+      default:
+        buf.push(key);
+        break;
+    }
+  }
+  return buf.join('');
+}
+
+function encode(str) {
+  return getStr(str);
+}
+
+console.log(encode('agedyropulik'));
+
+function decode(str) {
+  return getStr(str);
+}
+
+console.log(decode(encode('agedyropulik')));
+
+let enocding = {
+  a: 'g',
+  A: 'G',
+  D: 'E',
+  d: 'e',
+  R: 'Y',
+  r: 'y',
+  P: 'O',
+  p: 'o',
+  L: 'U',
+  l: 'u',
+  K: 'I',
+  k: 'i',
+  G: 'A',
+  g: 'a',
+  E: 'D',
+  e: 'd',
+  Y: 'R',
+  y: 'r',
+  O: 'P',
+  o: 'p',
+  U: 'L',
+  u: 'l',
+  I: 'K',
+  i: 'k',
+};
+
+function encode(str) {
+  return str
+    .split('')
+    .map((a) => enocding[a] || a)
+    .join('');
+}
+
+function decode(str) {
+  return encode(str);
+}
