@@ -41,7 +41,7 @@
 
   <button onclick="getApartments()">Список квартир</button>
   <button onclick="getStreets()">Список streets:</button>
-  <button onclick="getHouses()">Список houses 0:</button>
+  <button onclick="geocode()">geocode:</button>
   <button onclick="postNewClient()">новый жилец</button>
 
 
@@ -258,8 +258,12 @@
         });
     }
 
-    function getHouses() {//
-      fetch('https://dispex.org/api/vtest/Request/houses/0', {
+    function geocode() {//
+      let latitude = 55.755826
+      let longitude = 37.6173
+
+      fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=ecbaa67ba7bece31be9e96bd8181180a`, {
+        // fetch(`https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}`, {
         method: 'GET',
       })
         .then(response => response.json())

@@ -253,3 +253,37 @@ function encode(str) {
 function decode(str) {
   return encode(str);
 }
+
+// ====================
+// https://www.codewars.com/kata/563cf89eb4747c5fb100001b/train/javascript
+
+// Учитывая массив целых чисел, удалите наименьшее значение.Не изменяйте исходный массив / список.
+// Если есть несколько элементов с одинаковым значением, удалите элемент с меньшим индексом.
+// Если вы получили пустой массив / список, верните пустой массив / список.
+
+// Не меняйте порядок оставшихся элементов.
+
+// Примеры
+// * Input: [1,2,3,4,5], output = [2,3,4,5]
+// * Input: [5,3,2,1,4], output = [5,3,2,4]
+// * Input: [2,2,1,2,1], output = [2,2,2,1]
+
+function removeSmallest(numbers) {
+  if (numbers.length === 0) return numbers;
+  // let min = Infinity;
+
+  // for (let i of numbers) {
+  //   if(i<min)min = i
+  // }
+  const min = Math.min(...numbers);
+  // console.log('min',min);
+  let arr = numbers.slice();
+  let i = numbers.indexOf(Math.min(...numbers));
+  arr.splice(i, 1);
+  return arr;
+}
+
+const removeSmallest = (numbers) =>
+  numbers.filter((n, i) => i !== numbers.indexOf(Math.min(...numbers)));
+
+console.log(removeSmallest([1, 2, 3, 4, 5])); //, [2, 3, 4, 5],
