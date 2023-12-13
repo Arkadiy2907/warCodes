@@ -287,3 +287,34 @@ const removeSmallest = (numbers) =>
   numbers.filter((n, i) => i !== numbers.indexOf(Math.min(...numbers)));
 
 console.log(removeSmallest([1, 2, 3, 4, 5])); //, [2, 3, 4, 5],
+
+console.log(Number.isFinite('0')); //false
+console.log(typeof 1n); //bigint
+console.log(null == undefined); //true
+
+// ===================
+// на замыкание при вызове ф-и возвращает
+
+console.log(sum()); //0
+console.log(sum(1)()); //1
+console.log(sum(1)(2)()); //3
+console.log(sum(2)(2)(3)()); //7
+
+function sum(num) {
+  let res = 0;
+  if (num === undefined) {
+    return res;
+  }
+
+  const calc = (num) => {
+    if (num === undefined) {
+      return res;
+    }
+
+    res += num;
+    return calc;
+  };
+
+  res += num;
+  return calc;
+}
