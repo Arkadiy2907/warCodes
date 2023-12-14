@@ -594,3 +594,35 @@ const getWeekDay = () => {
 };
 
 console.log(getWeekDay()); //осталось дней: 32, недель : 4 до конца года
+
+// =========
+
+// Есть ладья, с произвольным местом на доске (задается изначально), поле input (text), кнопка "Переместить". В input вводится адрес клетки, куда надо переместить фигуру. При нажатии на кнопку, если перемещение возможно, меняется положение ладьи, если нет, то выводится сообщение
+let start = 'a1';
+const width = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+const heigh = ['1', '2', '3', '4', '5', '6', '7', '8'];
+
+function getCoord(str) {
+  if (typeof str !== 'string') {
+    console.log('no string');
+    return;
+  }
+
+  const startBuf = start;
+  const [w, h] = str.split('');
+  if (!width.includes(w) || !heigh.includes(h)) {
+    console.log('no address');
+    return;
+  }
+  const [wS, hS] = start.split('');
+
+  if (w !== wS && h === hS) start = `${w}${h}`;
+
+  if (w === wS && h !== hS) start = `${w}${h}`;
+  console.log(start === startBuf ? 'error' : ` ${startBuf}=> ${start}`);
+}
+
+getCoord('a2');
+getCoord('b2');
+getCoord('a9999');
+getCoord({});
