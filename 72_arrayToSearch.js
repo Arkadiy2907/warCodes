@@ -1,6 +1,8 @@
 // https://www.codewars.com/kata/5783ef69202c0ee4cb000265/train/javascript
 // JavaScript indexOf не работает с массивами в качестве входных данных. Это связано с тем, что [1,2] === [1,2] вернет false в JavaScript. Многие другие языки имеют схожие особенности.
 
+// const { json } = require('node:stream/consumers');
+
 // Однако иногда бывает полезно найти массив. Напишите функцию, которая ищет массив внутри двумерного массива и возвращает индекс первого совпадающего элемента. Если совпадения нет, ваша функция должна вернуть -1.
 
 // См. несколько примеров:
@@ -38,7 +40,32 @@ var bigArray = [
   [6, 32],
 ];
 
-var searchFor = [19, 20];
+var searchFor = [9, 20];
+
+var searchArray = function (arrayToSearch, query) {
+  const isCheck = (x) => {
+    if (!Array.isArray(x) || (Array.isArray(x) && x.length !== 2)) {
+      throw new Error('throw Error');
+    }
+  };
+
+  isCheck(query);
+
+  if (
+    !Array.isArray(arrayToSearch) ||
+    (Array.isArray(arrayToSearch) && arrayToSearch.length === 0)
+  ) {
+    throw new Error('throw Error');
+  }
+
+  arrayToSearch.forEach((el) => isCheck(el));
+
+  return arrayToSearch
+    .map((el) => JSON.stringify(el))
+    .indexOf(JSON.stringify(query));
+};
+
+console.log(searchArray(bigArray, searchFor));
 
 var searchArray = function (arrayToSearch, query) {
   let res = -1;
@@ -64,6 +91,7 @@ var searchArray = function (arrayToSearch, query) {
       return (res = i);
     }
   }
+
   return res;
 };
 
