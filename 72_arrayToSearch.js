@@ -126,3 +126,81 @@ const searchArray = function (array, query) {
     throw Error();
   return array.map(JSON.stringify).indexOf(JSON.stringify(query));
 };
+
+// ================================================================
+// https://www.codewars.com/kata/5a49f074b3bfa89b4c00002b/train/javascript
+
+console.log('abababab'.split('ab').filter(Boolean));
+
+// let str = 'abbaabbaabba';
+
+// function hasSubpattern(string) {
+//   let pattern = [string[0]];
+//   if (string.length === 1) return false;
+//   for (let i = 1; i < string.length; i++) {
+//     if (string[0] !== string[i]) {
+//       pattern.push(string[i]);
+//     } else {
+//       break;
+//     }
+//   }
+//   if (pattern.join('') === string) return false;
+//   return string.split(pattern.join('')).filter(Boolean).length === 0;
+// }
+
+// console.log(hasSubpattern(str));
+
+let str =
+  'D6AkyUD4EEp69kSY1cUiGU9sgRTGwUvVS3rN1oete1Fk0Z4kFTrNPHDpNmDLHfBRDgk3NMtvQ801cvxWWXRN8j1j';
+
+// function hasSubpattern(string) {
+//   let pattern = [string[0]];
+
+//   if (string.length === 1) return false;
+
+//   for (let i = 1; i < string.length; i++) {
+//     if (string.split(pattern.join('')).filter(Boolean).length === 0) {
+//       return true;
+//     } else {
+//       pattern.push(string[i]);
+//     }
+//   }
+//   if (pattern.join('') === string) return false;
+// }
+
+function hasSubpattern(string) {
+  return /^(.+)\1+$/.test(string);
+}
+
+console.log(hasSubpattern(str));
+
+function hasSubpattern(string) {
+  console.log('string + string=', string + string); //abbaabbaabbaabba
+  console.log(
+    '(string + string).indexOf(string, 1)=',
+    (string + string).indexOf(string, 1)
+  ); //4
+  console.log('string.length=', string.length); //8
+
+  return (string + string).indexOf(string, 1) != string.length;
+}
+
+// console.log(hasSubpattern('aav'));
+// string + string= aavaav
+// (string + string).indexOf(string, 1)= 3
+// string.length= 3
+// false
+
+console.log(hasSubpattern('abbaabba')); //true
+
+// Функция hasSubpattern, использует метод indexOf для проверки наличия повторяющегося паттерна в строке. Вот как это работает:
+
+// (string + string) объединяет исходную строку с самой собой. Это создает новую строку, в которой исходная строка появляется дважды подряд.
+
+// indexOf(string, 1) ищет первое вхождение исходной строки в объединенной строке, начиная с индекса 1. Метод indexOf возвращает индекс первого вхождения указанной строки или -1, если строка не найдена.
+
+// Функция затем сравнивает результат indexOf(string, 1) с string.length. Если результат не равен string.length, это означает, что паттерн существует в строке и повторяется как минимум один раз.
+
+// Проверка, отличается ли индекс паттерна от длины исходной строки, позволяет определить наличие повторяющегося паттерна в строке.
+
+// Следует отметить, что эта реализация предполагает, что входная строка не является пустой. Если входная строка пуста, функция может давать непредсказуемые результаты.
