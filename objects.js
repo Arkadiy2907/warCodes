@@ -12,6 +12,9 @@ let person = {
   age: 21,
 };
 
+// console.log(person[name]); //name is not defined
+// console.log(person['name']);//John
+
 let obj = {
   name: 'piter',
   logger() {
@@ -46,9 +49,14 @@ let obj = {
   },
 };
 
-obj.logger();
+obj.logger(); //keys: [ 'name', 'logger', 'logArray', 'logFunc', 'paint' ]
 
 obj.paint.call(person, true, true, true);
+//===start===
+//name: John
+//=====
+//age: 21
+//===end===
 
 // obj.logArray.call(person)
 // obj.logFunc.call(person)
@@ -121,7 +129,7 @@ function foo() {
   console.log(this);
 }
 
-foo(); //window, а если с use stict то undefined
+foo(); //window, а если с use strict то undefined
 
 // 3) функция как метод в объекте
 
@@ -174,7 +182,7 @@ function Foo4(title, price) {
   this.title = title;
   this.price = price;
   // console.log(this);
-  return this;
+  // return this;//писать не обязательно т к ф-я с new возвращает созданный объект
 }
 
 let a4 = new Foo4('aaa0', 2);
@@ -206,6 +214,11 @@ const obj7 = {
       console.log(`${this.hello} ${name}`);
     });
   },
+  foo11() {
+    this.first.forEach(function (name) {
+      console.log(`${this.hello} ${name}`);
+    }, this);
+  },
   foo2() {
     this.first.forEach((name) => {
       console.log(`${this.hello} ${name}`);
@@ -214,6 +227,7 @@ const obj7 = {
 };
 
 obj7.foo1(); //undefined peter   undefined ivan
+obj7.foo11(); //hi peter   hi ivan
 obj7.foo2(); //hi peter   hi ivan
 
 const obj8 = {

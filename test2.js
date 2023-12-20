@@ -297,10 +297,10 @@ Promise.reject('a') // rejected -> a
   .then(
     (p) => p + '1',
     (p) => p + '2'
-  )
-  .catch((p) => p + 'b') // fulfilled -> ab
-  .catch((p) => p + 'с') //Второй catch блок не выполняется, поскольку предыдущий catch блок уже обработал отклонение.
-  .then((p) => p + 'd') // abd
+  ) //одну для успешного выполнения промиса и другую для отклонения =>a2
+  .catch((p) => p + 'b') // пред-й блок уже обработал отклонение
+  .catch((p) => p + 'с') //Второй catch блок не выполняется, поскольку предыдущий блок уже обработал отклонение.
+  .then((p) => p + 'd') // a2d
   // .then((p) => 'j') // j
   // .catch((p) => console.log(p)) //
   // .catch((p) => p + 'с') //
@@ -390,3 +390,23 @@ const getArr1 = (x, y) => {
 };
 
 console.log(getArr1(arr1, arr2));
+
+// https://www.youtube.com/watch?v=mI6Jcfsgma4&t=98s
+
+let a = 1;
+function foo4() {
+  console.log(a);
+  let a = 2;
+}
+// a = 5;
+
+foo4(); //ReferenceError: Cannot access 'a' before initialization
+
+var b = 1;
+function foo5() {
+  console.log(b);
+  var b = 2;
+}
+var b = 3;
+
+foo5(); //undefined
