@@ -3,13 +3,13 @@ let obj = {
   0: 2,
 };
 
-console.log(obj["0"] + obj[0]);
+console.log(obj['0'] + obj[0]);
 // ----------------------------------------
-function User() { }
+function User() {}
 
 let vasya = new User();
 
-vasya.__proto__.name = "Vasya";
+vasya.__proto__.name = 'Vasya';
 
 // ------------------------------------------
 
@@ -27,7 +27,7 @@ MyObj = function (name) {
 
 MyObj.prototype = {
   init: function (params) {
-    if (params.hasOwnProperty("myParam")) {
+    if (params.hasOwnProperty('myParam')) {
       this._myParam = params.myParam;
     }
   },
@@ -73,8 +73,8 @@ console.log(6);
 // ============================
 
 var a = {},
-  b = { key: "b" },
-  c = { key: "c" };
+  b = { key: 'b' },
+  c = { key: 'c' };
 
 a[b] = 123;
 a[c] = 456;
@@ -115,10 +115,10 @@ function strCount(str, letter) {
 }
 
 function strCount(str, letter) {
-  return str.split("").filter((c) => c == letter).length;
+  return str.split('').filter((c) => c == letter).length;
 }
 
-console.log(strCount("Helloo", "o"));
+console.log(strCount('Helloo', 'o'));
 
 // ============================
 
@@ -186,16 +186,16 @@ console.log(isLeapYear(2100));
 //     }
 //   ]
 
-const start = "09:00";
-const end = "21:00";
+const start = '09:00';
+const end = '21:00';
 const interval = 30;
 
 const busy = [
-  { start: "10:30", stop: "10:50" },
-  { start: "18:40", stop: "18:50" },
-  { start: "14:40", stop: "15:50" },
-  { start: "16:40", stop: "17:20" },
-  { start: "20:05", stop: "20:20" },
+  { start: '10:30', stop: '10:50' },
+  { start: '18:40', stop: '18:50' },
+  { start: '14:40', stop: '15:50' },
+  { start: '16:40', stop: '17:20' },
+  { start: '20:05', stop: '20:20' },
 ];
 
 const busySlots = busy.map((slot) => ({
@@ -224,13 +224,13 @@ freeSlots = freeSlots.filter(
 );
 
 const freeSlotsFormatted = freeSlots.map((slot) => ({
-  start: new Date(slot.start).toLocaleTimeString("ru-RU", {
-    hour: "numeric",
-    minute: "numeric",
+  start: new Date(slot.start).toLocaleTimeString('ru-RU', {
+    hour: 'numeric',
+    minute: 'numeric',
   }),
-  end: new Date(slot.end).toLocaleTimeString("ru-RU", {
-    hour: "numeric",
-    minute: "numeric",
+  end: new Date(slot.end).toLocaleTimeString('ru-RU', {
+    hour: 'numeric',
+    minute: 'numeric',
   }),
 }));
 
@@ -238,14 +238,14 @@ console.log(freeSlotsFormatted);
 
 // =============================================
 
-console.log("Start");
+console.log('Start');
 
 setTimeout(() => {
-  console.log("Timeout1");
+  console.log('Timeout1');
 }, 0);
 
 Promise.resolve().then(() => {
-  console.log("Then1");
+  console.log('Then1');
 });
 
 const myPromise = (delay) =>
@@ -253,39 +253,39 @@ const myPromise = (delay) =>
     setTimeout(res, delay);
   });
 
-setTimeout(() => console.log("in setTimeout1"), 1000);
+setTimeout(() => console.log('in setTimeout1'), 1000);
 
-myPromise(1000).then((res) => console.log("in Promise 1"));
+myPromise(1000).then((res) => console.log('in Promise 1'));
 
-setTimeout(() => console.log("in setTimeout2"), 100);
+setTimeout(() => console.log('in setTimeout2'), 100);
 
-myPromise(1000).then((res) => console.log("in Promise 3"));
+myPromise(1000).then((res) => console.log('in Promise 3'));
 
-Promise.resolve().then(() => setTimeout(() => console.log("Timeout2")));
+Promise.resolve().then(() => setTimeout(() => console.log('Timeout2')));
 
 new Promise((resolve) => setTimeout(resolve)).then(() => console.log(4));
 
 Promise.reject(3).catch(console.log);
 
-myPromise(2000).then((res) => console.log("in Promise 2"));
+myPromise(2000).then((res) => console.log('in Promise 2'));
 
-setTimeout(() => console.log("in setTimeout3"), 2000);
+setTimeout(() => console.log('in setTimeout3'), 2000);
 
 const p1 = new Promise((resolve) => {
-  console.log("Promise2");
+  console.log('Promise2');
   resolve();
-  console.log("Promise3");
+  console.log('Promise3');
 });
 
 p1.then(() => {
-  console.log("Then2");
+  console.log('Then2');
 });
 
 queueMicrotask(() => {
-  console.log("QueueMicrotask");
+  console.log('QueueMicrotask');
 });
 
-console.log("End");
+console.log('End');
 
 // Start
 // Promise2
@@ -360,12 +360,12 @@ console.log("End");
 //  Effect2
 
 //=====================================
-let str1 = "asdfadg";
+let str1 = 'asdfadg';
 function maxRecurringChar(str) {
   const obj = {};
 
   let countMax = 0;
-  let res = "";
+  let res = '';
 
   for (let i = 0; i < str.length; i++) {
     if (obj[str[i]]) {
@@ -388,13 +388,13 @@ console.log(maxRecurringChar(str1));
 // ===========================
 //ф-я берет из переменной свое лексическое окружение результат msk
 
-const city = "msk";
+const city = 'msk';
 function getCity() {
   console.log(city);
 }
 
 setTimeout(() => {
-  const city = "ekt";
+  const city = 'ekt';
   getCity();
 }, 0);
 
@@ -499,9 +499,9 @@ console.log(sortArr(arr1));
 
 // ==================================
 
-const str5 = "asd";
-const str6 = "dsa";
-const str7 = "aqd";
+const str5 = 'asd';
+const str6 = 'dsa';
+const str7 = 'aqd';
 
 let getBool = (str1, str2) => {
   if (str1.length !== str2.length) return false;
@@ -509,21 +509,21 @@ let getBool = (str1, str2) => {
 };
 
 function changeStr(str) {
-  console.log(str.split("").sort((a, b) => a - b));
-  console.log(str.split("").sort());
+  console.log(str.split('').sort((a, b) => a - b));
+  console.log(str.split('').sort());
 
   return str
-    .split("")
+    .split('')
     .sort((a, b) => a - b)
-    .join("");
+    .join('');
 }
 
 console.log(changeStr(str5));
 
 console.log(getBool(str5, str6));
 
-"asd".split("").sort((a, b) => a - b);
-"asd".split("").sort();
+'asd'.split('').sort((a, b) => a - b);
+'asd'.split('').sort();
 
 // ==========
 //www.codewars.com/kata/602db3215c22df000e8544f0/train/javascript
@@ -571,7 +571,7 @@ let sumMul = (a, b) => {
   let buf = a;
   let arr = [a];
 
-  if (b <= a) return "INVALID";
+  if (b <= a) return 'INVALID';
 
   for (let i = 0; buf < b; i++) {
     buf += a;
@@ -582,7 +582,7 @@ let sumMul = (a, b) => {
 };
 
 function sumMul(n, m) {
-  if (n >= m) return "INVALID";
+  if (n >= m) return 'INVALID';
 
   var sum = 0;
   for (var i = n; i < m; i += n) {
@@ -597,47 +597,45 @@ sumMul(4, 123); // ==> 4 + 8 + 12 + ... = 1860
 sumMul(4, -7); //==> "INVALID"
 // ===========================================
 
-https://www.codewars.com/kata/5b4e779c578c6a898e0005c5/train/javascript
+//www.codewars.com/kata/5b4e779c578c6a898e0005c5/train/javascript
 
-// Получив число n, нарисуйте лестницу, используя букву "I", n 
+// Получив число n, нарисуйте лестницу, используя букву "I", n
 // высокую и nширокую, причем самая высокая из них находится вверху слева.
 
 // Например, n = 3результат:
 
-function drawStairs(n) {
+https: function drawStairs(n) {
   let answer = '';
 
   function myRepeat(str, k) {
-    let res = ''
+    let res = '';
     for (let j = 0; j < k; j++) {
-      res += str
+      res += str;
     }
 
     return res;
   }
 
-
   let i = 0;
-  let str = 'I'
-  let spaseZero = ' '
+  let str = 'I';
+  let spaseZero = ' ';
   while (i < n) {
-    answer += `${(myRepeat(spaseZero, i) + str)}\n`
-    i++
+    answer += `${myRepeat(spaseZero, i) + str}\n`;
+    i++;
   }
 
   return answer;
 }
 
-
 function drawStairs(n) {
   let answer = '';
 
   let i = 0;
-  let str = 'I'
-  let spaseZero = ' '
+  let str = 'I';
+  let spaseZero = ' ';
   while (i < n) {
-    answer += `${(' '.repeat(i) + str)}\n`
-    i++
+    answer += `${' '.repeat(i) + str}\n`;
+    i++;
   }
 
   return answer;
@@ -663,7 +661,7 @@ function drawStairs(n) {
   return result.join('\n');
 }
 
-console.log(drawStairs(5))
+console.log(drawStairs(5));
 
 // ============================================
 // https://www.codewars.com/kata/55b051fac50a3292a9000025/train/javascript
@@ -675,18 +673,24 @@ console.log(drawStairs(5))
 // Ваша задача — вернуть число из строки.
 
 var filterString = function (value) {
-  return +value.split('').filter(el => !isNaN(parseInt(el))).join("")
-}
+  return +value
+    .split('')
+    .filter((el) => !isNaN(parseInt(el)))
+    .join('');
+};
 
 // var filterString = function (value) {
 // return +value.match(/\d/g).join('');
 // }
 
-
 // var filterString = value => +value.split('').filter(el => !isNaN(parseFloat(el))).join("").toString();
 
-console.log(filterString("6as5720byc0d4na15p400"))//
-console.log(filterString("a1b2c3"))//, 123,
-console.log(filterString("aa1bb2cc3dd"))
+console.log(filterString('6as5720byc0d4na15p400')); //
+console.log(filterString('a1b2c3')); //, 123,
+console.log(filterString('aa1bb2cc3dd'));
 
 // console.log(isNaN(parseFloat('a')));
+
+console.log(typeof null); // object
+console.log(+null); //0
+console.log(parseInt(null)); //NaN;

@@ -302,3 +302,76 @@ var whatTimeIsIt = function (angle) {
 };
 
 console.log(whatTimeIsIt(7.353355807992958));
+
+// https://www.codewars.com/kata/58223370aef9fc03fd000071/train/javascript
+// Учитывая переменную n,
+
+// Если n целое число, верните строку с дефисом '-'до и после каждого нечетного целого числа, но не начинайте и не заканчивайте строку дефисом. Если nотрицательно, то отрицательный знак следует убрать.
+
+// Если n не целое число, верните строку "NaN".
+
+// Бывший:
+
+// dashatize(274) -> '2-7-4'
+// dashatize(6815) -> '68-1-5'
+
+function dashatize(num) {
+  if (num !== +num.toFixed() || isNaN(num)) {
+    return 'NaN';
+  }
+  num = Math.abs(num);
+
+  let buf = [];
+  num
+    .toString()
+    .split('')
+    .forEach((el) => {
+      if (+el % 2 === 0) {
+        buf.push(el);
+      } else {
+        buf.push(`-`);
+        buf.push(el);
+        buf.push(`-`);
+      }
+    });
+
+  if (buf[0] === '-') {
+    buf.splice(0, 1);
+  }
+
+  if (buf[buf.length - 1] === '-') {
+    buf.splice(buf.length - 1, 1);
+  }
+
+  let res = [];
+
+  for (let i = 0; i < buf.length; i++) {
+    if (buf[i] === '-' && buf[i + 1] === '-') {
+      res.push('-');
+      buf.splice(buf[i + 1], 1);
+    } else {
+      res.push(buf[i]);
+    }
+  }
+
+  return res.join('');
+}
+
+console.log(dashatize(274)); //2-7-4
+console.log(dashatize(5311)); //5-3-1-1
+console.log(dashatize(86320)); //86-3-20
+console.log(dashatize(974302)); //9-7-4-3-02
+console.log(dashatize(NaN));
+console.log(dashatize(0));
+console.log(dashatize(-1)); //1
+console.log(dashatize(-28369)); //28-3-6-9
+
+function dashatize(num) {
+  //get 'em
+  const conv = (acc, val) => (val % 2 != 1 ? acc + val : acc + `-${val}-`);
+  const trim = (str) => (str == '--' ? '-' : '');
+  let [...numArr] = Math.abs(num).toString();
+
+  let str = numArr.reduce(conv, '');
+  return str.replace(/^-|--|-$/gi, trim);
+}
