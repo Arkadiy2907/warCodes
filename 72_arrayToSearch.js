@@ -375,3 +375,91 @@ function dashatize(num) {
   let str = numArr.reduce(conv, '');
   return str.replace(/^-|--|-$/gi, trim);
 }
+
+// https://www.codewars.com/kata/57fa537f8b0760c7da000407/train/javascript
+
+// По мотивам сказки Шарля Перро «Бриллианты и жабы» . В этом ката вам нужно будет выполнить функцию, которая принимает 2 аргумента:
+
+// Строка, соответствующая тому, что говорит дочь.
+// Строка, сообщающая вам, какую фею встретила девушка. Это может быть goodили evil.
+// Функция должна возвращать следующий счетчик в виде хеша:
+
+// Если девочка встретила goodфею:
+// Считайте 1 rubyкаждый раз, когда видите а r, и 2 каждый раз, когда видитеR
+// Считайте 1 crystalкаждый раз, когда видите а c, и 2 каждый раз, когда видитеC
+// Если девочка встретила evilфею:
+// Считай 1 pythonкаждый раз, когда видишь а p, и 2 каждый раз, когда видишьP
+// Считайте 1 squirrelкаждый раз, когда видите а s, и 2 каждый раз, когда видитеS
+
+function diamondsAndToads(sentence, fairy) {
+  let sortObject = {};
+  let str = sentence.split(' ');
+  let ruby = 0;
+  let crystal = 0;
+  let python = 0;
+  let squirrel = 0;
+
+  for (let j of str) {
+    for (let i of j) {
+      if (i === 'r') {
+        ruby++;
+      }
+      if (i === 'R') {
+        ruby += 2;
+      }
+
+      if (i === 'c') {
+        crystal++;
+      }
+      if (i === 'C') {
+        crystal += 2;
+      }
+      if (i === 'p') {
+        python++;
+      }
+      if (i === 'P') {
+        python += 2;
+      }
+
+      if (i === 's') {
+        squirrel++;
+      }
+      if (i === 'S') {
+        squirrel += 2;
+      }
+    }
+  }
+  if (fairy === 'good') {
+    sortObject.ruby = ruby;
+    sortObject.crystal = crystal;
+    return sortObject;
+  }
+  if (fairy === 'evil') {
+    sortObject.python = python;
+    sortObject.squirrel = squirrel;
+    return sortObject;
+  }
+}
+
+console.log(diamondsAndToads('Ruby and Crystal', 'good'));
+console.log(
+  diamondsAndToads(
+    'This string contain some Ruby and some Crystal in it',
+    'good'
+  )
+);
+console.log(diamondsAndToads('Python and Squirrel', 'evil'));
+console.log(
+  diamondsAndToads(
+    'This string contain some Python and some Squirrel in it',
+    'evil'
+  )
+);
+
+function diamondsAndToads(s, good) {
+  const ct = (c) =>
+    s.split(c).length - 1 + (s.split(c.toUpperCase()).length - 1) * 2;
+  return good == 'good'
+    ? { ruby: ct('r'), crystal: ct('c') }
+    : { python: ct('p'), squirrel: ct('s') };
+}
