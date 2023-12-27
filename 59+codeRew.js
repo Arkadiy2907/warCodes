@@ -183,10 +183,23 @@ const getSum = (arr) => {
     sum += buf[i];
   }
 
-  return count;
+  return sum;
 };
 
-console.log(getSum(m));
+const getSum1 = (arr) => {
+  if (!Array.isArray(arr) || arr.length === 0) return 'no work';
+  const len = arr[0].length - 1;
+  // let buf = arr.flat(1);
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i][i] + arr[i][len - i];
+  }
+
+  console.log(len);
+  return sum;
+};
+
+console.log(getSum1(m));
 // ==================
 
 // подобрать сумму двух элементов равную целевому элементу
