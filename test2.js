@@ -391,6 +391,28 @@ const getArr1 = (x, y) => {
 
 console.log(getArr1(arr1, arr2));
 
+const getArr2 = (x, y) => {
+  let buf = [];
+  let i = 0;
+  let j = 0;
+
+  x.push(Infinity);
+  y.push(Infinity);
+
+  while (x[i] !== Infinity || y[j] !== Infinity) {
+    if (x[i] <= y[j]) {
+      buf.push(x[i]);
+      i++;
+    } else {
+      buf.push(y[j]);
+      j++;
+    }
+  }
+  return buf;
+};
+
+console.log(getArr2(arr1, arr2));
+
 // https://www.youtube.com/watch?v=mI6Jcfsgma4&t=98s
 
 let a = 1;
