@@ -1,3 +1,66 @@
+// https://www.codewars.com/kata/5663f5305102699bad000056/train/javascript
+// Вам даны два массива a1и a2строки. Каждая строка состоит из букв от aдо z. Пусть xэто любая строка из первого массива и yлюбая строка из второго массива.
+// Find max(abs(length(x) − length(y)))
+// Если a1и/или a2пусты, вернитесь -1на каждом языке, кроме Haskell (F#), где вы вернете Nothing(Нет).
+// Пример:
+// a1 = ["hoqq", "bbllkw", "oox", "ejjuyyy", "plmiis", "xxxzgpsssa", "xxwwkktt", "znnnnfqknaz", "qqquuhii", "dvvvwz"]
+// a2 = ["cccooommaaqqoxii", "gggqaffhhh", "tttoowwwmmww"]
+// mxdiflg(a1, a2) --> 13
+// Найдите максимум и минимум в обоих массивах
+// Сравните максимум из массива1 с минимумом из массива2
+// Сравните максимум из массива2 с минимумом из массива1
+// Вернуть максимум из обоих сравнений
+
+var s1 = [
+  'hoqq',
+  'bbllkw',
+  'oox',
+  'ejjuyyy',
+  'plmiis',
+  'xxxzgpsssa',
+  'xxwwkktt',
+  'znnnnfqknaz',
+  'qqquuhii',
+  'dvvvwz',
+];
+var s2 = ['cccooommaaqqoxii', 'gggqaffhhh', 'tttoowwwmmww'];
+
+function mxdiflg(a1, a2) {
+  if (a1.length === 0 || a2.length === 0) return '-1';
+  a1 = getNum(a1);
+  a2 = getNum(a2);
+  console.log(a1, a2);
+
+  return Math.max(Math.abs(a1[0] - a2[1]), Math.abs(a1[1] - a2[0]));
+}
+
+function getNum(arr) {
+  let max = arr[0].length;
+  let min = arr[0].length;
+  arr.forEach((el) => {
+    if (max < el.length) {
+      max = el.length;
+    }
+    if (min > el.length) {
+      min = el.length;
+    }
+  });
+  return [max, min];
+}
+
+console.log(mxdiflg(s1, s2));
+
+function mxdiflg(a1, a2) {
+  if (a1.length === 0 || a2.length === 0) return -1;
+  let l1 = a1.map((str) => str.length);
+  let l2 = a2.map((str) => str.length);
+  return Math.max(
+    Math.max(...l1) - Math.min(...l2),
+    Math.max(...l2) - Math.min(...l1)
+  );
+}
+
+// =============================================
 //1) https://www.codewars.com/kata/56dec885c54a926dcd001095/train/javascript
 // Very simple, given an integer or a floating-point number, find its opposite.
 
