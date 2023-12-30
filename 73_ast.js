@@ -120,6 +120,44 @@ console.log(
 );
 
 // =============================================
+// https://www.codewars.com/kata/57b2e428d24156b312000114/train/javascript
+// Найдите объем конуса, радиус и высота которого указаны в качестве параметров функции volume. Используйте значение PI, предоставленное вашим языком (например: Math.PIв JS, math.piPython или Math::PIRuby), и округлите объем до Interger.
+
+function volume(r, h) {
+  //your code here!
+  return Math.floor((Math.PI * r ** 2 * h) / 3);
+}
+
+console.log(volume(7, 3));
+console.log(volume(56, 30));
+console.log(volume(0, 10));
+
+// =============================================
+// https://www.codewars.com/kata/56d02e6cc6c8b49c510005bb/train/javascript
+// Вы получите массив чисел.
+
+// Каждое предыдущее число меньше следующего за ним.
+
+// Некоторые цифры будут отсутствовать, например:
+
+// [-3,-2,1,5] //missing numbers are: -1,0,2,3,4
+// Ваша задача — вернуть массив недостающих чисел:
+
+// [-1, 0, 2, 3, 4]
+
+function findMissingNumbers(arr) {
+  // let  arr1 = arr.slice()
+  let buf = [];
+  for (let i = arr[0]; i <= arr[arr.length - 1]; i++) {
+    // console.log(arr[i]);
+    buf.push(i);
+  }
+  return buf.filter((el) => !arr.includes(el)) || [];
+}
+
+console.log(findMissingNumbers([-3, -2, 1, 4]));
+
+// =============================================
 //1) https://www.codewars.com/kata/56dec885c54a926dcd001095/train/javascript
 // Very simple, given an integer or a floating-point number, find its opposite.
 
