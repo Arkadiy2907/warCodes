@@ -152,11 +152,41 @@ function findMissingNumbers(arr) {
     // console.log(arr[i]);
     buf.push(i);
   }
-  return buf.filter((el) => !arr.includes(el)) || [];
+  return buf.filter((el) => !arr.includes(el));
 }
 
 console.log(findMissingNumbers([-3, -2, 1, 4]));
 
+// =============================================
+// // https://www.codewars.com/kata/5ac54bcbb925d9b437000001/train/javascript
+// Учитывая строку символов, я хочу, чтобы функция findMiddle()/ find_middle()возвращала среднее число в произведении каждой цифры в строке.
+// Пример: 's7d8jd9' -> 7, 8, 9 -> 7*8*9=504, поэтому 0 следует возвращать как целое число.
+// Не все строки будут содержать цифры. В этом случае и в случае любых нестроковых значений верните -1.
+// Если в продукте четное количество цифр, верните две средние цифры.
+// Пример: 1563 -> 56.
+// ПРИМЕЧАНИЕ. Удалите ведущие нули, если произведение четное и первая цифра из двух — ноль. Пример 2016 -> 1
+
+function findMiddle(str) {
+  if (typeof str !== 'string') return -1;
+  let arr1 = str.split('').filter((el) => !isNaN(el) && el !== ' ');
+  if (arr1.length === 0) return -1;
+  let arr = +arr1[0];
+  for (let i = 1; i < arr1.length; i++) {
+    arr *= +arr1[i];
+  }
+  arr = arr.toString();
+
+  if (arr.length === 1) return +arr[0];
+  if (arr.length === 0) return -1;
+  let res =
+    arr.length % 2 === 0
+      ? `${arr[arr.length / 2 - 1]}${arr[arr.length / 2]}`
+      : `${arr[(arr.length - 1) / 2]}`;
+
+  return +res;
+}
+
+console.log(findMiddle('z&m '));
 // =============================================
 //1) https://www.codewars.com/kata/56dec885c54a926dcd001095/train/javascript
 // Very simple, given an integer or a floating-point number, find its opposite.
