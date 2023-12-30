@@ -61,6 +61,65 @@ function mxdiflg(a1, a2) {
 }
 
 // =============================================
+// https://www.codewars.com/kata/5d23d89906f92a00267bb83d/train/javascript
+// В вашем ресторане начали работать новые кассиры.
+// Они хорошо принимают заказы, но не умеют писать слова с заглавной буквы или использовать пробел!
+// Все создаваемые ими заказы выглядят примерно так:
+// "milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza"
+// Кухонные работники грозятся уволиться из-за того, что сложно читать заказы.
+// Они предпочитают получать заказы в виде красивой чистой строки с пробелами и заглавными буквами, например:
+// "Burger Fries Chicken Pizza Pizza Pizza Sandwich Milkshake Milkshake Coke"
+// Кухонный персонал ожидает, что блюда будут расположены в том же порядке, в котором они указаны в меню.
+// Пункты меню достаточно простые, в названиях пунктов нет дублирования:
+// 1. Burger
+// 2. Fries
+// 3. Chicken
+// 4. Pizza
+// 5. Sandwich
+// 6. Onionrings
+// 7. Milkshake
+// 8. Coke
+
+const arr = [
+  'Burger',
+  'Fries',
+  'Chicken',
+  'Pizza',
+  'Sandwich',
+  'Onionrings',
+  'Milkshake',
+  'Coke',
+];
+
+function getOrder(input) {
+  let buf = [];
+  // let obj = {};
+
+  arr.forEach((el) => {
+    let pos = 0;
+    while (true) {
+      let foundPos = input.indexOf(el.toLowerCase(), pos);
+      if (foundPos == -1) break;
+      buf.push(el);
+      // if (obj[el]) {
+      //   obj[el]++;
+      // } else {
+      //   obj[el] = 1;
+      // }
+      pos = foundPos + 1;
+    }
+  });
+
+  // let res = Object.keys(obj).map((el) => `${el} `.repeat(obj[el]));
+  return buf.join(' ');
+  // return res.join('');
+}
+
+console.log(
+  getOrder('milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza')
+);
+
+// =============================================
 //1) https://www.codewars.com/kata/56dec885c54a926dcd001095/train/javascript
 // Very simple, given an integer or a floating-point number, find its opposite.
 
