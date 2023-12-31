@@ -120,10 +120,51 @@ console.log(
 );
 
 // =============================================
+//www.codewars.com/kata/5282b48bb70058e4c4000fa7/train/javascript
+
+function hexStringToRGB(hexColor) {
+  hexColor = hexColor.replace('#', '');
+
+  const red = parseInt(hexColor.substring(0, 2), 16);
+  const green = parseInt(hexColor.substring(2, 4), 16);
+  const blue = parseInt(hexColor.substring(4, 6), 16);
+
+  const rgbMap = new Map();
+  rgbMap.set('r', red);
+  rgbMap.set('g', green);
+  rgbMap.set('b', blue);
+  return rgbMap;
+}
+
+function hexStringToRGB(hexColor) {
+  hexColor = hexColor.replace('#', '');
+
+  const red = parseInt(hexColor.substring(0, 2), 16);
+  const green = parseInt(hexColor.substring(2, 4), 16);
+  const blue = parseInt(hexColor.substring(4, 6), 16);
+
+  const rgbMap = {};
+  rgbMap.r = red;
+  rgbMap.g = green;
+  rgbMap.b = blue;
+  return rgbMap;
+}
+
+function hexStringToRGB(h) {
+  return {
+    r: parseInt(h.slice(1, 3), 16),
+    g: parseInt(h.slice(3, 5), 16),
+    b: parseInt(h.slice(5, 7), 16),
+  };
+}
+
+console.log(hexStringToRGB('#FF9933'));
+
+// =============================================
 // https://www.codewars.com/kata/57b2e428d24156b312000114/train/javascript
 // Найдите объем конуса, радиус и высота которого указаны в качестве параметров функции volume. Используйте значение PI, предоставленное вашим языком (например: Math.PIв JS, math.piPython или Math::PIRuby), и округлите объем до Interger.
 
-function volume(r, h) {
+https: function volume(r, h) {
   //your code here!
   return Math.floor((Math.PI * r ** 2 * h) / 3);
 }
