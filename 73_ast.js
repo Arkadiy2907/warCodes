@@ -199,6 +199,49 @@ function findMissingNumbers(arr) {
 console.log(findMissingNumbers([-3, -2, 1, 4]));
 
 // =============================================
+// https://www.codewars.com/kata/5963314a51c68a26600000ae/train/javascript
+
+// Создайте функцию longer, которая принимает строку и сортирует содержащиеся в ней слова по их длине в порядке возрастания. Если есть два слова одинаковой длины, отсортируйте их по алфавиту. Для получения более подробной информации посмотрите примеры ниже.
+
+// longer("Another Green World") => Green World Another
+// longer("Darkness on the edge of Town") => of on the Town edge Darkness
+// longer("Have you ever Seen the Rain") => the you Have Rain Seen ever
+// Предположим, что в качестве входных данных будут введены только алфавиты. Символы верхнего регистра имеют приоритет над символами нижнего регистра. То есть,
+
+// longer("hello Hello") => Hello hello
+
+function longer(s) {
+  let mass = {};
+  s.split(' ').forEach((item) => {
+    let get_item = mass[item.length] || [];
+    mass[item.length] = [...get_item, item];
+  });
+  let res = [];
+  Object.keys(mass)
+    .sort((a, b) => a - b)
+    .forEach((i) => {
+      if (mass[i].length > 1) {
+        res.push(...mass[i].sort());
+      } else {
+        res.push(mass[i][0]);
+      }
+    });
+  return res.join(' ');
+}
+
+function longer(s) {
+  return s
+    .split(' ')
+    .sort()
+    .sort((a, b) => a.length - b.length || a > b)
+    .join(' ');
+}
+
+console.log(longer('Another Green World')); // Output: Green World Another
+console.log(longer('Darkness on the edge of Town')); // Output: of on the Town edge Darkness
+console.log(longer('Have you ever Seen the Rain')); // Output: the you Have Rain Seen ever
+console.log(longer('This will be our Year')); // Output: be our This Year will
+// =============================================
 // // https://www.codewars.com/kata/5ac54bcbb925d9b437000001/train/javascript
 // Учитывая строку символов, я хочу, чтобы функция findMiddle()/ find_middle()возвращала среднее число в произведении каждой цифры в строке.
 // Пример: 's7d8jd9' -> 7, 8, 9 -> 7*8*9=504, поэтому 0 следует возвращать как целое число.
