@@ -325,3 +325,28 @@ function basicOp(operation, value1, value2) {
 }
 
 console.log(basicOp('+++', 4, 7));
+
+// =============================================
+//4) https://www.codewars.com/kata/5857e8bb9948644aa1000246/train/javascript
+// В качестве входных данных вы получите массив с продолжительностью времени в виде строки в следующем формате: HH:MM:SS. Каждая длительность представляет собой время, затраченное Сантой на доставку подарка. Определите, сможет ли он сделать это за 24 часа или нет. Если время, необходимое для доставки всех подарков, составляет ровно 24 часа, Санта может завершить доставку ;-) .
+
+function determineTime(durations) {
+  if (!Array.isArray(durations)) {
+    return 'bad args';
+  }
+
+  const needTime = 24 * 3600;
+  let useTime = 0;
+
+  for (let i = 0; i < durations.length; i++) {
+    const [h = 0, m = 0, s = 0] = durations[i].split(':');
+    useTime += +h * 3600 + +m * 60 + +s;
+  }
+
+  return needTime >= useTime;
+}
+
+console.log(determineTime(['00:30:00', '02:30:00', '00:15:00']));
+console.log(determineTime('16:00:00'));
+console.log(determineTime(['04:30:00', '02:00:00', '01:30:00', '16:00:00']));
+console.log(determineTime(['06:00:00', '12:00:00', '06:30:00']));
