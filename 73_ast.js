@@ -76,3 +76,27 @@ console.log(determineTime(['00:30:00', '02:30:00', '00:15:00']));
 console.log(determineTime('16:00:00'));
 console.log(determineTime(['04:30:00', '02:00:00', '01:30:00', '16:00:00']));
 console.log(determineTime(['06:00:00', '12:00:00', '06:30:00']));
+
+// =============================================
+//5) https://www.codewars.com/kata/56747fd5cb988479af000028/train/javascript
+// Вам будет предоставлено слово. Ваша задача — вернуть средний символ слова. Если длина слова нечетная, верните средний символ. Если длина слова четная, верните 2 средних символа.
+// #Примеры:
+// Kata.getMiddle("test") should return "es"
+// Kata.getMiddle("testing") should return "t"
+// Kata.getMiddle("middle") should return "dd"
+// Kata.getMiddle("A") should return "A"
+
+function getMiddle(s) {
+  if (typeof s !== 'string' || s.length === 0) return 'bad arg';
+
+  const middleIdx = Math.floor(s.length / 2);
+
+  return s.length % 2 !== 0
+    ? s[middleIdx]
+    : s.slice(middleIdx - 1, middleIdx + 1);
+}
+
+console.log(getMiddle('test'));
+console.log(getMiddle('testing'));
+console.log(getMiddle('middle'));
+console.log(getMiddle('A'));
