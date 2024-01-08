@@ -100,3 +100,22 @@ console.log(getMiddle('test'));
 console.log(getMiddle('testing'));
 console.log(getMiddle('middle'));
 console.log(getMiddle('A'));
+
+//6) https://www.codewars.com/kata/534fcca5edb124cfe6000f60
+// В разработке программного обеспечения шаблон синглтон — это шаблон проектирования, который ограничивает создание экземпляра класса одним объектом. Это полезно, когда для координации действий в системе требуется ровно один объект.
+
+// Создайте шаблон Singleton, чтобы в системе был один объект.
+
+var Singleton = function () {
+  if (Singleton.__instance) {
+    return Singleton.__instance;
+  }
+
+  Singleton.__instance = this;
+};
+
+let obj1 = Singleton.getInstance();
+let obj2 = Singleton.getInstance();
+console.log(obj1 === obj2);
+obj1.test = 1;
+console.log(obj2.test);
