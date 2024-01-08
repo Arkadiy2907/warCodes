@@ -320,3 +320,49 @@ console.log(isomorph('vjbqxpmya', 'gjdekyyjo'));
 
 const f = (a) => [...a].map((e) => a.indexOf(e)).join`,`;
 const isomorph = (a, b) => f(a) == f(b);
+
+// =============================================
+// https://www.codewars.com/kata/58925dcb71f43f30cd00005f/train/javascript
+
+// Напишите функцию, которая принимает 4 цифры и возвращает последнее время суток, которое можно построить с помощью этих цифр.
+
+// Время должно быть в HH:MMформате.
+
+// Примеры:
+
+// digits: 1, 9, 8, 3 => result: "19:38"
+// digits: 9, 1, 2, 5 => result: "21:59"
+// Примечания
+// Результатом должно быть действительное 24-часовое время между 00:00и 23:59.
+// Каждый ввод имеет действительный ответ.
+
+function latestClock(...arr1) {
+  let idx = 0;
+  let arr = arr1.slice();
+  do {
+    let one = arr.filter((el) => el <= 2).sort((a, b) => b - a)[idx];
+    arr.splice(arr.indexOf(one), 1);
+    let two = arr
+      .filter((el) => (one === 2 ? el <= 3 : el === 0 || el))
+      .sort((a, b) => b - a)[0];
+    arr.splice(arr.indexOf(two), 1);
+    let three = Math.max(...arr.filter((el) => el <= 5));
+
+    if (three === -Infinity) {
+      idx++;
+      arr.length = 0;
+      arr = arr1.slice();
+    } else {
+      arr.splice(arr.indexOf(three), 1);
+      let four = arr[0];
+      return `${one}${two}:${three}${four}`;
+    }
+  } while (idx < arr.length);
+}
+
+// console.log(latestClock(0, 1, 2, 5)); //21:59
+// console.log(latestClock(1, 9, 8, 3)); //19:38
+// console.log(latestClock(9, 1, 2, 5)); //21:59
+console.log(latestClock(1, 2, 8, 9)); //19:28
+// console.log(latestClock(0, 0, 0, 0)); //00:00
+// console.log(latestClock(2, 4, 0, 0)); //00:00
