@@ -132,3 +132,27 @@ console.log(obj2.test);
 //   return arr.split(',').slice(1, -1).join(' ') || null;
 // }
 const array = (arr) => arr.split(',').slice(1, -1).join(' ') || null;
+
+// =============================================
+// 8) https://www.codewars.com/kata/54129112fb7c188740000162/train/javascript
+
+function prefill(n, v) {
+  const buf = parseInt(n);
+
+  if (Number.isNaN(buf) || n % 1 !== 0 || buf < 0) {
+    throw new TypeError(`${n} is invalid`);
+  }
+
+  if (buf === 0) {
+    return [];
+  }
+
+  return new Array(buf).fill(v);
+}
+
+// Примеры использования
+console.log(prefill(3, 1)); // [1, 1, 1]
+console.log(prefill(2, 'abc')); //  ['abc', 'abc']
+console.log(prefill('1', 1)); //  [1]
+console.log(prefill(3, prefill(2, '2d'))); //  [['2d', '2d'], ['2d', '2d'], ['2d', '2d']]
+console.log(prefill('xyz', 1)); // Error "xyz is invalid"
