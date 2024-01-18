@@ -156,3 +156,21 @@ console.log(prefill(2, 'abc')); //  ['abc', 'abc']
 console.log(prefill('1', 1)); //  [1]
 console.log(prefill(3, prefill(2, '2d'))); //  [['2d', '2d'], ['2d', '2d'], ['2d', '2d']]
 console.log(prefill('xyz', 1)); // Error "xyz is invalid"
+// =============================================
+// 9) https://www.codewars.com/kata/54566695309908a6590005f1/train/javascript
+function crossProduct(vector1, vector2) {
+  if (
+    !(vector1 instanceof Array) ||
+    !(vector2 instanceof Array) ||
+    vector1.length !== 3 ||
+    vector2.length !== 3
+  ) {
+    throw 'Arguments are not 3D vectors!';
+  }
+
+  return [
+    vector1[1] * vector2[2] - vector2[1] * vector1[2],
+    vector1[2] * vector2[0] - vector2[2] * vector1[0],
+    vector1[0] * vector2[1] - vector2[0] * vector1[1],
+  ];
+}
