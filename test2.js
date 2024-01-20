@@ -350,10 +350,10 @@ function outerFunc(outerParam) {
   return innerFunc;
 }
 
-const x = outerFunc(outerVar);
+const x1 = outerFunc(outerVar);
 outerVar = 'outer-2';
 globalVar = 'guess';
-x('inner'); //guess outer inner
+x1('inner'); //guess outer inner
 
 // =======================
 // есть два отсортированных массива надо их соединить отсоированнм и получить два
@@ -432,3 +432,26 @@ function foo5() {
 var b = 3;
 
 foo5(); //undefined
+// ====================================================================
+
+var l = 25;
+var x = 11;
+
+function bar(foo) {
+  var x = 30;
+  foo();
+}
+
+function foo() {
+  console.log('x', x); //
+}
+
+foo.x = 20;
+bar.x = 40;
+
+bar(foo);
+l.x = 100;
+
+console.log('foo.x', foo.x); //
+console.log(bar.l); //
+console.log(l.x); //
