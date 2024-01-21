@@ -111,3 +111,141 @@ function per(num) {
 console.log(per(10));
 console.log(per(69));
 console.log(per(277777788888899));
+
+// =================================================
+//www.codewars.com/kata/563f960e3c73813942000015/train/javascript
+
+// Вы решаете создать небольшой скрипт для расчета наилучшего возможного значения.
+
+// Функция принимает два аргумента:
+
+// `points`: массив целых чисел, представляющий для каждой буквы от A до Z очки, которые он платит.
+// `words`: массив строк, в верхнем регистре.
+
+// Вы должны вернуть индекс самого короткого слова, получившего наивысший балл.
+// Если длина и оценка одинаковы для двух элементов, верните индекс первого.
+
+var points = [
+  1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 10, 1, 2, 1, 1, 3, 8, 1, 1, 1, 1, 4, 10, 10, 10,
+  10,
+];
+var simpleWords = ['WHO', 'IS', 'THE', 'BEST', 'OF', 'US'];
+var rndmWords = [
+  'NOQ',
+  'TXAY',
+  'S',
+  'OM',
+  'ESFT',
+  'CJUKQ',
+  'QL',
+  'QO',
+  'ASTK',
+  'Y',
+];
+var firstBestWord = ['JGPCWVWFW', 'JXHNKBJJG'];
+
+function getBestWord(points, words) {
+  let resObg = {};
+
+  words.forEach((el) => {
+    let count = getCount(points, el);
+    if (!(count in resObg)) {
+      resObg[count] = el;
+    }
+  });
+
+  let maxCount = Math.max(...Object.keys(resObg));
+  return words.indexOf(resObg[maxCount]);
+}
+
+function filterLength(arr) {
+  let min = arr[0].length;
+  // let max = arr[0].length;
+
+  for (let el of arr) {
+    if (min > el.length) min = el.length;
+  }
+  // for (let el of arr) {
+  //   if (max < el.length) max = el.length;
+  // }
+
+  return arr.filter((el) => el.length === min);
+}
+
+function getObjChar(p) {
+  let obj = {};
+  let arr = [];
+
+  for (let i = 65; i <= 90; i++) {
+    arr.push(String.fromCodePoint(i));
+  }
+
+  arr.forEach((el, idx) => (obj[el] = p[idx]));
+  // console.log(obj);
+  return obj;
+}
+
+function getCount(points, str) {
+  let arr = str.split('');
+  let objChair = getObjChar(points);
+  let arrChair = Object.keys(objChair);
+  let count = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arrChair.length; j++) {
+      if (arr[i] === arrChair[j]) {
+        count += objChair[arrChair[j]];
+      }
+    }
+  }
+  return count;
+}
+
+// console.log(getCount('AB'));
+// getCount('AB');
+let a = [
+  'QLQWYQAPB',
+  'QLQWYQAPB',
+  'EKFXXXREZ',
+  'EKFXXXREZ',
+  'BWQNLJGWK',
+  'BWQNLJGWK',
+  'XJXNDX',
+  'XJXNDX',
+  'XJLXFIHZ',
+  'BFKYHYTVM',
+];
+
+function getBestWord(points, words) {
+  let maxScore = 0;
+  let bestWordIndex = 0;
+
+  for (let i = 0; i < words.length; i++) {
+    let word = words[i];
+    let score = 0;
+
+    for (let j = 0; j < word.length; j++) {
+      let letter = word[j];
+      let letterIndex = letter.charCodeAt(0) - 65; // Convert letter to index (A=0, B=1, ...)
+
+      if (letterIndex >= 0 && letterIndex < points.length) {
+        score += points[letterIndex];
+      }
+    }
+
+    if (
+      score > maxScore ||
+      (score === maxScore && word.length < words[bestWordIndex].length)
+    ) {
+      maxScore = score;
+      bestWordIndex = i;
+    }
+  }
+
+  return bestWordIndex;
+}
+
+console.log(getBestWord(points, simpleWords));
+// console.log(getBestWord(points, rndmWords));
+// console.log(getBestWord(points, firstBestWord));
+console.log(getBestWord(points, a));
