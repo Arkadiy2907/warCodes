@@ -443,7 +443,7 @@ function bar(foo) {
 }
 
 function foo() {
-  console.log('x', x); //
+  console.log('x', x); //11
 }
 
 foo.x = 20;
@@ -452,6 +452,6 @@ bar.x = 40;
 bar(foo);
 l.x = 100;
 
-console.log('foo.x', foo.x); //
-console.log(bar.l); //
-console.log(l.x); //
+console.log('foo.x', foo.x); //20
+console.log(bar.l); //undefined
+console.log(l.x); //undefined
