@@ -19,6 +19,7 @@ function scramble(str1, str2) {
   let arr1 = str1.split('');
   let arr2 = str2.split('');
   let res = arr1.filter((el) => arr2.includes(el));
+
   return res.length === minLength;
 }
 
