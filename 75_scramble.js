@@ -250,3 +250,21 @@ console.log(getBestWord(points, simpleWords));
 // console.log(getBestWord(points, rndmWords));
 // console.log(getBestWord(points, firstBestWord));
 console.log(getBestWord(points, a));
+
+// =================================================
+// https://www.codewars.com/kata/52223df9e8f98c7aa7000062/train/javascript
+// Как отличить экстраверта от интроверта в АНБ?
+// Если вы хотите, чтобы вы знали, как это сделать, вы должны знать, что это такое.
+
+// Я нашел эту шутку в USENET, но ее суть зашифрована. Может быть, вы сможете его расшифровать?
+// Согласно Википедии, ROT13 часто используется для запутывания шуток в USENET.
+
+// Для этой задачи вам нужно только заменить символы. Не пробелы, знаки препинания, цифры и т. д.
+
+// Примеры испытаний:
+
+// "EBG13 rknzcyr." -> "ROT13 example."
+
+// "This is my first ROT13 excercise!" -> "Guvf vf zl svefg EBG13 rkprepvfr!"
+
+function rot13(str) {}

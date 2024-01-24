@@ -275,3 +275,59 @@ const Foo10 = (title, price) => {
 };
 
 let a10 = new Foo10('aaa0', 2); //TypeError: Foo10 is not a constructor
+
+// ------------------------------------------Descriptors
+const obj11 = { a: 12 };
+
+console.log(Object.getOwnPropertyDescriptors(obj11)); //a: { value: 12, writable: true, enumerable: true, configurable: true }
+
+console.log(Object.keys(obj11)); //[ 'a' ]
+
+// Object.seal(obj11); // предотвращая добавление новых свойств к объекту. Предотвращает удаление свойств объекта
+// console.log(Object.getOwnPropertyDescriptors(obj11));//a: { value: 12, writable: true, enumerable: true, configurable: false }
+// console.log(Object.isSealed(obj11)); //true
+
+// Object.freeze(obj11);
+// console.log(Object.getOwnPropertyDescriptors(obj11));// a: { value: 12, writable: false, enumerable: true, configurable: false }
+// console.log(Object.isFrozen(obj11));//true
+
+// после seal freeze - дескрипторы не поменять появляется ошибка
+
+console.log(obj11); //{ a: 12 }
+
+Object.defineProperty(obj11, 'a', {
+  value: 0,
+  writable: false, // свойство может быть изменено?
+  enumerable: false, // свойство будет перечисляемым при итерации ?
+  configurable: true, // свойство может быть удалено и его дескриптор может быть изменен?
+});
+
+console.log(Object.getOwnPropertyDescriptors(obj11)); //a: { value: 0, writable: false, enumerable: false, configurable: true }
+
+obj11.a = 15;
+console.log(obj11.a); //0
+console.log(Object.keys(obj11)); //[]
+// ---------------
+
+const obj12 = {
+  a: 1,
+  b: 2,
+};
+
+console.log(Object.keys(obj12)); //[ 'a', 'b' ]
+
+Object.defineProperties(obj12, {
+  a: {
+    value: true,
+    enumerable: false,
+  },
+  b: {
+    value: 'Hello',
+    writable: false,
+    enumerable: true,
+  },
+});
+
+console.log(Object.getOwnPropertyDescriptors(obj12)); //a:{ value: true, writable: true, enumerable: false, configurable: true }, b:{ value: 'Hello', writable: false, enumerable: true, configurable: true}
+console.log(Object.keys(obj12)); //[b] т к /a:{ enumerable: false }
+console.log(Object.getOwnPropertyNames(obj12)); //['a', 'b']; работает перечисление несмотря на enumerable: false
