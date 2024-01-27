@@ -252,6 +252,43 @@ console.log(getBestWord(points, simpleWords));
 console.log(getBestWord(points, a));
 
 // =================================================
+
+function howMuchILoveYou(nbPetals) {
+  const arr = [
+    'I love you',
+    'a little',
+    'a lot',
+    'passionately',
+    'madly',
+    'not at all',
+  ];
+  let buf = [];
+
+  for (let i = 0; i <= nbPetals / arr.length; i++) {
+    buf.push(arr);
+  }
+
+  return buf.flat()[nbPetals - 1];
+}
+
+console.log(howMuchILoveYou(7));
+
+function howMuchILoveYou(nbPetals) {
+  const array = [
+    'I love you',
+    'a little',
+    'a lot',
+    'passionately',
+    'madly',
+    'not at all',
+  ];
+
+  return array[(nbPetals - 1) % 6];
+}
+
+console.log(howMuchILoveYou(7));
+
+// =================================================
 // https://www.codewars.com/kata/52223df9e8f98c7aa7000062/train/javascript
 // Как отличить экстраверта от интроверта в АНБ?
 // Если вы хотите, чтобы вы знали, как это сделать, вы должны знать, что это такое.
@@ -267,4 +304,31 @@ console.log(getBestWord(points, a));
 
 // "This is my first ROT13 excercise!" -> "Guvf vf zl svefg EBG13 rkprepvfr!"
 
-function rot13(str) {}
+function rot13(str) {
+  let string = str.split(' ');
+  console.log(string.join(' '));
+}
+
+rot13('This is my first ROT13 excercise!');
+
+function getObjChar(p) {
+  let obj = {};
+  let arrBigCh = [];
+  let arrSmCh = [];
+
+  for (let i = 65; i <= 90; i++) {
+    arrBigCh.push(String.fromCodePoint(i));
+  }
+
+  for (let i = 97; i <= 122; i++) {
+    arrSmCh.push(String.fromCodePoint(i));
+  }
+
+  console.log(arrBigCh);
+  console.log(arrSmCh);
+  // arr.forEach((el, idx) => (obj[el] = p[idx]));
+  // // console.log(obj);
+  // return obj;
+}
+
+getObjChar();
