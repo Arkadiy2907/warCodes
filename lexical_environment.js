@@ -120,3 +120,92 @@ function makeCounter() {
 }
 
 let counter = makeCounter();
+// ------------------------
+
+//------привязка по умолчанию
+function foo() {
+  // console.log(this === window); //true
+  console.log(this.aa);
+}
+var aa = 2;
+//  window.aa добавили свойство aa
+// черер var у объекта window добавляются к значения
+foo(); //2 - не работает в node
+
+//-------неявная привязка
+
+function foo1() {
+  console.log(this.aaa); //2
+}
+
+const obj1 = {
+  aaa: 2,
+};
+
+obj1.foo1 = foo1;
+
+obj1.foo1(); //2
+
+//-------явная привязка
+
+function foo2() {
+  console.log(this.aaa); //2
+}
+
+const foo22 = () => {
+  console.log(this.aaa); //2
+};
+
+const obj2 = {
+  aaa: 2,
+};
+
+foo2.bind(obj2)(); //2 привязали и сразу вызвали при помощи ()
+foo2.call(obj2); //2 привязали и сразу вызвали
+
+foo22.bind(obj2)(); //undefined
+foo22.call(obj2); //undefined
+//Стрелочные функции не имеют собственного привязанного значения this и вместо этого наследуют значение this из окружающей области видимости. В данном случае окружающей областью видимости является глобальная область видимости, где у this нет свойства aaa
+
+var aaa = 2; //добавили значене у window.aaa =2
+foo22.bind(obj2)(); //2 -но это не работает в node
+foo22.call(obj2); //2 -но это не работает в node
+
+// ------- с new
+function Foo3(aaaa) {
+  this.aaaa = aaaa;
+}
+
+const obj3 = new Foo3(2);
+console.log(obj3.aaaa); //2
+
+// ------- потеря контекста
+const obj10 = {
+  aaa: 2,
+  get() {
+    return `context = ${this.aaa}`;
+  },
+
+  getArrow: () => `context = ${this.aaa}`,
+};
+
+console.log(obj10.get()); //context = 2
+console.log(obj10.getArrow()); //context = undefined - потеря контекста т к стрелка
+//Стрелочные функции не создают свой собственный контекст this и не могут быть привязаны к другому контексту с помощью методов bind, call или apply.
+
+const myFun = obj10.get; //тут не передаем контекст
+console.log(myFun()); //context = undefined - потеря контекста
+console.log(myFun.call(obj10)); //context = 2; -явная привязка
+
+const obj11 = {
+  aaa: 2,
+  get() {
+    return `context = ${this.aaa}`;
+  },
+};
+
+const getArrow = () => console.log(`context = ${this.aaa}`);
+
+getArrow.bind(obj11)(); //context = undefined
+obj11.getArrow = getArrow;
+obj11.getArrow(); //context = undefined

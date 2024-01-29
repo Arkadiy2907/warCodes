@@ -694,3 +694,43 @@ console.log(filterString('aa1bb2cc3dd'));
 console.log(typeof null); // object
 console.log(+null); //0
 console.log(parseInt(null)); //NaN;
+// ========================================================
+
+function bind(fn, context, ...boundArgs) {
+  if (typeof fn !== 'function') {
+    throw new TypeError('is not a function');
+  }
+
+  return function (...args) {
+    return fn.call(context, ...boundArgs, ...args);
+  };
+}
+
+const user = {
+  name: 'Den',
+};
+
+const user1 = {
+  name: 'Tom',
+};
+
+const user2 = {
+  name: 'Alex',
+};
+
+function getMassage(st) {
+  console.log(`${st}`, this.name);
+}
+
+// const massage = bind(getMassage, user);
+// massage('hi'); //hi Den
+
+getMassage.bind(user, 'hi')(); //hi Den
+getMassage.call(user2, 'Hi'); //Hi Alex
+
+const massage = getMassage.bind(user, 'Hola').bind(user1, 'Hi');
+massage('hi'); //Hola Den
+getMassage.bind(user, 'Hola').bind(user1, 'Hi').call(user2, 'Hi'); //Hola Den
+
+getMassage.bind(user, 'hi')().bind(user1, 'Hi')(); //hi Den 2-й bind не сработает
+getMassage.bind(user, 'hi')().bind(user1, 'Hi')().call(user2, 'Hi'); //hi Den
