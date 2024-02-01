@@ -289,46 +289,147 @@ function howMuchILoveYou(nbPetals) {
 console.log(howMuchILoveYou(7));
 
 // =================================================
-// https://www.codewars.com/kata/52223df9e8f98c7aa7000062/train/javascript
-// Как отличить экстраверта от интроверта в АНБ?
-// Если вы хотите, чтобы вы знали, как это сделать, вы должны знать, что это такое.
+// 1) Написать функцию, которая вернет массив с первой парой чисел, сумма которых равна total:
 
-// Я нашел эту шутку в USENET, но ее суть зашифрована. Может быть, вы сможете его расшифровать?
-// Согласно Википедии, ROT13 часто используется для запутывания шуток в USENET.
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+total = 13;
+//result = [4, 9]
 
-// Для этой задачи вам нужно только заменить символы. Не пробелы, знаки препинания, цифры и т. д.
-
-// Примеры испытаний:
-
-// "EBG13 rknzcyr." -> "ROT13 example."
-
-// "This is my first ROT13 excercise!" -> "Guvf vf zl svefg EBG13 rkprepvfr!"
-
-function rot13(str) {
-  let string = str.split(' ');
-  console.log(string.join(' '));
-}
-
-rot13('This is my first ROT13 excercise!');
-
-function getObjChar(p) {
-  let obj = {};
-  let arrBigCh = [];
-  let arrSmCh = [];
-
-  for (let i = 65; i <= 90; i++) {
-    arrBigCh.push(String.fromCodePoint(i));
+const isCheckArg = (arr, total) => {
+  if (
+    !Array.isArray(arr) ||
+    arr.filter(
+      (el) => typeof el !== 'number' || isNaN(el) || !Number.isInteger(el)
+    ).length > 0 ||
+    arr.length < 2
+  ) {
+    throw new TypeError('bad arguments: arr');
   }
 
-  for (let i = 97; i <= 122; i++) {
-    arrSmCh.push(String.fromCodePoint(i));
+  if (typeof total !== 'number' || isNaN(total) || !Number.isInteger(total)) {
+    throw new TypeError('bad arguments: total');
+  }
+};
+
+//решение "в лоб". Сложность O(n^2)
+
+const firstSum = (arr, total) => {
+  isCheckArg(arr, total);
+  let res = [];
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] + arr[i] === total) {
+        res = [arr[i], arr[j]];
+        return res;
+      }
+    }
   }
 
-  console.log(arrBigCh);
-  console.log(arrSmCh);
-  // arr.forEach((el, idx) => (obj[el] = p[idx]));
-  // // console.log(obj);
-  // return obj;
+  return res.length !== 0 ? res : 'please change arg';
+};
+
+console.log(firstSum(arr, total)); // [4, 9]
+
+// function findPairWithSum(arr, total) {
+//   const seen = new Set();
+
+//   for (let num of arr) {
+//     const complement = total - num;
+//     if (seen.has(complement)) {
+//       return [complement, num];
+//     }
+//     seen.add(num);
+//   }
+
+//   return [];
+// }
+
+// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// const total = 13;
+// const result = findPairWithSum(arr, total);
+// console.log(result); // [4, 9]
+
+// function findPairWithSum(arr, total) {
+//   const seen = {};
+
+//   for (let num of arr) {
+//     const complement = total - num;
+//     if (seen[complement] !== undefined) {
+//       return [complement, num];
+//     }
+//     seen[num] = true;
+//   }
+
+//   return [];
+// }
+
+// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// const total = 13;
+// const result = findPairWithSum(arr, total);
+// console.log(result); // [4, 9]
+
+function findPairWithSum(arr, total) {
+  arr.sort((a, b) => a - b); // Сортируем массив по возрастанию
+
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    const sum = arr[left] + arr[right];
+    if (sum === total) {
+      return [arr[left], arr[right]];
+    } else if (sum < total) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+
+  return [];
 }
 
-getObjChar();
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const total = 13;
+const result = findPairWithSum(arr, total);
+console.log(result); // [4, 9]
+
+// ======================
+// https://www.codewars.com/kata/52b50a20fa0e77b304000103/train/javascript
+// You probably know, that in Javascript (and also Ruby) there is no concept of interfaces. There is only a concept of inheritance, but you can't assume that a certain method or property exists, just because it exists in the parent prototype / class. We want to find out, whether a given object fulfils the requirements to implement the "SantaClausable" interface. We need to implement a method which checks for this interface.
+
+// Rules
+// The SantaClausable interface is implemented, if all of the following methods are defined on an object:
+
+// sayHoHoHo() / say_ho_ho_ho
+// distributeGifts() / distribute_gifts
+// goDownTheChimney() / go_down_the_chimney
+
+function isSantaClausable(obj) {
+  return (
+    typeof obj.sayHoHoHo === 'function' &&
+    typeof obj.distributeGifts === 'function' &&
+    typeof obj.goDownTheChimney === 'function'
+  );
+}
+
+var santa = {
+  sayHoHoHo: function () {
+    console.log('Ho Ho Ho!');
+  },
+  distributeGifts: function () {
+    console.log('Gifts for all!');
+  },
+  goDownTheChimney: function () {
+    console.log('*whoosh*');
+  },
+};
+
+var notSanta = {
+  sayHoHoHo: function () {
+    console.log('Oink Oink!');
+  },
+};
+
+console.log(isSantaClausable(santa)); // true
+console.log(isSantaClausable(notSanta)); // false

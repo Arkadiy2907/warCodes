@@ -111,6 +111,26 @@ const foo = (z) => {
 foo(30); // 150
 // ------------------
 
+const num = 1;
+
+function foo() {
+  function boo() {
+    console.log(num);
+  }
+
+  run(boo);
+}
+
+function run(boo) {
+  const num = 3;
+  boo();
+}
+
+foo(); //1
+// функция boo, при выполнении, обращается к переменной num из своего внешнего контекста, который является функцией foo. Переменная num в функции foo имеет значение 1.
+
+// ------------------
+
 function makeCounter() {
   let count = 0;
 
@@ -121,7 +141,7 @@ function makeCounter() {
 
 let counter = makeCounter();
 // ------------------------
-
+//this
 //------привязка по умолчанию
 function foo() {
   // console.log(this === window); //true
