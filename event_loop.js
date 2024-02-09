@@ -430,3 +430,32 @@ console.log(a);
 //5
 //5
 //15
+// =================================
+
+console.log('start');
+
+const promise1 = Promise.resolve().then(() => {
+  console.log('promise1');
+  const timer2 = setTimeout(() => {
+    console.log('timer2');
+  }, 0);
+});
+
+const fn = () =>
+  new Promise((res, rej) => {
+    console.log(1);
+    res('success');
+  });
+
+const timer1 = setTimeout(() => {
+  console.log('timer1');
+  const promise2 = Promise.resolve().then(() => {
+    console.log('promise2');
+  });
+}, 0);
+
+fn().then((res) => {
+  console.log(res);
+});
+
+console.log('end');

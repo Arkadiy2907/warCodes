@@ -335,3 +335,19 @@ Object.defineProperties(obj12, {
 console.log(Object.getOwnPropertyDescriptors(obj12)); //a:{ value: true, writable: true, enumerable: false, configurable: true }, b:{ value: 'Hello', writable: false, enumerable: true, configurable: true}
 console.log(Object.keys(obj12)); //[b] т к /a:{ enumerable: false }
 console.log(Object.getOwnPropertyNames(obj12)); //['a', 'b']; работает перечисление несмотря на enumerable: false
+
+function makeCounter() {
+  let counter = 0; // 1
+  return function () {
+    return ++counter;
+  };
+}
+
+let someCounter = makeCounter();
+
+for (var i = 0; i < 10; i++) {
+  // 9
+  setTimeout(() => console.log(someCounter())); // 2...11
+}
+
+console.log(someCounter());
