@@ -293,7 +293,8 @@ console.log(Object.keys(obj11)); //[ 'a' ]
 
 Object.preventExtensions(obj11); //предотвращает добавление новых свойств к объекту
 obj11.b = 4;
-console.log(obj11);
+console.log(obj11); // { a: 12 }
+console.log(Object.getOwnPropertyDescriptors(obj11)); //a: { value: 12, writable: true, enumerable: true, configurable: true }
 
 // после seal freeze - дескрипторы не поменять появляется ошибка
 

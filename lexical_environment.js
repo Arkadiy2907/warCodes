@@ -229,3 +229,15 @@ const getArrow = () => console.log(`context = ${this.aaa}`);
 getArrow.bind(obj11)(); //context = undefined
 obj11.getArrow = getArrow;
 obj11.getArrow(); //context = undefined
+
+const obj12 = {
+  aaa: 2,
+  get() {
+    console.log(`context = ${this.aaa}`);
+  },
+};
+
+setTimeout(obj12.get, 0); //context = undefined
+//исправить через bind
+setTimeout(obj12.get.bind(obj12), 0); //context = 2
+setTimeout(() => obj12.get(), 0); //context = 2

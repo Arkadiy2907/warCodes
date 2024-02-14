@@ -34,3 +34,52 @@ console.log(compareVersions('11', '10')); //isTrue
 console.log(compareVersions('11', '11')); //isTrue
 console.log(compareVersions('10.4.6', '10.4')); //isTrue;
 console.log(compareVersions('10.4', '11')); //isFalse;
+// =======================================
+
+// 29) https://www.codewars.com/kata/56f935002e6c0d55fa000d92/train/javascript
+// Определите следующие классы, которые наследуются от Animal.
+
+// И. Акула
+// Функция-конструктор для Shark должна принимать всего 3 аргумента в следующем порядке: name, age, status. У всех акул должно быть количество ног 0(поскольку у них, очевидно, нет ног) и должно speciesбыть "shark".
+
+// II. Кот
+// Функция-конструктор Cat должна принимать те же три аргумента, что и Shark: name, age, status. У кошек всегда должно быть количество ног 4и вид "cat".
+
+// Кроме того, метод introduce/ должен быть идентичен оригиналу, за исключением того, что после фразы должно быть ровно два пробела и слова . Например:IntroduceCat"Meow meow!"
+
+// var example = new Cat("Example", 10, "Happy");
+// example.introduce() === "Hello, my name is Example and I am 10 years old.  Meow meow!"; // Notice the TWO spaces - very important
+// III. Собака
+// Конструктор Dog должен принимать 4 аргумента в указанном порядке: name, age, status, master. master это имя хозяина собаки, которое будет строкой. Кроме того, у собак должны быть 4ноги и разновидность "dog".
+
+// У собак есть тот же метод introduce/ Introduce, что и у любого другого животного, но у них есть собственный метод greetMaster/ GreetMaster, который не принимает аргументов и возвращает результат "Hello (insert_master_name_here)"(конечно, не буквальную строку, а замените (insert_master_name_here)на имя хозяина собаки).
+
+class Shark extends Animal {
+  constructor(name, age, status) {
+    super(name, age, 0, 'shark', status);
+  }
+}
+
+class Cat extends Animal {
+  constructor(name, age, status) {
+    super(name, age, 4, 'cat', status);
+  }
+
+  introduce() {
+    return super.introduce() + '  Meow meow!';
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, age, status, master) {
+    super(name, age, 4, 'dog', status);
+    this.master = master;
+  }
+
+  greetMaster() {
+    return 'Hello ' + this.master;
+  }
+}
+
+var example = new Cat('Example', 10, 'Happy');
+console.log(example.introduce()); // "Hello, my name is Example and I am 10 years old.  Meow meow!"

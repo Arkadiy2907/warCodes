@@ -30,7 +30,10 @@ console.log(bar);
 
 console.log(undefined >= 0); //false
 console.log(null <= 0); //true
+console.log(null == 0); //false
+console.log(typeof null); //object
 console.log(NaN == 0); //false
+console.log(typeof NaN); //number
 console.log(!![]); //true
 console.log(!!{}); //true
 console.log([] + null + 1); //null1
