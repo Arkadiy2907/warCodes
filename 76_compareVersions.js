@@ -83,3 +83,63 @@ class Dog extends Animal {
 
 var example = new Cat('Example', 10, 'Happy');
 console.log(example.introduce()); // "Hello, my name is Example and I am 10 years old.  Meow meow!"
+
+// ====================================================
+// https://www.codewars.com/kata/554ca54ffa7d91b236000023/train/javascript
+
+// Учитывая список и число, создайте новый список, который будет содержать каждое число listмаксимум Nраз,
+// без переупорядочения.
+// Например, если входной номер равен 2, а входной список равен [1,2,3,1,2,1,2,3], вы берете [1,2,3,1,2],
+// отбрасываете следующий, [1, 2]так как это приведет к 1и 2попаданию в результат 3раз, а затем берете 3, что приводит к[1, 2, 3, 1, 2, 3].
+// Если использовать список [20,37,20,21]и номер 1, результат будет таким [20,37,21].
+
+function deleteNth(arr, n) {
+  let myArr = arr.slice();
+  let buf = [];
+  let obj = {};
+
+  myArr.forEach((el) => {
+    if (obj[el]) {
+      obj[el]++;
+    } else {
+      obj[el] = 1;
+    }
+  });
+
+  buf = Object.keys(obj).filter((el) => obj[el] > n);
+
+  for (let i = 0; i < buf.length; i++) {
+    for (let j = 0; j < obj[buf[i]] - n; j++) {
+      let idx = myArr.lastIndexOf(+buf[i]);
+      myArr.splice(idx, 1);
+    }
+  }
+  return myArr;
+}
+
+console.log(deleteNth([20, 37, 20, 21], 1)); //, [20, 37, 21];
+deleteNth([1, 1, 3, 3, 7, 2, 2, 2, 2], 3); //, [1, 1, 3, 3, 7, 2, 2, 2];
+deleteNth([12, 39, 19, 39, 39, 19, 12], 1); //, [12, 39, 19];
+
+function deleteNth(arr, n) {
+  let map = new Map();
+  let result = [];
+  arr.forEach((num) => {
+    if (map.has(num)) {
+      map.set(num, map.get(num) + 1);
+    } else {
+      map.set(num, 1);
+    }
+
+    if (map.get(num) <= n) result.push(num);
+  });
+  return result;
+}
+
+function deleteNth(arr, x) {
+  var cache = {};
+  return arr.filter(function (n) {
+    cache[n] = (cache[n] || 0) + 1;
+    return cache[n] <= x;
+  });
+}
