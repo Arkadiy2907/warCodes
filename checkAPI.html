@@ -20,7 +20,7 @@
     <div class="child">element 2</div>
   </div>
 
-
+  <!-- 
   <button onclick="postData1()">----1----</button>
 
   <button onclick="postData2()">----2----</button>
@@ -37,14 +37,18 @@
 
   <button onclick="getData9()">----9----</button>
   <button onclick="getData10()">----10----</button>
-  <button onclick="getData11()">----11----</button>
+  <button onclick="getData11()">----11----</button> -->
 
   <button onclick="getApartments()">Список квартир</button>
   <button onclick="getStreets()">Список streets:</button>
   <button onclick="geocode()">geocode:</button>
   <button onclick="postNewClient()">новый жилец</button>
   <button onclick="fetchUrl11()">fetch</button>
-  <button onclick="fetchUrl12()">fetch2</button>
+  <button onclick="fetchUrl12()">fetchUrl12</button>
+  <button onclick="getAuthors()">getAuthors</button>
+  <button onclick="getBook()">getBook</button>
+  <button onclick="getBook1()">getBook1</button>
+
 
   <script>
 
@@ -348,7 +352,8 @@
       let badResponseCount = 0;
       // const url = 'https://google/com&#39';
       // const url = 'https://api.openweathermap.org/data/2.5/weather?q=saint petersburg&appid=ecbaa67ba7bece31be9e96bd8181180a';
-      const url = ' https://reqres.in/';
+      // const url = ' https://reqres.in/';
+      const url = 'https://openlibrary.org/books/OL166894W'
 
       try {
         const response = await fetch(url);
@@ -368,6 +373,44 @@
       } catch (error) {
         console.log('error=', error);
       }
+    }
+
+    function getAuthors() {
+      fetch('https://openlibrary.org/search/authors.json?q=j%20k%20rowling', {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+    function getBook() {
+      fetch('https://api.nasa.gov/EPIC/api/natural/date/2019-05-30?api_key=DEMO_KEY', {
+        method: 'GET',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+    function getBook1() {
+      const key = '3hG9LrKvhAqlZDQ6lO8L1RamMiyMdmg0rySFlVFJ'
+      // const key = 'DEMO_KEY'
+      const url = 'https://api.nasa.gov/EPIC/api/natural/all?api_key='
+
+      // fetch(`${url}${key}`)
+      fetch(`https://api.nasa.gov/EPIC/archive/natural/2019/05/30/png/epic_1b_20190530011359.png?api_key=DEMO_KEY`)
+        .then(response => console.log(response))
+
+        .catch(error => console.error(error));
     }
 
   </script>

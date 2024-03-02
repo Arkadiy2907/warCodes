@@ -143,3 +143,81 @@ function deleteNth(arr, x) {
     return cache[n] <= x;
   });
 }
+
+// ==========================================================
+// https://www.codewars.com/kata/5a8d2bf60025e9163c0000bc/train/javascript
+
+// В этом ката вы будете сортировать элементы массива по уменьшению частоты элементов. Если два элемента имеют одинаковую частоту, отсортируйте их по возрастанию значения.
+
+// solve([2,3,5,3,7,9,5,3,7]) = [3,3,3,5,5,7,7,2,9]
+// -- We sort by highest frequency to lowest frequency.
+// -- If two elements have same frequency, we sort by increasing value.
+
+function solve(arr) {
+  let obj = {};
+
+  arr.forEach((el) => {
+    if (obj[el]) {
+      obj[el]++;
+    } else {
+      obj[el] = 1;
+    }
+  });
+
+  let buf = Object.keys(obj).sort((a, b) => obj[b] - obj[a]);
+
+  let arrr = [];
+  for (let i = 0; i < buf.length; i++) {
+    for (let j = 0; j < obj[buf[i]]; j++) {
+      arrr.push(buf[i]);
+    }
+  }
+
+  // return bu;
+  // });
+  // .toString()
+  // .split('')
+  // .filter((el) => !isNaN(+el))
+  // .map((el) => +el);
+  console.log(arrr);
+  return arrr.map((el) => +el);
+}
+
+function solve(arr) {
+  const obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    if (obj.hasOwnProperty(arr[i])) {
+      obj[arr[i]]++;
+    } else {
+      obj[arr[i]] = 1;
+    }
+  }
+  arr = arr.sort((a, b) => (obj[b] === obj[a] ? a - b : obj[b] - obj[a]));
+  return arr;
+}
+
+// solve([2, 3, 5, 3, 7, 9, 5, 3, 7]); //,[3,3,3,5,5,7,7,2,9])
+// solve([1, 2, 3, 0, 5, 0, 1, 6, 8, 8, 6, 9, 1]); // [1, 1, 1, 0, 0, 6, 6, 8, 8, 2, 3, 5, 9];
+// solve([5, 9, 6, 9, 6, 5, 9, 9, 4, 4]); //,[9,9,9,9,4,4,5,5,6,6])
+// solve([4, 4, 2, 5, 1, 1, 3, 3, 2, 8]); //,[1,1,2,2,3,3,4,4,5,8])
+solve([
+  '15',
+  '15',
+  '5',
+  '5',
+  '22',
+  '13',
+  '2',
+  '20',
+  '6',
+  '27',
+  '32',
+  '34',
+  '35',
+  '41',
+  '45',
+]); //,[15, 15, 5, 5, 22, 13, 2, 20, 6, 27, 32, 34, 35, 41, 45]
+solve([
+  17, 17, 17, 2, 2, 29, 29, 33, 33, 36, 36, 48, 48, 3, 6, 11, 12, 16, 18, 19,
+  21, 23, 25, 30, 31, 37, 42, 49,
+]);
