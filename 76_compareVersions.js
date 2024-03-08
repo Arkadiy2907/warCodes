@@ -262,3 +262,52 @@ console.log(solve([-3, 1, 2, 3, -1, -4, -2])); //,-4);
 solve([1, -1, 2, -2, 3, 3]); //,3);
 solve([-110, 110, -38, -38, -62, 62, -38, -38, -38]); //,-38);
 solve([-9, -105, -9, -9, -9, -9, 105]); //,-9);
+
+// ==============================================================
+// https://www.codewars.com/kata/5a6d3bd238f80014a2000187/train/javascript
+// У меня есть кошка и собака, которых я приобрела котенком/щенком.
+
+// Я забыл, когда это было, но знаю их нынешний возраст как catYearsи dogYears.
+
+// Найдите, как долго я владею каждым из своих домашних животных, и верните результат в виде списка [ ownedCat, ownedDog]
+
+// ПРИМЕЧАНИЯ:
+
+// Результаты представляют собой усеченные целые числа «человеческих» лет.
+// Кошачьи годы
+// 15кошачьи годы за первый год
+// +9кошачьи годы на второй год
+// +4кошачьи годы за каждый год после этого
+// Собачьи годы
+// 15собачьи годы за первый год
+// +9собачьи годы на второй год
+// +5собачьи годы за каждый последующий год
+
+var ownedCatAndDog = function (catYears, dogYears) {
+  return [getYear('cat', catYears), getYear('dog', dogYears)];
+};
+
+function getYear(animal, years) {
+  let year = +0;
+  let add = animal === 'cat' ? 4 : 5;
+
+  if (years === 15 || (years > 15 && years < 24)) {
+    year = 1;
+  } else if (years === 24) {
+    year = 2;
+  } else if (years > 24) {
+    year = 2 + Math.floor((years - 24) / add);
+  }
+
+  return year;
+}
+
+const ownedCatAndDog = (catYears, dogYears) =>
+  [
+    catYears < 24 ? catYears / 15 : (catYears - 16) / 4,
+    dogYears < 24 ? dogYears / 15 : (dogYears - 14) / 5,
+  ].map(Math.floor);
+
+console.log(ownedCatAndDog(17, 85)); //, [1, 1];
+// console.log(ownedCatAndDog(24, 24)); //, [2, 2];
+console.log(ownedCatAndDog(56, 64)); //, [10,10])
