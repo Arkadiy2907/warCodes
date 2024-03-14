@@ -28,6 +28,7 @@ let foo = bar;
 foo.push(6);
 console.log(bar);
 
+console.log(NaN + 0 + null + 1);
 console.log(undefined >= 0); //false
 console.log(null <= 0); //true
 console.log(null == 0); //false

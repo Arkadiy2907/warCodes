@@ -311,3 +311,52 @@ const ownedCatAndDog = (catYears, dogYears) =>
 console.log(ownedCatAndDog(17, 85)); //, [1, 1];
 // console.log(ownedCatAndDog(24, 24)); //, [2, 2];
 console.log(ownedCatAndDog(56, 64)); //, [10,10])
+
+// ======================
+// https://www.codewars.com/kata/56fbdda707cff41b68000de2/train/javascript
+// Определите следующие классы.
+
+// I. Кубовидная
+// Объект constructorдля class Cuboidдолжен получить ровно три аргумента в следующем порядке: length, width, heightи сохранить эти три значения в this.length, this.widthи this.heightсоответственно.
+
+// class CuboidЗатем у него должен быть геттер surfaceArea , который возвращает площадь поверхности кубоида, и геттер volume, который возвращает объем кубоида.
+
+// II. Куб
+// class Cubeявляется подклассом class Cuboid. Функция constructorдолжна Cubeполучать только один аргумент, его , и использовать это значение , lengthпереданное для установки this.lengthи this.width.this.height
+
+// Подсказка: позвоните по адресу super, передав правильные аргументы, чтобы облегчить жизнь ;)
+
+class Cuboid {
+  constructor(length, width, height) {
+    this.length = length;
+    this.width = width;
+    this.height = height;
+  }
+
+  get surfaceArea() {
+    return (
+      2 *
+      (this.length * this.width +
+        this.width * this.height +
+        this.height * this.length)
+    );
+  }
+
+  get volume() {
+    return this.length * this.width * this.height;
+  }
+}
+
+class Cube extends Cuboid {
+  constructor(length) {
+    super(length, length, length);
+  }
+}
+
+const cuboid = new Cuboid(3, 4, 5);
+console.log(cuboid.surfaceArea); // 94
+console.log(cuboid.volume); //  60
+
+const cube = new Cube(3);
+console.log(cube.surfaceArea); // 54
+console.log(cube.volume); //  27

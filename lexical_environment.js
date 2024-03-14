@@ -241,3 +241,5 @@ setTimeout(obj12.get, 0); //context = undefined
 //исправить через bind
 setTimeout(obj12.get.bind(obj12), 0); //context = 2
 setTimeout(() => obj12.get(), 0); //context = 2
+
+// ==============
