@@ -360,3 +360,10 @@ console.log(cuboid.volume); //  60
 const cube = new Cube(3);
 console.log(cube.surfaceArea); // 54
 console.log(cube.volume); //  27
+
+// =========================================
+// https://www.codewars.com/kata/5a4ff3c5fd56cbaf9800003e/javascript
+
+const withoutLast = (arr) => arr.slice(0, arr.length - 1);
+
+console.log(withoutLast([90, 61, 33, 26, 54, 45, 52, 88, 19]));

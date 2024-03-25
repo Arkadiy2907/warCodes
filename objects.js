@@ -131,6 +131,8 @@ function foo() {
 
 foo(); //window, а если с use strict то undefined
 
+new foo(); // foo {}
+
 // 3) функция как метод в объекте
 
 const obj1 = {
@@ -181,7 +183,7 @@ a3(); //50
 function Foo4(title, price) {
   this.title = title;
   this.price = price;
-  // console.log(this);
+  console.log(this);
   // return this;//писать не обязательно т к ф-я с new возвращает созданный объект
 }
 
