@@ -394,3 +394,41 @@ console.log(likes(['Peter'])); // 'Peter likes this');
 console.log(likes(['Jacob', 'Alex'])); //, 'Jacob and Alex like this');
 console.log(likes(['Max', 'John', 'Mark'])); //   'Max, John and Mark like this' );
 console.log(likes(['Alex', 'Jacob', 'Mark', 'Max'])); //  'Alex, Jacob and 2 others like this'
+
+// https://www.codewars.com/kata/580755730b5a77650500010c/train/javascript
+
+// Учитывая строку s, ваша задача — вернуть другую строку, в которой символы с четным и нечетным индексом s сгруппированы, а группы разделены пробелами. Первой идет группа с четным индексом, за ней следует пробел, а затем часть с нечетным индексом.
+
+// Примеры
+// input:    "CodeWars" => "CdWr oeas"
+//            ||||||||      |||| ||||
+// indices:   01234567      0246 1357
+// Даже индексы 0, 2, 4, 6, значит у нас "CdWr"первая группа.
+// Нечетные индексы — 1, 3, 5, 7, поэтому вторая группа — "oeas".
+// И последняя возвращаемая строка: "Cdwr oeas".
+
+function sortMyString(s) {
+  let odd = [];
+  let even = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (i % 2 === 0) {
+      even.push(s[i]);
+    } else {
+      odd.push(s[i]);
+    }
+  }
+
+  return `${even.join('')} ${odd.join('')}`;
+}
+
+function sortMyString(S) {
+  let even = [],
+    odd = [];
+  S.split('').forEach((e, i) => {
+    i % 2 === 0 ? even.push(e) : odd.push(e);
+  });
+  return `${even.join('')} ${odd.join('')}`;
+}
+
+console.log(sortMyString('CodeWars')); //, 'CdWr oeas';
